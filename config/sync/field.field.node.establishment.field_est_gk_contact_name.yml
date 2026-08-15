@@ -1,0 +1,19 @@
+uuid: e76200af-00d5-4a97-a23f-2ff7e8d3b42a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_est_gk_contact_name
+    - node.type.establishment
+id: node.establishment.field_est_gk_contact_name
+field_name: field_est_gk_contact_name
+entity_type: node
+bundle: establishment
+label: 'Ονοματεπώνυμο του υπεύθυνου για το Greenkey'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

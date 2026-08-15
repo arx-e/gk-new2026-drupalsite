@@ -1,0 +1,22 @@
+uuid: 85f01931-2e00-461e-a170-340f8086437c
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - gkradix
+_core:
+  default_config_hash: 74V9dXZM2vBNAVN-EiIFXH2YeRyoU0kUAtDngi-dMXw
+id: gkradix_messages
+theme: gkradix
+region: header
+weight: -3
+provider: null
+plugin: system_messages_block
+settings:
+  id: system_messages_block
+  label: 'Status messages'
+  label_display: '0'
+  provider: system
+visibility: {  }

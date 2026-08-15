@@ -1,0 +1,9 @@
+uuid: f3293a8b-e5d3-40d2-9457-fe65cdf4d5a3
+langcode: en
+status: true
+dependencies:
+  config:
+    - eck.eck_entity_type.criterion_response_ent
+name: 'Criterion response'
+type: criterion_response
+description: ''

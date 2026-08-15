@@ -1,0 +1,21 @@
+uuid: 0ef376e3-6e41-4cc2-887b-2ff92dca505d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_cr_appl_a
+    - node.type.criterion
+  module:
+    - options
+id: node.criterion.field_cr_appl_a
+field_name: field_cr_appl_a
+entity_type: node
+bundle: criterion
+label: 'Applicable A'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

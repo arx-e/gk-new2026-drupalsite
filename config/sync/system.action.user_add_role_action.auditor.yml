@@ -1,0 +1,14 @@
+uuid: 58030345-50ee-401e-8f1c-255d18b66495
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.auditor
+  module:
+    - user
+id: user_add_role_action.auditor
+label: 'Add the Auditor role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: auditor

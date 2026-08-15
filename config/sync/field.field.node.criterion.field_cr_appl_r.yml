@@ -1,0 +1,21 @@
+uuid: da775bd8-121a-46b8-93d1-d28809c22835
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_cr_appl_r
+    - node.type.criterion
+  module:
+    - options
+id: node.criterion.field_cr_appl_r
+field_name: field_cr_appl_r
+entity_type: node
+bundle: criterion
+label: 'Applicable R'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

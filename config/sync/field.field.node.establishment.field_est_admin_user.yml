@@ -1,0 +1,35 @@
+uuid: a183cf6f-7bb9-47f6-8f00-b5d302a0b7cc
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_est_admin_user
+    - node.type.establishment
+id: node.establishment.field_est_admin_user
+field_name: field_est_admin_user
+entity_type: node
+bundle: establishment
+label: 'Establishment admin user'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:user'
+  handler_settings:
+    target_bundles: null
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    filter:
+      type: role
+      role:
+        est_admin: est_admin
+        content_editor: '0'
+        administrator: '0'
+        programme_operator: '0'
+        auditor: '0'
+    include_anonymous: false
+field_type: entity_reference

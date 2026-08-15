@@ -1,0 +1,30 @@
+uuid: 29ffd012-7f24-4811-bf86-0276cc6f55ce
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_cr_appl_cc
+field_name: field_cr_appl_cc
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: i
+      label: Imperative
+    -
+      value: g
+      label: Guideline
+    -
+      value: x
+      label: 'Not applicable'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

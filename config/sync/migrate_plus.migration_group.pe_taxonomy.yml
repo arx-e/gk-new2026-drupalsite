@@ -1,0 +1,10 @@
+uuid: 9f913208-af07-42ad-a4fd-ba8fbe4bf5ed
+langcode: en
+status: true
+dependencies: {  }
+id: pe_taxonomy
+label: pe_taxonomy
+description: ''
+source_type: null
+module: null
+shared_configuration: null

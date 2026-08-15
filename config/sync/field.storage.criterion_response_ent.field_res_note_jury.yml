@@ -1,0 +1,19 @@
+uuid: c8180dfd-1058-47ab-8f1c-95d8bcf37615
+langcode: en
+status: true
+dependencies:
+  module:
+    - eck
+    - text
+id: criterion_response_ent.field_res_note_jury
+field_name: field_res_note_jury
+entity_type: criterion_response_ent
+type: text_long
+settings: {  }
+module: text
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

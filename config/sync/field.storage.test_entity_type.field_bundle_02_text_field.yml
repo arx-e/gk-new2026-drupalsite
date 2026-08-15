@@ -1,0 +1,21 @@
+uuid: 3dd6d880-d753-43cd-88f5-c566c2cefc46
+langcode: en
+status: true
+dependencies:
+  module:
+    - eck
+id: test_entity_type.field_bundle_02_text_field
+field_name: field_bundle_02_text_field
+entity_type: test_entity_type
+type: string
+settings:
+  max_length: 255
+  case_sensitive: false
+  is_ascii: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -1,0 +1,20 @@
+uuid: 477b3ef4-05a0-472a-92cd-ce425a2c105b
+langcode: en
+status: true
+dependencies:
+  theme:
+    - gkradix
+id: gkradix_tabs
+theme: gkradix
+region: header
+weight: 0
+provider: null
+plugin: local_tasks_block
+settings:
+  id: local_tasks_block
+  label: Tabs
+  label_display: '0'
+  provider: core
+  primary: true
+  secondary: true
+visibility: {  }

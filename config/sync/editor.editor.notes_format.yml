@@ -1,0 +1,32 @@
+uuid: ada95051-017b-4913-a4d4-86fe200de051
+langcode: en
+status: true
+dependencies:
+  config:
+    - filter.format.notes_format
+  module:
+    - ckeditor5
+format: notes_format
+editor: ckeditor5
+settings:
+  toolbar:
+    items:
+      - bold
+      - italic
+      - underline
+      - strikethrough
+      - subscript
+      - superscript
+      - bulletedList
+      - numberedList
+      - '|'
+      - link
+  plugins:
+    ckeditor5_list:
+      properties:
+        reversed: true
+        startIndex: true
+        styles: true
+      multiBlock: true
+image_upload:
+  status: false

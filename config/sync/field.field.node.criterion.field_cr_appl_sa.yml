@@ -1,0 +1,21 @@
+uuid: 4a5c3ddb-5f0c-4f80-8da3-445e8d5d3dc3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_cr_appl_sa
+    - node.type.criterion
+  module:
+    - options
+id: node.criterion.field_cr_appl_sa
+field_name: field_cr_appl_sa
+entity_type: node
+bundle: criterion
+label: 'Applicable SA'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

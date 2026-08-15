@@ -1,0 +1,19 @@
+uuid: 4a81c108-690a-4ec2-b8bb-976d20acc519
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_establishment_type_code
+    - taxonomy.vocabulary.establishment_types
+id: taxonomy_term.establishment_types.field_establishment_type_code
+field_name: field_establishment_type_code
+entity_type: taxonomy_term
+bundle: establishment_types
+label: 'Establishment Type Code'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

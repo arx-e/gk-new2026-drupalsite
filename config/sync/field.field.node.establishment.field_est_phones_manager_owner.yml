@@ -1,0 +1,19 @@
+uuid: bb1f6cc5-d7c7-4580-b3c1-0765fe4f3c3e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_est_phones_manager_owner
+    - node.type.establishment
+id: node.establishment.field_est_phones_manager_owner
+field_name: field_est_phones_manager_owner
+entity_type: node
+bundle: establishment
+label: 'Τηλέφωνα επικοινωνίας (διευθυντή/επιχειρηματία)'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

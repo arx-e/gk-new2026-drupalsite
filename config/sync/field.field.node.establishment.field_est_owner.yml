@@ -1,0 +1,19 @@
+uuid: ee1f3be0-a891-4af5-aeee-3dbae0062d20
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_est_owner
+    - node.type.establishment
+id: node.establishment.field_est_owner
+field_name: field_est_owner
+entity_type: node
+bundle: establishment
+label: 'Ιδιοκτήτης μονάδας'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

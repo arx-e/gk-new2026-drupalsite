@@ -1,0 +1,24 @@
+uuid: 881a6514-58f8-4157-a709-5558c6a54c9c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_expl_relevance
+    - filter.format.basic_html
+    - node.type.criterion
+  module:
+    - text
+id: node.criterion.field_expl_relevance
+field_name: field_expl_relevance
+entity_type: node
+bundle: criterion
+label: 'Expl. Συνάφεια'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats:
+    - basic_html
+field_type: text_long

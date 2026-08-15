@@ -1,0 +1,30 @@
+uuid: a6ae8911-2e53-49d9-8297-dbfe387478ce
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.establishment_types.field_establishment_type_code
+    - taxonomy.vocabulary.establishment_types
+  module:
+    - text
+id: taxonomy_term.establishment_types.default
+targetEntityType: taxonomy_term
+bundle: establishment_types
+mode: default
+content:
+  description:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_establishment_type_code:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden: {  }

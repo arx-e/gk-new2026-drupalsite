@@ -1,0 +1,27 @@
+uuid: 6dd037b1-49e0-4fb8-bfdd-e2502d80ef92
+langcode: en
+status: true
+dependencies:
+  module:
+    - eck
+    - options
+id: criterion_response_ent.field_res_answer
+field_name: field_res_answer
+entity_type: criterion_response_ent
+type: list_integer
+settings:
+  allowed_values:
+    -
+      value: 0
+      label: No/Όχι
+    -
+      value: 1
+      label: Yes/Ναι
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

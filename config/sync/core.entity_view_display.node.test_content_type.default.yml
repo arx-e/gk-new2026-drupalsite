@@ -1,0 +1,37 @@
+uuid: 862dd23d-576c-43ed-83c2-faee8123174c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.test_content_type.field_long_text
+    - field.field.node.test_content_type.field_test_custom_metrics
+    - node.type.test_content_type
+  module:
+    - custom_field
+    - user
+id: node.test_content_type.default
+targetEntityType: node
+bundle: test_content_type
+mode: default
+content:
+  field_long_text:
+    type: basic_string
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_test_custom_metrics:
+    type: custom_formatter
+    label: above
+    settings:
+      fields: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
+hidden: {  }

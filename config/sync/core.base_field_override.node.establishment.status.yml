@@ -1,0 +1,22 @@
+uuid: 492438ba-c640-45e5-adc4-16a05d85da4d
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.establishment
+id: node.establishment.status
+field_name: status
+entity_type: node
+bundle: establishment
+label: Published
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

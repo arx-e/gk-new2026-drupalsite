@@ -1,0 +1,18 @@
+uuid: e48572de-c54c-473d-b50d-12a7d517248d
+langcode: en
+status: true
+dependencies:
+  config:
+    - eck.eck_type.criterion_response_ent.criterion_response
+id: criterion_response_ent.criterion_response.created
+field_name: created
+entity_type: criterion_response_ent
+bundle: criterion_response
+label: 'Authored on'
+description: '<none>'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: created

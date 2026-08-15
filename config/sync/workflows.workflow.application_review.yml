@@ -1,0 +1,89 @@
+uuid: e4f14f47-fadd-4f92-8202-f0345b079d8f
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.application_container
+  module:
+    - content_moderation
+id: application_review
+label: 'Application Review'
+type: content_moderation
+type_settings:
+  states:
+    draft:
+      label: Draft
+      weight: -3
+      published: false
+      default_revision: false
+    finalized:
+      label: Finalized
+      weight: 1
+      published: true
+      default_revision: false
+    published:
+      label: Published
+      weight: 2
+      published: true
+      default_revision: true
+    submitted:
+      label: Submitted
+      weight: -2
+      published: true
+      default_revision: false
+    under_audit:
+      label: 'Under Audit'
+      weight: 0
+      published: true
+      default_revision: false
+    under_review:
+      label: 'Under Review'
+      weight: -1
+      published: true
+      default_revision: false
+  transitions:
+    create_new_draft:
+      label: 'Create New Draft'
+      from:
+        - draft
+        - published
+      to: draft
+      weight: -3
+    finalize:
+      label: Finalize
+      from:
+        - finalized
+        - under_audit
+      to: finalized
+      weight: 2
+    publish:
+      label: Publish
+      from:
+        - draft
+        - published
+      to: published
+      weight: 1
+    put_under_audit:
+      label: 'Put under audit'
+      from:
+        - submitted
+        - under_review
+      to: under_audit
+      weight: 0
+    put_under_review:
+      label: 'Put under review'
+      from:
+        - submitted
+        - under_review
+      to: under_review
+      weight: -1
+    submit_application:
+      label: 'Submit Application'
+      from:
+        - draft
+      to: submitted
+      weight: -2
+  entity_types:
+    node:
+      - application_container
+  default_moderation_state: draft

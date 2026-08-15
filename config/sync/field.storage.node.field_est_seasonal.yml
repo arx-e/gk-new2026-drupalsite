@@ -1,0 +1,27 @@
+uuid: 3ce5c62b-263e-442c-b6b3-8d817bf0529f
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_est_seasonal
+field_name: field_est_seasonal
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: epohiaki_leitoyrgia
+      label: 'Εποχιακή λειτουργία'
+    -
+      value: 12mini_leitoyrgia
+      label: '12μηνη λειτουργία'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

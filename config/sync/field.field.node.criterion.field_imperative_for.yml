@@ -1,0 +1,29 @@
+uuid: a7419faa-8dc9-47d7-b08a-b1ebb48823ac
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_imperative_for
+    - node.type.criterion
+    - taxonomy.vocabulary.establishment_types
+id: node.criterion.field_imperative_for
+field_name: field_imperative_for
+entity_type: node
+bundle: criterion
+label: 'Imperative for'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      establishment_types: establishment_types
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

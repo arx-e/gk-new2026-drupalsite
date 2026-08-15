@@ -1,0 +1,29 @@
+uuid: 0012e3c2-3f39-416b-892e-6b0268491091
+langcode: en
+status: true
+dependencies:
+  config:
+    - eck.eck_type.criterion_response_ent.criterion_response
+    - field.storage.criterion_response_ent.field_res_application
+    - node.type.application_container
+id: criterion_response_ent.criterion_response.field_res_application
+field_name: field_res_application
+entity_type: criterion_response_ent
+bundle: criterion_response
+label: 'Application Container'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      application_container: application_container
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

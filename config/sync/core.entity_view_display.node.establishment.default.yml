@@ -1,0 +1,311 @@
+uuid: 9ed4c8bc-7e8e-4afc-be4d-66f4fbcc4b84
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.establishment.field_dioikitiki_enotita
+    - field.field.node.establishment.field_est_address
+    - field.field.node.establishment.field_est_address_city
+    - field.field.node.establishment.field_est_address_postcode
+    - field.field.node.establishment.field_est_admin_user
+    - field.field.node.establishment.field_est_employees
+    - field.field.node.establishment.field_est_gk_contact_email
+    - field.field.node.establishment.field_est_gk_contact_name
+    - field.field.node.establishment.field_est_gk_contact_phone
+    - field.field.node.establishment.field_est_gk_contact_position
+    - field.field.node.establishment.field_est_location
+    - field.field.node.establishment.field_est_manager_email
+    - field.field.node.establishment.field_est_manager_name
+    - field.field.node.establishment.field_est_name_en
+    - field.field.node.establishment.field_est_name_gr
+    - field.field.node.establishment.field_est_nights_year
+    - field.field.node.establishment.field_est_nomos
+    - field.field.node.establishment.field_est_owner
+    - field.field.node.establishment.field_est_periodos_leitoyrgias
+    - field.field.node.establishment.field_est_phones_manager_owner
+    - field.field.node.establishment.field_est_protected_area
+    - field.field.node.establishment.field_est_protected_area_name
+    - field.field.node.establishment.field_est_rooms_number
+    - field.field.node.establishment.field_est_seasonal
+    - field.field.node.establishment.field_est_type
+    - field.field.node.establishment.field_est_visitors_year
+    - field.field.node.establishment.field_est_website
+    - node.type.establishment
+  module:
+    - datetime_range
+    - field_group
+    - geofield
+    - link
+    - options
+    - user
+third_party_settings:
+  field_group:
+    group_est_gk_person:
+      children:
+        - field_est_gk_contact_name
+        - field_est_gk_contact_position
+        - field_est_gk_contact_email
+        - field_est_gk_contact_phone
+      label: 'Υπεύθυνος για το Green Key'
+      parent_name: ''
+      region: content
+      weight: 24
+      format_type: details
+      format_settings:
+        classes: ''
+        show_empty_fields: true
+        id: ''
+        label_as_html: false
+        open: true
+        description: ''
+        required_fields: false
+id: node.establishment.default
+targetEntityType: node
+bundle: establishment
+mode: default
+content:
+  field_dioikitiki_enotita:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 9
+    region: content
+  field_est_address:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+      link_rel: canonical
+    third_party_settings: {  }
+    weight: 15
+    region: content
+  field_est_address_city:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+      link_rel: canonical
+    third_party_settings: {  }
+    weight: 17
+    region: content
+  field_est_address_postcode:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+      link_rel: canonical
+    third_party_settings: {  }
+    weight: 16
+    region: content
+  field_est_admin_user:
+    type: entity_reference_label
+    label: inline
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_est_employees:
+    type: number_integer
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 13
+    region: content
+  field_est_gk_contact_email:
+    type: basic_string
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 27
+    region: content
+  field_est_gk_contact_name:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+      link_rel: canonical
+    third_party_settings: {  }
+    weight: 25
+    region: content
+  field_est_gk_contact_phone:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+      link_rel: canonical
+    third_party_settings: {  }
+    weight: 28
+    region: content
+  field_est_gk_contact_position:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+      link_rel: canonical
+    third_party_settings: {  }
+    weight: 26
+    region: content
+  field_est_location:
+    type: geofield_default
+    label: above
+    settings:
+      output_format: wkt
+      output_escape: true
+    third_party_settings: {  }
+    weight: 6
+    region: content
+  field_est_manager_email:
+    type: basic_string
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 22
+    region: content
+  field_est_manager_name:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+      link_rel: canonical
+    third_party_settings: {  }
+    weight: 20
+    region: content
+  field_est_name_en:
+    type: string
+    label: inline
+    settings:
+      link_to_entity: false
+      link_rel: canonical
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_est_name_gr:
+    type: string
+    label: inline
+    settings:
+      link_to_entity: false
+      link_rel: canonical
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_est_nights_year:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+      link_rel: canonical
+    third_party_settings: {  }
+    weight: 11
+    region: content
+  field_est_nomos:
+    type: entity_reference_label
+    label: inline
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  field_est_owner:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+      link_rel: canonical
+    third_party_settings: {  }
+    weight: 21
+    region: content
+  field_est_periodos_leitoyrgias:
+    type: daterange_default
+    label: above
+    settings:
+      timezone_override: ''
+      format_type: medium
+      from_to: both
+      separator: '-'
+    third_party_settings: {  }
+    weight: 8
+    region: content
+  field_est_phones_manager_owner:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+      link_rel: canonical
+    third_party_settings: {  }
+    weight: 23
+    region: content
+  field_est_protected_area:
+    type: boolean
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 18
+    region: content
+  field_est_protected_area_name:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+      link_rel: canonical
+    third_party_settings: {  }
+    weight: 19
+    region: content
+  field_est_rooms_number:
+    type: number_integer
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 10
+    region: content
+  field_est_seasonal:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 14
+    region: content
+  field_est_type:
+    type: entity_reference_label
+    label: inline
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_est_visitors_year:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+      link_rel: canonical
+    third_party_settings: {  }
+    weight: 12
+    region: content
+  field_est_website:
+    type: link
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 7
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden: {  }

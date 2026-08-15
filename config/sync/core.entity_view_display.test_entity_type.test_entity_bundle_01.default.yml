@@ -1,0 +1,51 @@
+uuid: cdc252c2-cf7b-43d2-aac8-88a38c4926fa
+langcode: en
+status: true
+dependencies:
+  config:
+    - eck.eck_type.test_entity_type.test_entity_bundle_01
+    - field.field.test_entity_type.test_entity_bundle_01.field_bundle_01_text_field
+  module:
+    - user
+id: test_entity_type.test_entity_bundle_01.default
+targetEntityType: test_entity_type
+bundle: test_entity_bundle_01
+mode: default
+content:
+  created:
+    type: timestamp
+    label: hidden
+    settings:
+      date_format: medium
+      custom_date_format: ''
+      timezone: ''
+      tooltip:
+        date_format: long
+        custom_date_format: ''
+      time_diff:
+        enabled: false
+        future_format: '@interval hence'
+        past_format: '@interval ago'
+        granularity: 2
+        refresh: 60
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_bundle_01_text_field:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+      link_rel: canonical
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  uid:
+    type: author
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  changed: true

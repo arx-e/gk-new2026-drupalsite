@@ -1,0 +1,21 @@
+uuid: 932c9e0b-9910-4a27-8652-c4e3fdb18374
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_cr_appl_hh
+    - node.type.criterion
+  module:
+    - options
+id: node.criterion.field_cr_appl_hh
+field_name: field_cr_appl_hh
+entity_type: node
+bundle: criterion
+label: 'Applicable HH'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

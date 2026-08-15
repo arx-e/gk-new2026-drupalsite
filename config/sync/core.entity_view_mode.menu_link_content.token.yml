@@ -1,0 +1,11 @@
+uuid: db94551d-fd51-4840-925d-4815881a1d6a
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_link_content
+id: menu_link_content.token
+label: Token
+description: null
+targetEntityType: menu_link_content
+cache: true

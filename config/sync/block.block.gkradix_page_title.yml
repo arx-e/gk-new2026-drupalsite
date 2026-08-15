@@ -1,0 +1,20 @@
+uuid: 2c5d1dc5-391c-4177-bbfb-a3b3c4782786
+langcode: en
+status: true
+dependencies:
+  theme:
+    - gkradix
+_core:
+  default_config_hash: jbXve0AzYkjt7sW1SS9ibtQEAqHvYMLlOwEM-KM64Q8
+id: gkradix_page_title
+theme: gkradix
+region: header
+weight: -2
+provider: null
+plugin: page_title_block
+settings:
+  id: page_title_block
+  label: 'Page title'
+  label_display: '0'
+  provider: core
+visibility: {  }

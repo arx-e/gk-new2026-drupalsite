@@ -1,0 +1,19 @@
+uuid: 777d2baa-8bd4-47a8-9ffc-2692892f74cc
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_cr_title_en
+    - node.type.criterion
+id: node.criterion.field_cr_title_en
+field_name: field_cr_title_en
+entity_type: node
+bundle: criterion
+label: 'Criterion Title EN'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

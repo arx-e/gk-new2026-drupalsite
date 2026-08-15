@@ -1,0 +1,19 @@
+uuid: b335f1ff-7278-4d8c-bab4-a19abc64aed7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_criterion_code_alt
+    - node.type.criterion
+id: node.criterion.field_criterion_code_alt
+field_name: field_criterion_code_alt
+entity_type: node
+bundle: criterion
+label: 'Criterion Code alt'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

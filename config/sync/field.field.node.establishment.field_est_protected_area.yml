@@ -1,0 +1,21 @@
+uuid: 718376d9-21b1-4642-88e4-bb93452d75a7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_est_protected_area
+    - node.type.establishment
+id: node.establishment.field_est_protected_area
+field_name: field_est_protected_area
+entity_type: node
+bundle: establishment
+label: 'Υπάγεται η μονάδα σε περιοχή ή ζώνη ειδικής προστασίας; '
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  on_label: Ναι/yes
+  off_label: Όχι/no
+field_type: boolean

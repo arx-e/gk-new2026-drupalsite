@@ -1,0 +1,29 @@
+uuid: 71375354-e698-4007-ae07-7426eea8a813
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_app_cycle
+    - node.type.application_container
+    - taxonomy.vocabulary.application_cycles
+id: node.application_container.field_app_cycle
+field_name: field_app_cycle
+entity_type: node
+bundle: application_container
+label: 'Application Cycle'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      application_cycles: application_cycles
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

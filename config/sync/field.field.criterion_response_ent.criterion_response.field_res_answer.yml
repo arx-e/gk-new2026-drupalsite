@@ -1,0 +1,23 @@
+uuid: 46ded5f4-87ac-405a-91cf-9db73c7b04bb
+langcode: en
+status: true
+dependencies:
+  config:
+    - eck.eck_type.criterion_response_ent.criterion_response
+    - field.storage.criterion_response_ent.field_res_answer
+  module:
+    - options
+id: criterion_response_ent.criterion_response.field_res_answer
+field_name: field_res_answer
+entity_type: criterion_response_ent
+bundle: criterion_response
+label: Answer
+description: ''
+required: true
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings: {  }
+field_type: list_integer

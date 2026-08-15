@@ -1,0 +1,9 @@
+uuid: 85522476-75d3-4b0f-8bd8-92c634315d6d
+langcode: en
+status: true
+dependencies: {  }
+name: 'Criteria categories'
+vid: criteria_categories
+description: null
+weight: 0
+new_revision: false

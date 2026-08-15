@@ -1,0 +1,20 @@
+uuid: dbe366db-9e07-4382-a71c-490b261de07e
+langcode: en
+status: true
+dependencies:
+  config:
+    - eck.eck_type.criterion_response_ent.criterion_response
+id: criterion_response_ent.criterion_response.uid
+field_name: uid
+entity_type: criterion_response_ent
+bundle: criterion_response
+label: 'Authored by'
+description: '<none>'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: 'Drupal\eck\Entity\EckEntity::getDefaultEntityOwner'
+settings:
+  handler: default
+  handler_settings: {  }
+field_type: entity_reference

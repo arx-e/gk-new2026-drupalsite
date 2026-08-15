@@ -1,0 +1,41 @@
+# Dependencies (rebuilt via Composer)
+/vendor/
+/web/core/
+/web/modules/contrib/
+/web/themes/contrib/
+/web/profiles/contrib/
+/web/libraries/*
+# But track specific manually-placed libraries
+# !/web/libraries/my-custom-library/
+
+# Configuration files that may contain sensitive information.
+/web/sites/*/settings*.php
+!/web/sites/*/default.settings.php
+/web/sites/*/services*.yml
+!/web/sites/*/default.services.yml
+
+# Generated files
+/web/sites/*/files/
+/web/sites/*/private/
+/web/sites/*/translations/
+
+# Theme build tooling (rebuilt via npm)
+/web/themes/custom/*/node_modules/
+/web/themes/custom/*/build/
+
+# Local development
+.env
+.ddev/
+.idea/
+.vscode/
+
+# Database dumps
+*.sql
+*.sql.gz
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Keep empty directories tracked
+!/web/sites/default/files/.gitkeep

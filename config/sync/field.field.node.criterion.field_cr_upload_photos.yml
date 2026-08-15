@@ -1,0 +1,23 @@
+uuid: 02164156-b66f-4869-833f-e07756a030d3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_cr_upload_photos
+    - node.type.criterion
+id: node.criterion.field_cr_upload_photos
+field_name: field_cr_upload_photos
+entity_type: node
+bundle: criterion
+label: 'Upload Photos'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'Yes'
+  off_label: 'No'
+field_type: boolean

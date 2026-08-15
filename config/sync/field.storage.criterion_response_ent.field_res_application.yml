@@ -1,0 +1,20 @@
+uuid: 459931bb-9e47-461a-a045-2cfb5cf5cd78
+langcode: en
+status: true
+dependencies:
+  module:
+    - eck
+    - node
+id: criterion_response_ent.field_res_application
+field_name: field_res_application
+entity_type: criterion_response_ent
+type: entity_reference
+settings:
+  target_type: node
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

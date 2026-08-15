@@ -1,0 +1,19 @@
+uuid: f397fbf1-f862-4218-a176-bf053be40cb8
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_app_establishment
+field_name: field_app_establishment
+entity_type: node
+type: entity_reference
+settings:
+  target_type: node
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

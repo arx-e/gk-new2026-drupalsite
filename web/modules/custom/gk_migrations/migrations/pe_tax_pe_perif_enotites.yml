@@ -1,0 +1,23 @@
+id: pe_tax_pe_perif_enotites
+label: 'Perifereiakes Enotites Import'
+migration_group: pe_taxonomy
+
+# Source.
+source:
+  plugin: csv
+  path: 'public://migrations/pe_perif_enotites.csv'
+  ids: [id]
+ 
+# Destination.
+destination:
+  plugin: 'entity:taxonomy_term'
+  default_bundle: admin_regions
+
+# Mappings.
+process:
+  name: name
+  tid: tid
+  weight: weight
+  parent: parent_id
+
+ 

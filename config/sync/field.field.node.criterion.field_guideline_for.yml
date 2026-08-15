@@ -1,0 +1,29 @@
+uuid: 3bcfe049-5a71-49e8-9a29-0cdcabf647ed
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_guideline_for
+    - node.type.criterion
+    - taxonomy.vocabulary.establishment_types
+id: node.criterion.field_guideline_for
+field_name: field_guideline_for
+entity_type: node
+bundle: criterion
+label: 'Guideline for'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      establishment_types: establishment_types
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

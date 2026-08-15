@@ -1,0 +1,19 @@
+id: gk_categories
+label: 'Import Green Key Categories'
+source:
+  plugin: csv
+  path: 'public://migrations/greenkey_criteria_columns_950.csv'
+  ids: [category]
+  delimiter: ','
+process:
+  name: category
+  field_category_code:
+    plugin: callback
+    callable: strtolower
+    source: category
+parent_ids: []
+destination:
+  plugin: 'entity:taxonomy_term'
+  default_bundle: criteria_categories
+migration_tags:
+  - greenkey

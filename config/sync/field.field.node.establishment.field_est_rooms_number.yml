@@ -1,0 +1,23 @@
+uuid: d85c1491-66a8-40f7-ad2c-88b934c6d773
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_est_rooms_number
+    - node.type.establishment
+id: node.establishment.field_est_rooms_number
+field_name: field_est_rooms_number
+entity_type: node
+bundle: establishment
+label: 'Αριθμός δωματίων'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

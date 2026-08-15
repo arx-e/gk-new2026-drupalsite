@@ -1,0 +1,9 @@
+uuid: 038c518b-a95b-42a2-9d90-2222a52ea423
+langcode: en
+status: true
+dependencies: {  }
+id: est_admin
+label: 'Establishment(s) administrator'
+weight: 4
+is_admin: false
+permissions: {  }

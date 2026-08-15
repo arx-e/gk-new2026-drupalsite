@@ -1,0 +1,19 @@
+uuid: 5e9fd2ee-2cd9-46a8-8407-53aeb68d4cf4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_category_code
+    - taxonomy.vocabulary.criteria_categories
+id: taxonomy_term.criteria_categories.field_category_code
+field_name: field_category_code
+entity_type: taxonomy_term
+bundle: criteria_categories
+label: 'Category Code'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

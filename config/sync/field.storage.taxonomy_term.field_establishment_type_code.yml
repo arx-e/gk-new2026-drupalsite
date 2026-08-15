@@ -1,0 +1,21 @@
+uuid: eb1efcb9-f112-40ac-8fb2-85e2e62eeea4
+langcode: en
+status: true
+dependencies:
+  module:
+    - taxonomy
+id: taxonomy_term.field_establishment_type_code
+field_name: field_establishment_type_code
+entity_type: taxonomy_term
+type: string
+settings:
+  max_length: 8
+  case_sensitive: false
+  is_ascii: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

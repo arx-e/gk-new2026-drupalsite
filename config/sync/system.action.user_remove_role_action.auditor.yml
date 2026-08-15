@@ -1,0 +1,14 @@
+uuid: 7f2e927b-eed9-4a18-a8e6-01f46aa93fea
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.auditor
+  module:
+    - user
+id: user_remove_role_action.auditor
+label: 'Remove the Auditor role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: auditor

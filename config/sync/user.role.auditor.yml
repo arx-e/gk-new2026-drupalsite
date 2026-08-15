@@ -1,0 +1,9 @@
+uuid: 7f22ffd8-b50c-4280-835b-5555ddf56938
+langcode: en
+status: true
+dependencies: {  }
+id: auditor
+label: Auditor
+weight: 6
+is_admin: false
+permissions: {  }

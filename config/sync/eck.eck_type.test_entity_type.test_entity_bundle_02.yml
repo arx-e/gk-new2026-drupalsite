@@ -1,0 +1,9 @@
+uuid: ad80dbc2-9df1-4379-a366-5583fb337164
+langcode: en
+status: true
+dependencies:
+  config:
+    - eck.eck_entity_type.test_entity_type
+name: 'Test entity bundle 02'
+type: test_entity_bundle_02
+description: ''

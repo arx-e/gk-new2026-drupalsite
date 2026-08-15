@@ -1,0 +1,9 @@
+uuid: 34e1a761-2ac9-4106-9eb9-ae0b8beda85e
+langcode: en
+status: true
+dependencies: {  }
+name: 'Application Cycles'
+vid: application_cycles
+description: null
+weight: 0
+new_revision: false

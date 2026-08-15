@@ -1,0 +1,24 @@
+uuid: 051c6526-f238-4ae6-9629-e4ebad5a74b7
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.taxonomy_term.establishment_type_code
+    - field.field.taxonomy_term.establishment_types.field_establishment_type_code
+    - taxonomy.vocabulary.establishment_types
+id: taxonomy_term.establishment_types.establishment_type_code
+targetEntityType: taxonomy_term
+bundle: establishment_types
+mode: establishment_type_code
+content:
+  field_establishment_type_code:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+      link_rel: canonical
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  description: true

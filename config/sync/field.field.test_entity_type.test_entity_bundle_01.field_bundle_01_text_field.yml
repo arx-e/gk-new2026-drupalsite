@@ -1,0 +1,19 @@
+uuid: 8e19f334-591f-4a37-a5e3-d7e6ae87a36d
+langcode: en
+status: true
+dependencies:
+  config:
+    - eck.eck_type.test_entity_type.test_entity_bundle_01
+    - field.storage.test_entity_type.field_bundle_01_text_field
+id: test_entity_type.test_entity_bundle_01.field_bundle_01_text_field
+field_name: field_bundle_01_text_field
+entity_type: test_entity_type
+bundle: test_entity_bundle_01
+label: 'bundle_01 text field'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

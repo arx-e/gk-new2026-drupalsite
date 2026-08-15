@@ -1,0 +1,8 @@
+_core:
+  default_config_hash: nVD49ZerHGjzn7jaEmkWjVEQ8xrS1TUbtjkd6wIOYm8
+page_size: 100
+default_expand_depth: 0
+enable_drag_nesting: false
+confirm_reparent: true
+max_undo_history: 200
+snapshot_date_format: system

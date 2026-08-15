@@ -1,0 +1,18 @@
+uuid: fa8d4762-ee8e-4951-b153-4f9a7e7090e0
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_cr_performance_data
+field_name: field_cr_performance_data
+entity_type: node
+type: boolean
+settings: {  }
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

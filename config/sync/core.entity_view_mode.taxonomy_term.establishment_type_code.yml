@@ -1,0 +1,11 @@
+uuid: 190eccbd-9cf9-4f4e-9ea0-6f13a285ee61
+langcode: en
+status: true
+dependencies:
+  module:
+    - taxonomy
+id: taxonomy_term.establishment_type_code
+label: 'Establishment Type code'
+description: null
+targetEntityType: taxonomy_term
+cache: true

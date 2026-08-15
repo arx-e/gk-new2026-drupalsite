@@ -1,0 +1,29 @@
+uuid: c6f304a0-f554-4aed-b53d-74e753faa791
+langcode: en
+status: true
+dependencies:
+  config:
+    - eck.eck_type.criterion_response_ent.criterion_response
+    - field.storage.criterion_response_ent.field_res_criterion
+    - node.type.criterion
+id: criterion_response_ent.criterion_response.field_res_criterion
+field_name: field_res_criterion
+entity_type: criterion_response_ent
+bundle: criterion_response
+label: Criterion
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      criterion: criterion
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

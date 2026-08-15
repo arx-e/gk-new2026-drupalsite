@@ -1,0 +1,243 @@
+uuid: 7677826f-aafc-4124-9b7b-3eccd8486c88
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.criterion.field_code_alt_b
+    - field.field.node.criterion.field_code_alt_c
+    - field.field.node.criterion.field_cr_appl_a
+    - field.field.node.criterion.field_cr_appl_cc
+    - field.field.node.criterion.field_cr_appl_chp
+    - field.field.node.criterion.field_cr_appl_hh
+    - field.field.node.criterion.field_cr_appl_r
+    - field.field.node.criterion.field_cr_appl_sa
+    - field.field.node.criterion.field_cr_performance_data
+    - field.field.node.criterion.field_cr_title_en
+    - field.field.node.criterion.field_cr_upload_files
+    - field.field.node.criterion.field_cr_upload_photos
+    - field.field.node.criterion.field_criterion_category
+    - field.field.node.criterion.field_criterion_code
+    - field.field.node.criterion.field_criterion_code_alt
+    - field.field.node.criterion.field_criterion_subcategory
+    - field.field.node.criterion.field_expl_audit_evidence
+    - field.field.node.criterion.field_expl_audit_evidence_en
+    - field.field.node.criterion.field_expl_expectations
+    - field.field.node.criterion.field_expl_expectations_en
+    - field.field.node.criterion.field_expl_relevance
+    - field.field.node.criterion.field_expl_relevance_en
+    - field.field.node.criterion.field_guideline_for
+    - field.field.node.criterion.field_imperative_for
+    - node.type.criterion
+  module:
+    - empty_fields
+    - options
+    - text
+    - user
+id: node.criterion.default
+targetEntityType: node
+bundle: criterion
+mode: default
+content:
+  field_code_alt_b:
+    type: string
+    label: inline
+    settings:
+      link_to_entity: false
+      link_rel: canonical
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_code_alt_c:
+    type: string
+    label: inline
+    settings:
+      link_to_entity: false
+      link_rel: canonical
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_cr_appl_a:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 23
+    region: content
+  field_cr_appl_cc:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 21
+    region: content
+  field_cr_appl_chp:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 19
+    region: content
+  field_cr_appl_hh:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 18
+    region: content
+  field_cr_appl_r:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 22
+    region: content
+  field_cr_appl_sa:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 20
+    region: content
+  field_cr_performance_data:
+    type: boolean
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 17
+    region: content
+  field_cr_title_en:
+    type: basic_string
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 24
+    region: content
+  field_cr_upload_files:
+    type: boolean
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 15
+    region: content
+  field_cr_upload_photos:
+    type: boolean
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 16
+    region: content
+  field_criterion_category:
+    type: entity_reference_label
+    label: inline
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_criterion_code:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+      link_rel: canonical
+    third_party_settings: {  }
+    weight: 14
+    region: content
+  field_criterion_code_alt:
+    type: string
+    label: inline
+    settings:
+      link_to_entity: false
+      link_rel: canonical
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_criterion_subcategory:
+    type: entity_reference_label
+    label: inline
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  field_expl_audit_evidence:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 13
+    region: content
+  field_expl_audit_evidence_en:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 27
+    region: content
+  field_expl_expectations:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 11
+    region: content
+  field_expl_expectations_en:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 26
+    region: content
+  field_expl_relevance:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 9
+    region: content
+  field_expl_relevance_en:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 25
+    region: content
+  field_guideline_for:
+    type: entity_reference_label
+    label: inline
+    settings:
+      link: true
+    third_party_settings:
+      empty_fields:
+        handler: text
+        settings:
+          empty_text: '-'
+    weight: 7
+    region: content
+  field_imperative_for:
+    type: entity_reference_label
+    label: inline
+    settings:
+      link: true
+    third_party_settings:
+      empty_fields:
+        handler: text
+        settings:
+          empty_text: '-'
+    weight: 6
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden: {  }

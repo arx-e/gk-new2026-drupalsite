@@ -1,0 +1,231 @@
+_core:
+  default_config_hash: jdY7AU0tU-QsjmiOw3W8vwpYMb-By--_MSFgbqKUTYM
+definitions:
+  system__admin_content:
+    menu_name: admin
+    parent: system.admin
+    weight: -99
+    expanded: false
+    enabled: true
+  system__admin_structure:
+    menu_name: admin
+    parent: system.admin
+    weight: -96
+    expanded: false
+    enabled: true
+  entity__block_content_type__collection:
+    menu_name: admin
+    parent: system.admin_structure
+    weight: 2
+    expanded: false
+    enabled: true
+  entity__comment_type__collection:
+    menu_name: admin
+    parent: system.admin_structure
+    weight: 3
+    expanded: false
+    enabled: true
+  entity__node_type__collection:
+    menu_name: admin
+    parent: system.admin_structure
+    weight: 4
+    expanded: false
+    enabled: true
+  'admin_toolbar_tools__extra_links:entity__entity_form_display__node__defaultarticle':
+    menu_name: admin
+    parent: 'admin_toolbar_tools.extra_links:entity.node_type.edit_form.article'
+    weight: 3
+    expanded: false
+    enabled: true
+  'admin_toolbar_tools__extra_links:entity__entity_view_display__node__default__article':
+    menu_name: admin
+    parent: 'admin_toolbar_tools.extra_links:entity.node_type.edit_form.article'
+    weight: 4
+    expanded: false
+    enabled: true
+  'admin_toolbar_tools__extra_links:entity__entity_permissions_form__node__default__article':
+    menu_name: admin
+    parent: 'admin_toolbar_tools.extra_links:entity.node_type.edit_form.article'
+    weight: 5
+    expanded: false
+    enabled: true
+  'admin_toolbar_tools__extra_links:entity__node_type__delete_form__article':
+    menu_name: admin
+    parent: 'admin_toolbar_tools.extra_links:entity.node_type.edit_form.article'
+    weight: 6
+    expanded: false
+    enabled: true
+  field_ui__display_mode:
+    menu_name: admin
+    parent: system.admin_structure
+    weight: 5
+    expanded: false
+    enabled: true
+  entity__menu__collection:
+    menu_name: admin
+    parent: system.admin_structure
+    weight: 6
+    expanded: false
+    enabled: true
+  'admin_toolbar_tools__extra_links:entity__menu__edit_form__main':
+    menu_name: admin
+    parent: entity.menu.collection
+    weight: 3
+    expanded: false
+    enabled: true
+  'admin_toolbar_tools__extra_links:entity__menu__edit_form__tools':
+    menu_name: admin
+    parent: entity.menu.collection
+    weight: 4
+    expanded: false
+    enabled: true
+  'admin_toolbar_tools__extra_links:entity__menu__edit_form__account':
+    menu_name: admin
+    parent: entity.menu.collection
+    weight: 5
+    expanded: false
+    enabled: true
+  migrate_tools__menu:
+    menu_name: admin
+    parent: system.admin_structure
+    weight: 7
+    expanded: false
+    enabled: true
+  entity__taxonomy_vocabulary__collection:
+    menu_name: admin
+    parent: system.admin_structure
+    weight: 8
+    expanded: false
+    enabled: true
+  'admin_toolbar_tools__extra_links:entity__taxonomy_vocabulary__add_form':
+    menu_name: admin
+    parent: entity.taxonomy_vocabulary.collection
+    weight: -995
+    expanded: false
+    enabled: true
+  'admin_toolbar_tools__extra_links:entity__taxonomy_vocabulary__overview_form__criteria_categories':
+    menu_name: admin
+    parent: entity.taxonomy_vocabulary.collection
+    weight: -994
+    expanded: false
+    enabled: true
+  'admin_toolbar_tools__extra_links:entity__taxonomy_vocabulary__overview_form__establishment_types':
+    menu_name: admin
+    parent: entity.taxonomy_vocabulary.collection
+    weight: -993
+    expanded: false
+    enabled: true
+  'admin_toolbar_tools__extra_links:entity__taxonomy_vocabulary__overview_form__tags':
+    menu_name: admin
+    parent: entity.taxonomy_vocabulary.collection
+    weight: -992
+    expanded: false
+    enabled: true
+  entity__view__collection:
+    menu_name: admin
+    parent: system.admin_structure
+    weight: 9
+    expanded: false
+    enabled: true
+  system__themes_page:
+    menu_name: admin
+    parent: system.admin
+    weight: -95
+    expanded: false
+    enabled: true
+  system__modules_list:
+    menu_name: admin
+    parent: system.admin
+    weight: -94
+    expanded: false
+    enabled: true
+  system__admin_config:
+    menu_name: admin
+    parent: system.admin
+    weight: -93
+    expanded: false
+    enabled: true
+  user__admin_index:
+    menu_name: admin
+    parent: system.admin_config
+    weight: -15
+    expanded: false
+    enabled: true
+  system__admin_config_system:
+    menu_name: admin
+    parent: system.admin_config
+    weight: -14
+    expanded: false
+    enabled: true
+  system__admin_config_content:
+    menu_name: admin
+    parent: system.admin_config
+    weight: -13
+    expanded: false
+    enabled: true
+  system__admin_config_ui:
+    menu_name: admin
+    parent: system.admin_config
+    weight: -12
+    expanded: false
+    enabled: true
+  system__admin_config_development:
+    menu_name: admin
+    parent: system.admin_config
+    weight: -11
+    expanded: false
+    enabled: true
+  system__admin_config_search:
+    menu_name: admin
+    parent: system.admin_config
+    weight: -9
+    expanded: false
+    enabled: true
+  system__admin_config_regional:
+    menu_name: admin
+    parent: system.admin_config
+    weight: -8
+    expanded: false
+    enabled: true
+  system__admin_config_services:
+    menu_name: admin
+    parent: system.admin_config
+    weight: -7
+    expanded: false
+    enabled: true
+  system__admin_config_workflow:
+    menu_name: admin
+    parent: system.admin_config
+    weight: -6
+    expanded: false
+    enabled: true
+  entity__user__collection:
+    menu_name: admin
+    parent: system.admin
+    weight: -92
+    expanded: false
+    enabled: true
+  system__admin_reports:
+    menu_name: admin
+    parent: system.admin
+    weight: -91
+    expanded: false
+    enabled: true
+  help__main:
+    menu_name: admin
+    parent: system.admin
+    weight: -90
+    expanded: false
+    enabled: true
+  announcements_feed__announcement:
+    menu_name: admin
+    parent: system.admin
+    weight: -89
+    expanded: false
+    enabled: true
+  standard__front_page:
+    menu_name: main
+    parent: ''
+    weight: -50
+    expanded: false
+    enabled: true

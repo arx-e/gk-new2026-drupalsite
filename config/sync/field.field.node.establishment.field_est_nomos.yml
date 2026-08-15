@@ -1,0 +1,29 @@
+uuid: 3bad3dc6-e456-453f-a999-ac61c5b8e7bf
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_est_nomos
+    - node.type.establishment
+    - taxonomy.vocabulary.nomoi
+id: node.establishment.field_est_nomos
+field_name: field_est_nomos
+entity_type: node
+bundle: establishment
+label: Νομός
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      nomoi: nomoi
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

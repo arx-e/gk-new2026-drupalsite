@@ -1,0 +1,21 @@
+uuid: 6b4707f9-256e-4e51-a755-1313e0504fdb
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_est_seasonal
+    - node.type.establishment
+  module:
+    - options
+id: node.establishment.field_est_seasonal
+field_name: field_est_seasonal
+entity_type: node
+bundle: establishment
+label: Λειτουργία
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

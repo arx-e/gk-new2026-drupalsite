@@ -1,0 +1,37 @@
+uuid: fb141583-f058-4047-a7fc-b9b338ec564c
+langcode: en
+status: true
+dependencies:
+  config:
+    - eck.eck_type.test_entity_type.test_entity_bundle_02
+    - field.field.test_entity_type.test_entity_bundle_02.field_bundle_02_text_field
+id: test_entity_type.test_entity_bundle_02.default
+targetEntityType: test_entity_type
+bundle: test_entity_bundle_02
+mode: default
+content:
+  created:
+    type: datetime_timestamp
+    weight: 10
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_bundle_02_text_field:
+    type: string_textfield
+    weight: 26
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  uid:
+    type: entity_reference_autocomplete
+    weight: 5
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden: {  }

@@ -1,0 +1,26 @@
+uuid: 1f77f2ef-d65a-4d0f-b301-8ca82fad1754
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+id: gkradix_css
+label: 'gkradix css'
+code: |-
+
+
+  .views-exposed-form {
+    display: flex;
+    margin-bottom: 2rem;
+    align-items: flex-end;
+    gap: 1rem;
+  }
+media: all
+preprocess: true
+conditions:
+  current_theme:
+    id: current_theme
+    negate: false
+    theme: gkradix
+contexts: {  }
+conditions_require_all: true

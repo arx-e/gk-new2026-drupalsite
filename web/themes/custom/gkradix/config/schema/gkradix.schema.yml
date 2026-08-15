@@ -1,0 +1,5 @@
+# Schema for the configuration files of the gkradix theme.
+
+gkradix.settings:
+  type: theme_settings
+  label: 'gkradix settings'

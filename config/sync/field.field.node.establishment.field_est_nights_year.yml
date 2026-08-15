@@ -1,0 +1,19 @@
+uuid: 4a0e8dfb-7b37-4aa2-8d22-20d88898941c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_est_nights_year
+    - node.type.establishment
+id: node.establishment.field_est_nights_year
+field_name: field_est_nights_year
+entity_type: node
+bundle: establishment
+label: 'Αριθμός διανυκτερεύσεων / έτος (προηγούμενο)'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

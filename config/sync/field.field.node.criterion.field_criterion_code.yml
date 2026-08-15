@@ -1,0 +1,19 @@
+uuid: 7e948a08-3ac0-47c1-9c61-5d0fa56ac893
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_criterion_code
+    - node.type.criterion
+id: node.criterion.field_criterion_code
+field_name: field_criterion_code
+entity_type: node
+bundle: criterion
+label: 'Criterion Code'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,22 @@
+uuid: b1abf6b8-7e0e-409e-ae23-dddf8efdbefb
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - gkradix
+_core:
+  default_config_hash: al4FjYBkAc8bWbY2DoC_F16DIGoDaSvQJjBEtRUTo1k
+id: gkradix_content
+theme: gkradix
+region: content
+weight: -4
+provider: null
+plugin: system_main_block
+settings:
+  id: system_main_block
+  label: 'Main page content'
+  label_display: '0'
+  provider: system
+visibility: {  }

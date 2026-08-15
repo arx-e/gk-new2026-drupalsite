@@ -1,0 +1,266 @@
+uuid: 636708c8-6fcb-4072-b306-9ea36c1a1104
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.criterion.field_code_alt_b
+    - field.field.node.criterion.field_code_alt_c
+    - field.field.node.criterion.field_cr_appl_a
+    - field.field.node.criterion.field_cr_appl_cc
+    - field.field.node.criterion.field_cr_appl_chp
+    - field.field.node.criterion.field_cr_appl_hh
+    - field.field.node.criterion.field_cr_appl_r
+    - field.field.node.criterion.field_cr_appl_sa
+    - field.field.node.criterion.field_cr_performance_data
+    - field.field.node.criterion.field_cr_title_en
+    - field.field.node.criterion.field_cr_upload_files
+    - field.field.node.criterion.field_cr_upload_photos
+    - field.field.node.criterion.field_criterion_category
+    - field.field.node.criterion.field_criterion_code
+    - field.field.node.criterion.field_criterion_code_alt
+    - field.field.node.criterion.field_criterion_subcategory
+    - field.field.node.criterion.field_expl_audit_evidence
+    - field.field.node.criterion.field_expl_audit_evidence_en
+    - field.field.node.criterion.field_expl_expectations
+    - field.field.node.criterion.field_expl_expectations_en
+    - field.field.node.criterion.field_expl_relevance
+    - field.field.node.criterion.field_expl_relevance_en
+    - field.field.node.criterion.field_guideline_for
+    - field.field.node.criterion.field_imperative_for
+    - node.type.criterion
+  module:
+    - content_moderation
+    - path
+    - text
+id: node.criterion.default
+targetEntityType: node
+bundle: criterion
+mode: default
+content:
+  created:
+    type: datetime_timestamp
+    weight: 3
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_code_alt_b:
+    type: string_textfield
+    weight: 11
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_code_alt_c:
+    type: string_textfield
+    weight: 12
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_cr_appl_a:
+    type: options_select
+    weight: 29
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_cr_appl_cc:
+    type: options_select
+    weight: 27
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_cr_appl_chp:
+    type: options_select
+    weight: 25
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_cr_appl_hh:
+    type: options_select
+    weight: 24
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_cr_appl_r:
+    type: options_select
+    weight: 28
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_cr_appl_sa:
+    type: options_select
+    weight: 26
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_cr_performance_data:
+    type: boolean_checkbox
+    weight: 23
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  field_cr_title_en:
+    type: string_textarea
+    weight: 1
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_cr_upload_files:
+    type: boolean_checkbox
+    weight: 21
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  field_cr_upload_photos:
+    type: boolean_checkbox
+    weight: 22
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  field_criterion_category:
+    type: options_select
+    weight: 7
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_criterion_code:
+    type: string_textfield
+    weight: 9
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_criterion_code_alt:
+    type: string_textfield
+    weight: 10
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_criterion_subcategory:
+    type: entity_reference_autocomplete
+    weight: 8
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_expl_audit_evidence:
+    type: text_textarea
+    weight: 20
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_expl_audit_evidence_en:
+    type: text_textarea
+    weight: 32
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_expl_expectations:
+    type: text_textarea
+    weight: 18
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_expl_expectations_en:
+    type: text_textarea
+    weight: 31
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_expl_relevance:
+    type: text_textarea
+    weight: 16
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_expl_relevance_en:
+    type: text_textarea
+    weight: 30
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_guideline_for:
+    type: entity_reference_autocomplete
+    weight: 14
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_imperative_for:
+    type: entity_reference_autocomplete
+    weight: 13
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  moderation_state:
+    type: moderation_state_default
+    weight: 5
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  path:
+    type: path
+    weight: 4
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    weight: 6
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  title:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  uid:
+    type: entity_reference_autocomplete
+    weight: 2
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  promote: true
+  sticky: true

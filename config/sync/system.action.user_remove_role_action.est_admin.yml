@@ -1,0 +1,14 @@
+uuid: 1db4b9b6-dd88-4ca0-8bce-b29279c137b9
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.est_admin
+  module:
+    - user
+id: user_remove_role_action.est_admin
+label: 'Remove the Establishment(s) administrator role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: est_admin

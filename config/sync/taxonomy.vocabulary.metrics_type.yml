@@ -1,0 +1,9 @@
+uuid: bb6764c8-949b-41ae-8b71-703146a34962
+langcode: en
+status: true
+dependencies: {  }
+name: 'Metrics Type'
+vid: metrics_type
+description: null
+weight: 0
+new_revision: false

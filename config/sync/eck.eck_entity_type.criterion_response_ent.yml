@@ -1,0 +1,13 @@
+uuid: 0c2dd566-4866-47f9-8ed8-da2ef216dff8
+langcode: en
+status: false
+dependencies: {  }
+id: criterion_response_ent
+label: 'Criterion Response Entity Type'
+description: ''
+uid: true
+created: true
+changed: true
+title: false
+standalone_url: false
+revisionable: true

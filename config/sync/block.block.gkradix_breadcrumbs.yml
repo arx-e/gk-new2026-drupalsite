@@ -1,0 +1,22 @@
+uuid: b1088f3c-7de5-4f73-8fde-5952d4b63f98
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - gkradix
+_core:
+  default_config_hash: 8mU-lwt5kDcpsyZcQ8hn2MnNuXUfNMaT90aWlueogJs
+id: gkradix_breadcrumbs
+theme: gkradix
+region: header
+weight: -4
+provider: null
+plugin: system_breadcrumb_block
+settings:
+  id: system_breadcrumb_block
+  label: Breadcrumbs
+  label_display: '0'
+  provider: system
+visibility: {  }

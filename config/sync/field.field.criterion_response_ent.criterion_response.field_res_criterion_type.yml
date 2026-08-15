@@ -1,0 +1,21 @@
+uuid: 06279edb-5f28-4142-b8a4-c5aefb697a77
+langcode: en
+status: true
+dependencies:
+  config:
+    - eck.eck_type.criterion_response_ent.criterion_response
+    - field.storage.criterion_response_ent.field_res_criterion_type
+  module:
+    - options
+id: criterion_response_ent.criterion_response.field_res_criterion_type
+field_name: field_res_criterion_type
+entity_type: criterion_response_ent
+bundle: criterion_response
+label: 'Criterion Type'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

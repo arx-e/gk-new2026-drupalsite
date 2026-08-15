@@ -1,0 +1,21 @@
+uuid: 9fac4665-51ac-4de5-84dc-d1e3b5f18c7a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_est_location
+    - node.type.establishment
+  module:
+    - geofield
+id: node.establishment.field_est_location
+field_name: field_est_location
+entity_type: node
+bundle: establishment
+label: Location
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: geofield

@@ -1,0 +1,21 @@
+uuid: e5d9ebef-f995-4ff1-91ba-657d0e51e79e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_cr_appl_chp
+    - node.type.criterion
+  module:
+    - options
+id: node.criterion.field_cr_appl_chp
+field_name: field_cr_appl_chp
+entity_type: node
+bundle: criterion
+label: 'Applicable CHP'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

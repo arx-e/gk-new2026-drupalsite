@@ -1,0 +1,19 @@
+uuid: a162d58c-b43c-4f17-9a41-cb06899d5b4f
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - text
+id: node.field_expl_expectations
+field_name: field_expl_expectations
+entity_type: node
+type: text_long
+settings: {  }
+module: text
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

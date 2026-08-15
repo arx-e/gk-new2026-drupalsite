@@ -1,0 +1,9 @@
+uuid: 016ab3bb-65a4-40f8-83f5-c1e6abd3d53b
+langcode: en
+status: true
+dependencies: {  }
+name: Νομοί
+vid: nomoi
+description: null
+weight: 0
+new_revision: false

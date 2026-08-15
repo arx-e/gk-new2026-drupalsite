@@ -1,0 +1,42 @@
+uuid: d37fe5d4-8ece-4d27-b3e6-f026aa7dc678
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.application_container.field_app_cycle
+    - field.field.node.application_container.field_app_establishment
+    - node.type.application_container
+  module:
+    - user
+id: node.application_container.default
+targetEntityType: node
+bundle: application_container
+mode: default
+content:
+  content_moderation_control:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_app_cycle:
+    type: entity_reference_label
+    label: inline
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_app_establishment:
+    type: entity_reference_label
+    label: inline
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 3
+    region: content
+hidden: {  }

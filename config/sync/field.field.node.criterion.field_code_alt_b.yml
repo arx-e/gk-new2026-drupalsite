@@ -1,0 +1,19 @@
+uuid: 793e4afa-e673-4aca-bf39-2cbbe5ce217d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_code_alt_b
+    - node.type.criterion
+id: node.criterion.field_code_alt_b
+field_name: field_code_alt_b
+entity_type: node
+bundle: criterion
+label: 'Code alt b'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

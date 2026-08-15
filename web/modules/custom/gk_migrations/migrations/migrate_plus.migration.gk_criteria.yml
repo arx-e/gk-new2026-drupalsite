@@ -1,0 +1,87 @@
+id: gk_criteria
+label: 'Import Green Key Criteria'
+source:
+  plugin: csv
+  path: 'public://migrations/greenkey_criteria_columns_950.csv'
+  ids: [cr_id]
+  delimiter: ','
+process:
+  title: criterion_title
+  field_criterion_code: cr_id
+  field_criterion_code_alt: criterion_n
+
+  field_criterion_category:
+    plugin: migration_lookup
+    migration: gk_categories
+    source: category
+
+  field_criterion_subcategory:
+    plugin: migration_lookup
+    migration: gk_subcategories
+    source: subcategory
+
+  # Imperative for — explode CSV codes then look up term by code field
+  field_imperative_for:
+    -
+      plugin: skip_on_empty
+      source: imperative_for
+      method: process
+    -
+      plugin: explode
+      delimiter: ', '
+    -
+      plugin: callback
+      callable: trim
+    -
+      plugin: entity_lookup
+      entity_type: taxonomy_term
+      bundle: establishment_types
+      bundle_key: vid
+      value_key: field_establishment_type_code
+
+  # Guideline for — same pattern
+  field_guideline_for:
+    -
+      plugin: skip_on_empty
+      source: guideline_for
+      method: process
+    -
+      plugin: explode
+      delimiter: ', '
+    -
+      plugin: callback
+      callable: trim
+    -
+      plugin: entity_lookup
+      entity_type: taxonomy_term
+      bundle: establishment_types
+      bundle_key: vid
+      value_key: field_establishment_type_code
+
+  field_expl_relevance/value: relevance
+  field_expl_relevance/format:
+    plugin: default_value
+    default_value: basic_html
+
+  field_expl_expectations/value: expectations
+  field_expl_expectations/format:
+    plugin: default_value
+    default_value: basic_html
+
+  field_expl_audit_evidence/value: audit_evidence
+  field_expl_audit_evidence/format:
+    plugin: default_value
+    default_value: basic_html
+
+  type:
+    plugin: default_value
+    default_value: criterion
+  status:
+    plugin: default_value
+    default_value: 1
+
+destination:
+  plugin: 'entity:node'
+  default_bundle: criterion
+migration_tags:
+  - greenkey

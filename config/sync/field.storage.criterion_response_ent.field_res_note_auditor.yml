@@ -1,0 +1,19 @@
+uuid: c6130e37-0141-4a79-bc26-0273d889c017
+langcode: en
+status: true
+dependencies:
+  module:
+    - eck
+    - text
+id: criterion_response_ent.field_res_note_auditor
+field_name: field_res_note_auditor
+entity_type: criterion_response_ent
+type: text_long
+settings: {  }
+module: text
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

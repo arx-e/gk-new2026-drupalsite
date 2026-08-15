@@ -1,0 +1,23 @@
+uuid: 0d6ce619-0ab4-4e9a-a7dc-54586331177f
+langcode: en
+status: true
+dependencies:
+  module:
+    - eck
+    - file
+id: criterion_response_ent.field_res_uploads_files
+field_name: field_res_uploads_files
+entity_type: criterion_response_ent
+type: file
+settings:
+  target_type: file
+  display_field: false
+  display_default: false
+  uri_scheme: public
+module: file
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

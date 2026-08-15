@@ -1,0 +1,19 @@
+uuid: 1390bad5-9f2a-4b8f-ba44-8430aa33e67e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_est_name_gr
+    - node.type.establishment
+id: node.establishment.field_est_name_gr
+field_name: field_est_name_gr
+entity_type: node
+bundle: establishment
+label: 'Establishment name (GR)'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

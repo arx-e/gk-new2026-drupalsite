@@ -1,0 +1,47 @@
+uuid: 88cc67d7-68d0-4153-a482-54c78ef4769f
+langcode: en
+status: true
+dependencies:
+  config:
+    - eck.eck_type.criterion_response_ent.criterion_response
+    - field.storage.criterion_response_ent.field_res_uploads_files
+  module:
+    - file
+    - filefield_paths
+third_party_settings:
+  filefield_paths:
+    enabled: true
+    file_path:
+      value: 'app-uploads/files/[date:custom:Y]'
+      options:
+        slashes: false
+        pathauto: true
+        transliterate: false
+    file_name:
+      value: '[file:ffp-name-only-original].[file:ffp-extension-original]'
+      options:
+        slashes: true
+        pathauto: true
+        transliterate: true
+    temp_location: ''
+    redirect: false
+    retroactive_update: false
+    active_updating: false
+id: criterion_response_ent.criterion_response.field_res_uploads_files
+field_name: field_res_uploads_files
+entity_type: criterion_response_ent
+bundle: criterion_response
+label: 'Uploads Files'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:file'
+  handler_settings: {  }
+  file_directory: '[date:custom:Y]-[date:custom:m]'
+  file_extensions: 'pdf doc docx odt zip rar rtf jpg'
+  max_filesize: 10MB
+  description_field: false
+field_type: file

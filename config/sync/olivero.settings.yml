@@ -1,0 +1,17 @@
+_core:
+  default_config_hash: 1TswGK46jyu77aIM7Z-0JVQs5bxHmo-gtgrvrQGMXxc
+favicon:
+  mimetype: image/vnd.microsoft.icon
+  path: 'public://theme-files/favicon.ico'
+  use_default: false
+features:
+  comment_user_picture: true
+  comment_user_verification: true
+  favicon: true
+  node_user_picture: false
+logo:
+  path: ''
+  use_default: false
+mobile_menu_all_widths: 0
+site_branding_bg_color: default
+base_primary_color: '#3ca25a'

@@ -1,0 +1,18 @@
+id: gk_subcategories
+label: 'Import Green Key Sub-categories'
+source:
+  plugin: csv
+  path: 'public://migrations/greenkey_criteria_columns_950.csv'
+  ids: [subcategory]
+  delimiter: ','
+process:
+  name: subcategory
+  parent:
+    plugin: migration_lookup
+    migration: gk_categories
+    source: category
+destination:
+  plugin: 'entity:taxonomy_term'
+  default_bundle: criteria_categories
+migration_tags:
+  - greenkey

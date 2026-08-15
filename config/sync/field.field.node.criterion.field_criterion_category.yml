@@ -1,0 +1,29 @@
+uuid: d0b067e2-0436-441c-a75f-8d0d8fa46760
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_criterion_category
+    - node.type.criterion
+    - taxonomy.vocabulary.criteria_categories
+id: node.criterion.field_criterion_category
+field_name: field_criterion_category
+entity_type: node
+bundle: criterion
+label: 'Criterion Category'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      criteria_categories: criteria_categories
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

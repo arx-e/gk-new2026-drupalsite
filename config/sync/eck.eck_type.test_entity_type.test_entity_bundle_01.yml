@@ -1,0 +1,9 @@
+uuid: 15c2b418-1f6c-4d9a-8a85-1daa971d2b2a
+langcode: en
+status: true
+dependencies:
+  config:
+    - eck.eck_entity_type.test_entity_type
+name: 'Test entity bundle 01'
+type: test_entity_bundle_01
+description: ''

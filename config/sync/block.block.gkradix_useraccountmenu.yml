@@ -1,0 +1,25 @@
+uuid: 4a4e025c-962a-47f2-b0be-a9fc6b1915db
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.account
+  module:
+    - system
+  theme:
+    - gkradix
+id: gkradix_useraccountmenu
+theme: gkradix
+region: navbar_left
+weight: 0
+provider: null
+plugin: 'system_menu_block:account'
+settings:
+  id: 'system_menu_block:account'
+  label: 'User account menu'
+  label_display: '0'
+  provider: system
+  level: 1
+  depth: null
+  expand_all_items: false
+visibility: {  }

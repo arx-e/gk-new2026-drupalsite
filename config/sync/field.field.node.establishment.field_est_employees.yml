@@ -1,0 +1,23 @@
+uuid: 2a0443e7-e8da-47a0-9821-e8df5767dd5a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_est_employees
+    - node.type.establishment
+id: node.establishment.field_est_employees
+field_name: field_est_employees
+entity_type: node
+bundle: establishment
+label: 'Αριθμός Εργαζομένων'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

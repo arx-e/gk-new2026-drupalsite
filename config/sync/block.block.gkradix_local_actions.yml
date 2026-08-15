@@ -1,0 +1,20 @@
+uuid: 5e7c4476-018b-4f28-90e8-148e63ad6852
+langcode: en
+status: true
+dependencies:
+  theme:
+    - gkradix
+_core:
+  default_config_hash: nP9R7o6BTg_AoAos6GNstm_VwX5BdrY5US5V5vVenw4
+id: gkradix_local_actions
+theme: gkradix
+region: header
+weight: -1
+provider: null
+plugin: local_actions_block
+settings:
+  id: local_actions_block
+  label: 'Primary admin actions'
+  label_display: '0'
+  provider: core
+visibility: {  }

@@ -1,0 +1,24 @@
+uuid: 72abef63-677a-42ba-9985-e5a45f6a279c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_expl_expectations_en
+    - filter.format.basic_html
+    - node.type.criterion
+  module:
+    - text
+id: node.criterion.field_expl_expectations_en
+field_name: field_expl_expectations_en
+entity_type: node
+bundle: criterion
+label: 'Expl. Expectations EN'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats:
+    - basic_html
+field_type: text_long

@@ -1,0 +1,27 @@
+uuid: 348e8da9-1f44-4fa1-8226-f3516d1a80e5
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.main
+  module:
+    - system
+  theme:
+    - gkradix
+_core:
+  default_config_hash: A9mS7b8kb9iTca9cgBOzQs53HGIT8NmQ6DXX-LLupes
+id: gkradix_main_menu
+theme: gkradix
+region: navbar_left
+weight: -5
+provider: null
+plugin: 'system_menu_block:main'
+settings:
+  id: 'system_menu_block:main'
+  label: 'Main navigation'
+  label_display: '0'
+  provider: system
+  level: 1
+  depth: 2
+  expand_all_items: false
+visibility: {  }

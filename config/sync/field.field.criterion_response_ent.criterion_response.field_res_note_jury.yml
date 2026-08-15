@@ -1,0 +1,24 @@
+uuid: 0ab0362d-beee-456e-9612-d49be8f839a1
+langcode: en
+status: true
+dependencies:
+  config:
+    - eck.eck_type.criterion_response_ent.criterion_response
+    - field.storage.criterion_response_ent.field_res_note_jury
+    - filter.format.notes_format
+  module:
+    - text
+id: criterion_response_ent.criterion_response.field_res_note_jury
+field_name: field_res_note_jury
+entity_type: criterion_response_ent
+bundle: criterion_response
+label: 'Note Certification Body'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats:
+    - notes_format
+field_type: text_long

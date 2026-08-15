@@ -1,0 +1,21 @@
+uuid: 778a0115-8e65-476f-a364-ea7a5a803c2a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_est_periodos_leitoyrgias
+    - node.type.establishment
+  module:
+    - datetime_range
+id: node.establishment.field_est_periodos_leitoyrgias
+field_name: field_est_periodos_leitoyrgias
+entity_type: node
+bundle: establishment
+label: 'Λειτουργία εποχική: Περίοδος λειτουργίας'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: daterange

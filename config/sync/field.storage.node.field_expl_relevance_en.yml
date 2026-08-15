@@ -1,0 +1,19 @@
+uuid: c39fb016-e497-4f06-bd0b-ddc5b6deb9af
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - text
+id: node.field_expl_relevance_en
+field_name: field_expl_relevance_en
+entity_type: node
+type: text_long
+settings: {  }
+module: text
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

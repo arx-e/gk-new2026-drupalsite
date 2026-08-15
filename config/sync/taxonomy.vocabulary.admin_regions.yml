@@ -1,0 +1,9 @@
+uuid: 9c05ecf5-b0bc-43bf-879c-41103bd58342
+langcode: en
+status: true
+dependencies: {  }
+name: 'Περιφέρειες και περιφερειακές ενότητες'
+vid: admin_regions
+description: null
+weight: 0
+new_revision: false

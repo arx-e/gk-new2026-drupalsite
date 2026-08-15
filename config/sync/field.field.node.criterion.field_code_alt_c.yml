@@ -1,0 +1,19 @@
+uuid: c839dc56-f45e-435e-89c2-3e30811720e5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_code_alt_c
+    - node.type.criterion
+id: node.criterion.field_code_alt_c
+field_name: field_code_alt_c
+entity_type: node
+bundle: criterion
+label: 'Code alt c'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

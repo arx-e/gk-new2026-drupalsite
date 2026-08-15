@@ -1,0 +1,20 @@
+uuid: 4bc6d736-446c-4358-a65d-9a0b8f2f2fdf
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - taxonomy
+id: node.field_guideline_for
+field_name: field_guideline_for
+entity_type: node
+type: entity_reference
+settings:
+  target_type: taxonomy_term
+module: core
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

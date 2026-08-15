@@ -1,0 +1,177 @@
+uuid: 8700e578-75f5-41bc-8fdb-55ef4f477575
+langcode: en
+status: true
+dependencies:
+  config:
+    - eck.eck_type.criterion_response_ent.criterion_response
+    - field.field.criterion_response_ent.criterion_response.field_res_answer
+    - field.field.criterion_response_ent.criterion_response.field_res_application
+    - field.field.criterion_response_ent.criterion_response.field_res_compliance_status
+    - field.field.criterion_response_ent.criterion_response.field_res_criterion
+    - field.field.criterion_response_ent.criterion_response.field_res_criterion_type
+    - field.field.criterion_response_ent.criterion_response.field_res_metrics
+    - field.field.criterion_response_ent.criterion_response.field_res_note_auditor
+    - field.field.criterion_response_ent.criterion_response.field_res_note_establishment
+    - field.field.criterion_response_ent.criterion_response.field_res_note_jury
+    - field.field.criterion_response_ent.criterion_response.field_res_note_natop
+    - field.field.criterion_response_ent.criterion_response.field_res_uploads_files
+    - field.field.criterion_response_ent.criterion_response.field_res_uploads_photos
+    - image.style.thumbnail
+  module:
+    - custom_field
+    - file
+    - image
+    - text
+id: criterion_response_ent.criterion_response.default
+targetEntityType: criterion_response_ent
+bundle: criterion_response
+mode: default
+content:
+  created:
+    type: datetime_timestamp
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_res_answer:
+    type: options_buttons
+    weight: 4
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_res_application:
+    type: entity_reference_autocomplete
+    weight: 2
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_res_compliance_status:
+    type: options_select
+    weight: 8
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_res_criterion:
+    type: entity_reference_autocomplete
+    weight: 3
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_res_criterion_type:
+    type: options_select
+    weight: 13
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_res_metrics:
+    type: custom_flex
+    weight: 7
+    region: content
+    settings:
+      wrapper: details
+      label_value: ''
+      label_limit: 60
+      label_prefix: Item
+      auto_collapse: false
+      open: true
+      fields:
+        metrics_type:
+          weight: 0
+          type: entity_reference_autocomplete
+          label: ''
+          size: 60
+          placeholder: ''
+          match_operator: CONTAINS
+          match_limit: 10
+        metrics_value:
+          weight: 0
+          type: decimal
+          label: ''
+          placeholder: ''
+        metrics_unit:
+          weight: 0
+          type: text
+          label: ''
+          size: 60
+          placeholder: ''
+          maxlength: 8
+        metrics_time_int:
+          weight: 0
+          type: text
+          label: ''
+          size: 60
+          placeholder: ''
+          maxlength: 64
+      columns:
+        metrics_type: '3'
+        metrics_value: '3'
+        metrics_unit: '2'
+        metrics_time_int: '2'
+      breakpoint: ''
+    third_party_settings: {  }
+  field_res_note_auditor:
+    type: text_textarea
+    weight: 11
+    region: content
+    settings:
+      rows: 3
+      placeholder: ''
+    third_party_settings: {  }
+  field_res_note_establishment:
+    type: text_textarea
+    weight: 9
+    region: content
+    settings:
+      rows: 3
+      placeholder: ''
+    third_party_settings: {  }
+  field_res_note_jury:
+    type: text_textarea
+    weight: 12
+    region: content
+    settings:
+      rows: 3
+      placeholder: ''
+    third_party_settings: {  }
+  field_res_note_natop:
+    type: text_textarea
+    weight: 10
+    region: content
+    settings:
+      rows: 3
+      placeholder: ''
+    third_party_settings: {  }
+  field_res_uploads_files:
+    type: file_generic
+    weight: 5
+    region: content
+    settings:
+      progress_indicator: throbber
+    third_party_settings: {  }
+  field_res_uploads_photos:
+    type: image_image
+    weight: 6
+    region: content
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+  uid:
+    type: entity_reference_autocomplete
+    weight: 0
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden: {  }

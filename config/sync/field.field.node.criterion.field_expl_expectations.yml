@@ -1,0 +1,24 @@
+uuid: 7fb6d3f3-7ea3-4222-a95a-86ea2f5217bb
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_expl_expectations
+    - filter.format.basic_html
+    - node.type.criterion
+  module:
+    - text
+id: node.criterion.field_expl_expectations
+field_name: field_expl_expectations
+entity_type: node
+bundle: criterion
+label: 'Expl. Προσδοκίες εφαρμογής '
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats:
+    - basic_html
+field_type: text_long

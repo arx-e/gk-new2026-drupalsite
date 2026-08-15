@@ -1,0 +1,39 @@
+uuid: 30951c3d-9997-4f43-9c87-dcfc7c0da4b5
+langcode: en
+status: true
+dependencies:
+  module:
+    - custom_field
+    - node
+    - taxonomy
+id: node.field_test_custom_metrics
+field_name: field_test_custom_metrics
+entity_type: node
+type: custom
+settings:
+  columns:
+    metrics_type:
+      name: metrics_type
+      type: entity_reference
+      target_type: taxonomy_term
+    metrics_value:
+      name: metrics_value
+      type: decimal
+      unsigned: false
+      precision: 16
+      scale: 2
+    metrics_unit:
+      name: metrics_unit
+      type: string
+      length: 8
+    metrics_time_int:
+      name: metrics_time_int
+      type: string
+      length: 64
+module: custom_field
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

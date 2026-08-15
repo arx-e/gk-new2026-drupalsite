@@ -1,0 +1,19 @@
+uuid: 252c37a0-6df5-472f-840f-e287d5a5a277
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_est_address
+    - node.type.establishment
+id: node.establishment.field_est_address
+field_name: field_est_address
+entity_type: node
+bundle: establishment
+label: 'Διεύθυνση (Οδός, αριθμός, τοποθεσία)'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

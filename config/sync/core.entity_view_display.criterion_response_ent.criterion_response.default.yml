@@ -1,0 +1,150 @@
+uuid: 0cb4d717-1525-432c-83f1-78d42e53df93
+langcode: en
+status: true
+dependencies:
+  config:
+    - eck.eck_type.criterion_response_ent.criterion_response
+    - field.field.criterion_response_ent.criterion_response.field_res_answer
+    - field.field.criterion_response_ent.criterion_response.field_res_application
+    - field.field.criterion_response_ent.criterion_response.field_res_compliance_status
+    - field.field.criterion_response_ent.criterion_response.field_res_criterion
+    - field.field.criterion_response_ent.criterion_response.field_res_criterion_type
+    - field.field.criterion_response_ent.criterion_response.field_res_metrics
+    - field.field.criterion_response_ent.criterion_response.field_res_note_auditor
+    - field.field.criterion_response_ent.criterion_response.field_res_note_establishment
+    - field.field.criterion_response_ent.criterion_response.field_res_note_jury
+    - field.field.criterion_response_ent.criterion_response.field_res_note_natop
+    - field.field.criterion_response_ent.criterion_response.field_res_uploads_files
+    - field.field.criterion_response_ent.criterion_response.field_res_uploads_photos
+  module:
+    - custom_field
+    - file
+    - image
+    - options
+    - text
+    - user
+id: criterion_response_ent.criterion_response.default
+targetEntityType: criterion_response_ent
+bundle: criterion_response
+mode: default
+content:
+  created:
+    type: timestamp
+    label: hidden
+    settings:
+      date_format: medium
+      custom_date_format: ''
+      timezone: ''
+      tooltip:
+        date_format: long
+        custom_date_format: ''
+      time_diff:
+        enabled: false
+        future_format: '@interval hence'
+        past_format: '@interval ago'
+        granularity: 2
+        refresh: 60
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_res_answer:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_res_application:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_res_compliance_status:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 6
+    region: content
+  field_res_criterion:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_res_criterion_type:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 12
+    region: content
+  field_res_metrics:
+    type: custom_formatter
+    label: above
+    settings:
+      fields: {  }
+    third_party_settings: {  }
+    weight: 11
+    region: content
+  field_res_note_auditor:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 9
+    region: content
+  field_res_note_establishment:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 7
+    region: content
+  field_res_note_jury:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 10
+    region: content
+  field_res_note_natop:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 8
+    region: content
+  field_res_uploads_files:
+    type: file_default
+    label: above
+    settings:
+      use_description_as_link_text: true
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_res_uploads_photos:
+    type: image
+    label: above
+    settings:
+      image_link: ''
+      image_style: ''
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  uid:
+    type: author
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  changed: true

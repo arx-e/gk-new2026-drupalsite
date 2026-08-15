@@ -1,0 +1,20 @@
+uuid: 33fe3af0-c098-414c-8100-f4a82a13cd51
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_est_rooms_number
+field_name: field_est_rooms_number
+entity_type: node
+type: integer
+settings:
+  unsigned: false
+  size: normal
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

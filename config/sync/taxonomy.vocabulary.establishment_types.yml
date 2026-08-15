@@ -1,0 +1,9 @@
+uuid: 3da12b11-e3fd-4a0e-b73f-2cb2a9548e83
+langcode: en
+status: true
+dependencies: {  }
+name: 'Establishment types'
+vid: establishment_types
+description: null
+weight: 0
+new_revision: false
