@@ -1,7 +1,14 @@
 # AGENTS.md
 
 ## Project Overview
-This is a Drupal 11 site built on `drupal/recommended-project` composer template, managed via Composer with a relocated document root (`web/`). Not a git repository (no `.git` present).
+This is a Drupal 11 site built on `drupal/recommended-project` composer template, managed via Composer with a relocated document root (`web/`).
+
+## Version Control
+- Git repo, remote `origin` → `github.com/arx-e/gk-new2026-drupalsite`, default branch `main`.
+- `web/modules/custom/gk_application_setup` and `gk_application_respond` previously had their own nested `.git` dirs (separate repos: `arx-e/gk_application_setup`, `arx-e/gk_application_respond`). These were flattened into this repo — do not re-add `.git` inside those directories or they'll become broken submodules.
+- **Secrets live in `web/sites/default/settings.local.php` (gitignored, not in the repo)**: DB credentials and `$settings['hash_salt']`. This file must exist for the site to bootstrap (included at the bottom of `settings.php`). If missing (e.g. fresh clone), the site will not connect to the DB — get the file from a secrets store, it is NOT reconstructable from git history.
+- `.gitignore` excludes: `settings*.php` (except `default.settings.php`), `services*.yml` (except `default.services.yml`), `vendor/`, `web/core`, contrib modules/themes, `web/themes/custom/*/node_modules/` and `/build/` (npm-rebuildable), `web/sites/*/files`.
+- Theme `build/` output is intentionally NOT committed — must run `npm run build` after clone/deploy for CSS/JS to exist (theme is otherwise broken).
 
 ## Structure
 - `composer.json` / `composer.lock` — dependency management (Composer, not manual `web/` edits for contrib)
@@ -36,6 +43,5 @@ Composer patches applied (see `composer.json` extra.patches):
 
 ## Notes for Agents
 - This is a live production-adjacent site path (`admingk.akri.net`); be careful with destructive commands.
-- No `.git` repository at this location — check before assuming version control is available.
 - Config changes to Drupal entities (content types, views, etc.) should be exported to `config/sync/` to persist them.
 - Custom module `gk_application_setup` README is still the Drupal module template boilerplate and doesn't reflect actual functionality — inspect `src/` and `.routing.yml`/`.permissions.yml` directly for real behavior.

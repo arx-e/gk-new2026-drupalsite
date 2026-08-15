@@ -1,0 +1,49 @@
+uuid: 7ba458ea-0df3-46a4-bb53-67ffc17f3a62
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.establishment.field_est_employees
+    - field.storage.node.field_est_employees
+    - node.type.establishment
+  module:
+    - eca_content
+    - modeler_api
+third_party_settings:
+  modeler_api:
+    modeler_id: workflow_modeler
+    data: 'hash:2b9930d3fa025b8f708403bcf3fa9248'
+    label: 'test eca model'
+    version: 1.0.0
+id: test_eca_model
+weight: 0
+template: false
+events:
+  update_content_entity_flxldawp:
+    plugin: 'content_entity:update'
+    label: 'Update content entity'
+    configuration:
+      type: 'node establishment'
+    successors:
+      -
+        id: entity_get_field_value_ywrf2ees
+        condition: ''
+conditions: {  }
+gateways: {  }
+actions:
+  entity_get_field_value_ywrf2ees:
+    label: 'Entity: get field value'
+    plugin: eca_get_field_value
+    configuration:
+      field_name: field_est_employees
+      token_name: employees_number
+    successors:
+      -
+        id: display_a_message_to_the_user_qwh5ywl3
+        condition: ''
+  display_a_message_to_the_user_qwh5ywl3:
+    label: 'Display a message to the user'
+    plugin: action_message_action
+    configuration:
+      message: '[employees_number]'
+    successors: {  }
