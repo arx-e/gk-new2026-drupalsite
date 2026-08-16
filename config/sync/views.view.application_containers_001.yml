@@ -8,7 +8,7 @@ dependencies:
     - field.storage.node.field_app_establishment
     - node.type.application_container
     - system.menu.main
-    - user.role.authenticated
+    - user.role.administrator
   module:
     - node
     - user
@@ -349,7 +349,7 @@ display:
         type: role
         options:
           role:
-            authenticated: authenticated
+            administrator: administrator
       cache:
         type: tag
         options: {  }

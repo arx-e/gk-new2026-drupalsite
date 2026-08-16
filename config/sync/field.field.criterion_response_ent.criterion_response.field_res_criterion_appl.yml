@@ -1,0 +1,21 @@
+uuid: 3e215630-57ac-4487-868e-35189f3e2e87
+langcode: en
+status: true
+dependencies:
+  config:
+    - eck.eck_type.criterion_response_ent.criterion_response
+    - field.storage.criterion_response_ent.field_res_criterion_appl
+  module:
+    - options
+id: criterion_response_ent.criterion_response.field_res_criterion_appl
+field_name: field_res_criterion_appl
+entity_type: criterion_response_ent
+bundle: criterion_response
+label: 'Criterion Applicability'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

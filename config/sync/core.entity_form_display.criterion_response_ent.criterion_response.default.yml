@@ -8,6 +8,8 @@ dependencies:
     - field.field.criterion_response_ent.criterion_response.field_res_application
     - field.field.criterion_response_ent.criterion_response.field_res_compliance_status
     - field.field.criterion_response_ent.criterion_response.field_res_criterion
+    - field.field.criterion_response_ent.criterion_response.field_res_criterion_active
+    - field.field.criterion_response_ent.criterion_response.field_res_criterion_appl
     - field.field.criterion_response_ent.criterion_response.field_res_criterion_type
     - field.field.criterion_response_ent.criterion_response.field_res_metrics
     - field.field.criterion_response_ent.criterion_response.field_res_note_auditor
@@ -64,6 +66,19 @@ content:
       match_limit: 10
       size: 60
       placeholder: ''
+    third_party_settings: {  }
+  field_res_criterion_active:
+    type: boolean_checkbox
+    weight: 26
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  field_res_criterion_appl:
+    type: options_select
+    weight: 27
+    region: content
+    settings: {  }
     third_party_settings: {  }
   field_res_criterion_type:
     type: options_select

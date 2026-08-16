@@ -1,0 +1,21 @@
+uuid: bc2285ec-71a6-437f-bf81-21617ca26921
+langcode: en
+status: true
+dependencies:
+  config:
+    - eck.eck_type.criterion_response_ent.criterion_response
+    - field.storage.criterion_response_ent.field_res_criterion_active
+id: criterion_response_ent.criterion_response.field_res_criterion_active
+field_name: field_res_criterion_active
+entity_type: criterion_response_ent
+bundle: criterion_response
+label: 'Criterion Active'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

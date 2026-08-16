@@ -1,24 +1,24 @@
-uuid: c3291ef1-dcb8-4e72-a738-5976a4741504
+uuid: ecfe90a6-321b-4f07-ac9f-6ea00a7dae99
 langcode: en
 status: true
 dependencies:
   module:
     - eck
     - options
-id: criterion_response_ent.field_res_criterion_type
-field_name: field_res_criterion_type
+id: criterion_response_ent.field_res_criterion_appl
+field_name: field_res_criterion_appl
 entity_type: criterion_response_ent
 type: list_string
 settings:
   allowed_values:
     -
-      value: imperative
+      value: i
       label: Imperative
     -
-      value: guideline
+      value: g
       label: Guideline
     -
-      value: not_applicable
+      value: x
       label: 'Not Applicable'
   allowed_values_function: ''
 module: options

@@ -15,12 +15,14 @@ dependencies:
     - field.storage.criterion_response_ent.field_res_note_natop
     - field.storage.criterion_response_ent.field_res_uploads_files
     - field.storage.criterion_response_ent.field_res_uploads_photos
+    - user.role.administrator
   module:
     - eck
     - file
     - image
     - options
     - text
+    - user
     - views_bulk_operations
 id: criteria_responses_001
 label: 'Criteria Responses 001'
@@ -886,8 +888,10 @@ display:
           sort_asc_label: Asc
           sort_desc_label: Desc
       access:
-        type: none
-        options: {  }
+        type: role
+        options:
+          role:
+            administrator: administrator
       cache:
         type: tag
         options: {  }
@@ -1022,6 +1026,7 @@ display:
         - 'languages:language_content'
         - 'languages:language_interface'
         - url.query_args
+        - user.roles
       tags:
         - 'config:field.storage.criterion_response_ent.field_res_answer'
         - 'config:field.storage.criterion_response_ent.field_res_application'
@@ -1048,6 +1053,7 @@ display:
         - 'languages:language_content'
         - 'languages:language_interface'
         - url.query_args
+        - user.roles
       tags:
         - 'config:field.storage.criterion_response_ent.field_res_answer'
         - 'config:field.storage.criterion_response_ent.field_res_application'
