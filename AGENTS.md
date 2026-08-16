@@ -5,7 +5,7 @@ This is a Drupal 11 site built on `drupal/recommended-project` composer template
 
 ## Version Control
 - Git repo, remote `origin` → `github.com/arx-e/gk-new2026-drupalsite`, default branch `main`.
-- `web/modules/custom/gk_application_setup` and `gk_application_respond` previously had their own nested `.git` dirs (separate repos: `arx-e/gk_application_setup`, `arx-e/gk_application_respond`). These were flattened into this repo — do not re-add `.git` inside those directories or they'll become broken submodules.
+- `web/modules/custom/gk_application_setup` and `gk_application_respond` previously had their own nested `.git` dirs (separate repos: `arx-e/gk_application_setup`, `arx-e/gk_application_respond`). They are now fully flattened into this repo (gitlinks removed, files tracked normally) — do not re-add `.git` inside those directories or they'll become broken submodules.
 - **Secrets live in `web/sites/default/settings.local.php` (gitignored, not in the repo)**: DB credentials and `$settings['hash_salt']`. This file must exist for the site to bootstrap (included at the bottom of `settings.php`). If missing (e.g. fresh clone), the site will not connect to the DB — get the file from a secrets store, it is NOT reconstructable from git history.
 - `.gitignore` excludes: `settings*.php` (except `default.settings.php`), `services*.yml` (except `default.services.yml`), `vendor/`, `web/core`, contrib modules/themes, `web/themes/custom/*/node_modules/` and `/build/` (npm-rebuildable), `web/sites/*/files`.
 - Theme `build/` output is intentionally NOT committed — must run `npm run build` after clone/deploy for CSS/JS to exist (theme is otherwise broken).
