@@ -1,0 +1,111 @@
+{#
+  @file gk-application-respond.html.twig
+  Main three-column layout for the application respond page.
+
+  Variables:
+    application  — application node entity
+    categories   — render array (keyed by cat TID, each is gk_criterion_category)
+    stats        — keyed stats array [cat_tid => {total, answered, pct_answered, …}]
+    category_nav — lightweight nav items [{id, label, code, answered, total}, …]
+#}
+<div class="gk-respond-page">
+
+  {# ======================================================
+     LEFT COLUMN: sticky category navigation
+     ====================================================== #}
+  {# <nav class="gk-respond-nav" aria-label="{{ 'Assessment categories'|t }}">
+    <h2 class="gk-respond-nav__heading">{{ 'Categories'|t }}</h2>
+    <ul class="gk-respond-nav__list">
+      {% for item in category_nav %}
+        {% set pct = (item.total > 0) ? ((item.answered / item.total * 100)|round) : 0 %}
+        <li class="gk-respond-nav__item"
+            data-nav-cat="{{ item.id }}">
+          <a href="#gk-category-{{ item.id }}"
+             class="gk-respond-nav__link">
+            <span class="gk-respond-nav__code">{{ item.code }}</span>
+            <span class="gk-respond-nav__label">{{ item.label }}</span>
+            <span class="gk-respond-nav__progress"
+                  title="{{ item.answered }}/{{ item.total }} {{ 'answered'|t }}">
+              <span class="gk-mini-bar">
+                <span class="gk-mini-bar__fill" style="width:{{ pct }}%"></span>
+              </span>
+              <span class="gk-respond-nav__fraction">{{ item.answered }}/{{ item.total }}</span>
+            </span>
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+  </nav> #}
+
+  {# ======================================================
+     CENTRE COLUMN: accordion
+     ====================================================== #}
+  <main class="gk-respond-main" id="gk-respond-main">
+
+    {# Application header bar #}
+    {# <header class="gk-respond-header">
+      <div class="gk-respond-header__meta">
+        {% if application.field_app_establishment.entity %}
+          <span class="gk-respond-header__estab">
+            {{ application.field_app_establishment.entity.label() }}
+          </span>
+        {% endif %}
+        {% if application.field_app_cycle.value %}
+          <span class="gk-respond-header__cycle">
+            {{ 'Cycle'|t }}: {{ application.field_app_cycle.value }}
+          </span>
+        {% endif %}
+        {% if application.moderation_state.value %}
+          <span class="gk-state-badge gk-state-badge--{{ application.moderation_state.value }}">
+            {{ application.moderation_state.value|replace({'_': ' '})|capitalize }}
+          </span>
+        {% endif %}
+      </div>
+    </header> #}
+
+    {# Category sections #}
+    <div class="gk-accordion" id="gk-accordion">
+      {% for cat_id, category in categories %}
+        {{ category }}
+      {% endfor %}
+    </div>
+
+  </main>
+
+  {# ======================================================
+     RIGHT COLUMN: stats sidebar
+     ====================================================== #}
+  {# <aside class="gk-respond-sidebar" aria-label="{{ 'Progress and statistics'|t }}" id="gk-stats-sidebar">
+    {{ include('modules/custom/gk_application_respond/templates/gk-application-sidebar.html.twig', {
+      application: application,
+      stats: stats,
+      categories: category_nav
+    }) }}
+  </aside> #}
+
+</div>{# /.gk-respond-page #}
+
+{# Unsaved-changes confirmation modal (hidden; JS toggles visibility) #}
+<div class="gk-discard-modal" id="gk-discard-modal" role="dialog"
+     aria-modal="true" aria-labelledby="gk-discard-modal-title" hidden>
+  <div class="gk-discard-modal__inner">
+    <h3 id="gk-discard-modal-title" class="gk-discard-modal__title">
+      {{ 'Unsaved changes'|t }}
+    </h3>
+    <p class="gk-discard-modal__body">
+      {{ 'You have unsaved changes to this criterion. What would you like to do?'|t }}
+    </p>
+    <div class="gk-discard-modal__actions">
+      <button class="button button--primary" id="gk-discard-modal-save">
+        {{ 'Save first'|t }}
+      </button>
+      <button class="button" id="gk-discard-modal-discard">
+        {{ 'Discard'|t }}
+      </button>
+      <button class="button button--secondary" id="gk-discard-modal-cancel">
+        {{ 'Cancel'|t }}
+      </button>
+    </div>
+  </div>
+</div>
+<div class="gk-discard-modal-overlay" id="gk-discard-modal-overlay" hidden></div>

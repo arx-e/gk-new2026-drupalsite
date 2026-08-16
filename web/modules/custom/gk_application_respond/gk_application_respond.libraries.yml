@@ -1,0 +1,14 @@
+respond:
+  version: '1.0.0'
+  css:
+    theme:
+      css/gk-application-respond.css: {}
+  js:
+    js/gk-application-respond.js: {}
+  dependencies:
+    - core/drupal
+    - core/drupalSettings
+    - core/jquery
+    - core/drupal.ajax
+    - core/drupal.dialog.ajax
+    - core/once

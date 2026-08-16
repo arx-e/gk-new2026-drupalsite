@@ -1,0 +1,13 @@
+name: 'GK Application Respond'
+type: module
+description: 'Accordion UI for viewing and editing criterion responses within an application. Provides the /application/{application}/respond route with role-appropriate inline entity forms, live stats sidebar, and AJAX per-criterion save.'
+package: 'GK custom'
+core_version_requirement: ^10 || ^11
+
+dependencies:
+  - drupal:node
+  - drupal:taxonomy
+  - drupal:content_moderation
+  - drupal:views
+  - eck:eck
+  - field_permissions:field_permissions

@@ -1,0 +1,4 @@
+administer applications:
+  title: 'Administer applications'
+  description: 'Create new applications and run the criteria setup batch.'
+  restrict access: true

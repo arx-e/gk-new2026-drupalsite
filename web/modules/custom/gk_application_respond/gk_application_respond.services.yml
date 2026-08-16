@@ -1,0 +1,5 @@
+services:
+  gk_application_respond.stats:
+    class: Drupal\gk_application_respond\Service\ApplicationStatsService
+    arguments:
+      - '@entity_type.manager'

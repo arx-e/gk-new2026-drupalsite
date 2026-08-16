@@ -1,0 +1,5 @@
+gk_application_setup.new_application:
+  title: 'New Application'
+  route_name: gk_application_setup.new_application
+  parent: system.admin_content
+  weight: 10

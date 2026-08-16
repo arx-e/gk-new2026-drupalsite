@@ -1,0 +1,95 @@
+<?php
+
+/**
+ * @file
+ * GK Application Respond module hooks.
+ */
+
+use Drupal\Core\Entity\EntityTypeInterface;
+
+/**
+ * Implements hook_theme().
+ *
+ * Registers the Twig templates used by the respond UI.
+ */
+function gk_application_respond_theme(array $existing, string $type, string $theme, string $path): array {
+  return [
+    // Main page layout: three-column grid (nav | accordion | stats).
+    'gk_application_respond' => [
+      'variables' => [
+        'application' => NULL,   // Application node entity.
+        'categories'  => [],     // Render array of category sections.
+        'stats'       => [],     // Keyed stats array for the sidebar.
+        'category_nav'=> [],     // Lightweight nav items for the left sidebar.
+      ],
+      'template' => 'gk-application-respond',
+    ],
+
+    // One top-level category section (contains subcategory accordions).
+    'gk_criterion_category' => [
+      'variables' => [
+        'category_id'    => NULL,
+        'category_label' => '',
+        'category_code'  => '',
+        'subcategories'  => [],  // Array of subcategory render arrays.
+        'progress'       => [],  // ['answered' => int, 'total' => int]
+      ],
+      'template' => 'gk-criterion-category',
+    ],
+
+    // One subcategory section (contains criterion rows).
+    'gk_criterion_subcategory' => [
+      'variables' => [
+        'subcategory_id'    => NULL,
+        'subcategory_label' => '',
+        'subcategory_code'  => '',
+        'criteria'          => [],  // Array of criterion row render arrays.
+        'progress'          => [],
+      ],
+      'template' => 'gk-criterion-subcategory',
+    ],
+
+    // One criterion row (collapsed header + expandable form container).
+    'gk_criterion_row' => [
+      'variables' => [
+        'response_id'    => NULL,
+        'criterion_code' => '',
+        'criterion_title'=> '',
+        'criterion_type' => '',   // 'Imperative' or 'Guideline'
+        'answer'         => '',   // Current answer value (or empty)
+        'compliance'     => '',   // Auditor compliance status (or empty)
+        'application_id' => NULL,
+      ],
+      'template' => 'gk-criterion-row',
+    ],
+
+    // Stats sidebar block.
+    'gk_application_sidebar' => [
+      'variables' => [
+        'application' => NULL,
+        'stats'       => [],
+        'categories'  => [],  // Ordered list for the nav.
+      ],
+      'template' => 'gk-application-sidebar',
+    ],
+  ];
+}
+
+/**
+ * Implements hook_entity_type_alter().
+ *
+ * Registers the 'gk_respond' form operation for criterion_response entities.
+ * This custom form handler strips the standard admin actions (delete, etc.)
+ * and wires AJAX save/discard callbacks appropriate for the accordion UI.
+ *
+ * The default 'default' form is left untouched so the normal ECK admin UI
+ * continues to work.
+ */
+function gk_application_respond_entity_type_alter(array &$entity_types): void {
+  if (isset($entity_types['criterion_response_ent'])) {
+    $entity_types['criterion_response_ent']->setFormClass(
+      'gk_respond',
+      '\Drupal\gk_application_respond\Form\CriterionResponseAjaxForm'
+    );
+  }
+}

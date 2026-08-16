@@ -1,0 +1,7 @@
+gk_application_setup.new_application:
+  path: '/admin/assessment/new'
+  defaults:
+    _form: '\Drupal\gk_application_setup\Form\NewApplicationForm'
+    _title: 'Create New Application'
+  requirements:
+    _permission: 'administer applications'

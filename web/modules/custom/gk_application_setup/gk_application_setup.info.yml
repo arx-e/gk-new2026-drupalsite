@@ -1,0 +1,9 @@
+name: 'gk_application_setup'
+type: module
+description: 'Setup of a new application for a given establishment and cycle'
+package: GK custom
+core_version_requirement: ^10 || ^11
+dependencies:
+  - node
+  - eck
+  - content_moderation

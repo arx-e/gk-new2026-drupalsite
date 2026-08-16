@@ -1,0 +1,129 @@
+{#
+  @file gk-application-sidebar.html.twig
+  Stats sidebar. Shows overall progress and a per-category breakdown.
+  All counters carry data- attributes so JS can update them without a page reload.
+
+  Variables:
+    application — application node entity
+    stats       — keyed [cat_tid => {total, answered, yes, partial, no,
+                  compliant, partly_compliant, non_compliant, not_assessed,
+                  imperative_total, imperative_answered,
+                  guideline_total,  guideline_answered, pct_answered}]
+    categories  — [{id, label, code, answered, total}, …]
+#}
+
+{# ---- Overall totals ---- #}
+{% set grand_total    = 0 %}
+{% set grand_answered = 0 %}
+{% for cat_id, s in stats %}
+  {% set grand_total    = grand_total    + s.total %}
+  {% set grand_answered = grand_answered + s.answered %}
+{% endfor %}
+{% set grand_pct = (grand_total > 0) ? ((grand_answered / grand_total * 100)|round) : 0 %}
+
+<div class="gk-sidebar">
+
+  {# Overall doughnut / progress #}
+  <div class="gk-sidebar__overall">
+    <h3 class="gk-sidebar__heading">{{ 'Overall progress'|t }}</h3>
+    <div class="gk-sidebar__donut-wrap">
+      <svg class="gk-donut" viewBox="0 0 36 36" aria-hidden="true">
+        <circle class="gk-donut__track" cx="18" cy="18" r="15.915"
+                fill="none" stroke-width="3.5"/>
+        <circle class="gk-donut__fill"  cx="18" cy="18" r="15.915"
+                fill="none" stroke-width="3.5"
+                stroke-dasharray="{{ grand_pct }}, 100"
+                transform="rotate(-90 18 18)"
+                data-donut-overall/>
+      </svg>
+      <span class="gk-donut__label" data-overall-pct>{{ grand_pct }}%</span>
+    </div>
+    <p class="gk-sidebar__overall-fraction">
+      <span data-overall-yes>{{ grand_answered }}</span>
+      {{ '/'|raw }}
+      <span data-overall-total>{{ grand_total }}</span>
+      {{ 'criteria answered'|t }}
+    </p>
+  </div>
+
+  <hr class="gk-sidebar__rule"/>
+
+  {# Per-category breakdown #}
+  <div class="gk-sidebar__categories">
+    <h3 class="gk-sidebar__heading">{{ 'By category'|t }}</h3>
+
+    {% for item in categories %}
+      {% set s = stats[item.id] ?? {} %}
+      {% set pct = s.pct_answered ?? 0 %}
+
+      <div class="gk-sidebar-cat" data-sidebar-cat="{{ item.id }}">
+        <div class="gk-sidebar-cat__header">
+          <span class="gk-sidebar-cat__code">{{ item.code }}</span>
+          <span class="gk-sidebar-cat__label">{{ item.label }}</span>
+          <span class="gk-sidebar-cat__fraction">
+            <span data-cat-answered="{{ item.id }}">{{ s.answered ?? 0 }}</span>/<span data-cat-total="{{ item.id }}">{{ s.total ?? 0 }}</span>
+          </span>
+        </div>
+        <div class="gk-progress-bar gk-progress-bar--sidebar"
+             role="progressbar"
+             aria-valuenow="{{ pct }}"
+             aria-valuemin="0"
+             aria-valuemax="100"
+             style="--pct: {{ pct }}%"
+             data-cat-bar="{{ item.id }}">
+          <span class="gk-progress-bar__fill"></span>
+        </div>
+
+        {# Answer breakdown chips #}
+        {% if s.total is defined %}
+          <div class="gk-sidebar-cat__chips">
+            {% if s.yes > 0 %}
+              <span class="gk-chip gk-chip--yes" data-chip-yes="{{ item.id }}">
+                {{ 'Yes'|t }}: {{ s.yes }}
+              </span>
+            {% endif %}
+            {% if s.partial > 0 %}
+              <span class="gk-chip gk-chip--partial" data-chip-partial="{{ item.id }}">
+                {{ 'Partial'|t }}: {{ s.partial }}
+              </span>
+            {% endif %}
+            {% if s.no > 0 %}
+              <span class="gk-chip gk-chip--no" data-chip-no="{{ item.id }}">
+                {{ 'No'|t }}: {{ s.no }}
+              </span>
+            {% endif %}
+          </div>
+        {% endif %}
+
+        {# Compliance breakdown (shown only if any compliance data exists) #}
+        {% if (s.compliant ?? 0) + (s.partly_compliant ?? 0) + (s.non_compliant ?? 0) > 0 %}
+          <div class="gk-sidebar-cat__compliance">
+            <span class="gk-chip gk-chip--compliant">{{ 'C'|t }}: {{ s.compliant }}</span>
+            <span class="gk-chip gk-chip--partial-c">{{ 'P'|t }}: {{ s.partly_compliant }}</span>
+            <span class="gk-chip gk-chip--noncompliant">{{ 'NC'|t }}: {{ s.non_compliant }}</span>
+          </div>
+        {% endif %}
+
+      </div>
+    {% endfor %}
+  </div>
+
+  {# Application state / workflow actions #}
+  <hr class="gk-sidebar__rule"/>
+  <div class="gk-sidebar__workflow">
+    <h3 class="gk-sidebar__heading">{{ 'Application state'|t }}</h3>
+    {% if application.moderation_state.value %}
+      <p class="gk-sidebar__state">
+        <span class="gk-state-badge gk-state-badge--{{ application.moderation_state.value }}">
+          {{ application.moderation_state.value|replace({'_': ' '})|capitalize }}
+        </span>
+      </p>
+    {% endif %}
+    <p class="gk-sidebar__app-link">
+      <a href="{{ path('entity.node.canonical', {node: application.id()}) }}">
+        {{ 'View application'|t }}
+      </a>
+    </p>
+  </div>
+
+</div>{# /.gk-sidebar #}

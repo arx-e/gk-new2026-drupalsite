@@ -1,0 +1,53 @@
+{#
+  @file gk-criterion-category.html.twig
+  One top-level category section. Uses a <details> element for native
+  accessible open/close. The progress bar is driven by CSS custom properties
+  updated live by gk-application-respond.js.
+
+  Variables:
+    category_id    — taxonomy term ID
+    category_label — term name
+    category_code  — e.g. "1", "2"
+    subcategories  — render array of gk_criterion_subcategory items
+    progress       — {answered: int, total: int}
+#}
+{% set pct = (progress.total > 0) ? ((progress.answered / progress.total * 100)|round) : 0 %}
+
+<section class="gk-category"
+         id="gk-category-{{ category_id }}"
+         data-cat-id="{{ category_id }}"
+         data-yes="{{ progress.answered }}"
+         data-total="{{ progress.total }}">
+
+  <details class="gk-category__details" {% if loop.first %}open{% endif %}>
+    <summary class="gk-category__summary">
+
+      <span class="gk-category__code">{{ category_code }}</span>
+      <span class="gk-category__label">{{ category_label }}</span>
+
+      {# Progress bar #}
+      <span class="gk-category__progress" aria-label="{{ progress.answered }} {{ 'of'|t }} {{ progress.total }} {{ 'answered'|t }}">
+        <span class="gk-progress-bar gk-progress-bar--category"
+              role="progressbar"
+              aria-valuenow="{{ pct }}"
+              aria-valuemin="0"
+              aria-valuemax="100"
+              style="--pct: {{ pct }}%">
+          <span class="gk-progress-bar__fill"></span>
+        </span>
+        <span class="gk-category__fraction"
+              data-fraction="{{ category_id }}">
+          {{ progress.answered }}/{{ progress.total }}
+        </span>
+      </span>
+
+    </summary>
+
+    <div class="gk-category__body">
+      {% for sub_id, subcategory in subcategories %}
+        {{ subcategory }}
+      {% endfor %}
+    </div>
+
+  </details>
+</section>

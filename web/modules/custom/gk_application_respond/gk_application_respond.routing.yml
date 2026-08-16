@@ -1,0 +1,39 @@
+# -----------------------------------------------------------------------
+# Main respond page for an application.
+# /application/42/respond
+# -----------------------------------------------------------------------
+gk_application_respond.respond:
+  path: '/application/{application}/respond'
+  defaults:
+    _controller: '\Drupal\gk_application_respond\Controller\ApplicationRespondController::respond'
+    _title_callback: '\Drupal\gk_application_respond\Controller\ApplicationRespondController::title'
+  requirements:
+    # Custom access check defined in the controller via _custom_access.
+    # Use a broad permission here; fine-grained logic is in the controller.
+    _permission: 'access content'
+    application: \d+
+  options:
+    parameters:
+      application:
+        type: entity:node
+
+# -----------------------------------------------------------------------
+# AJAX endpoint: load the criterion response form for a single criterion.
+# Called via Drupal.ajax when the user expands a criterion row.
+# Handles GET (initial load) — form submission is routed by Drupal's own
+# FormAjaxController once the form is injected into the page.
+# -----------------------------------------------------------------------
+gk_application_respond.criterion_form:
+  path: '/application/{application}/criterion-response/{criterion_response}/form'
+  defaults:
+    _controller: '\Drupal\gk_application_respond\Controller\CriterionResponseFormController::loadForm'
+  requirements:
+    _permission: 'access content'
+    application: \d+
+    criterion_response: \d+
+  options:
+    parameters:
+      application:
+        type: entity:node
+    # Disable theme wrappers: this route returns AjaxResponse, not a full page.
+    _theme_wrappers: false
