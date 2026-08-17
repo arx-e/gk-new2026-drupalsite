@@ -7,6 +7,8 @@ dependencies:
     - filter.format.notes_format
   module:
     - comment
+    - eck
+    - field_permissions
     - file
     - filter
     - search
@@ -21,10 +23,26 @@ is_admin: false
 permissions:
   - 'access comments'
   - 'access content'
+  - 'access criterion_response_ent entity listing'
   - 'access shortcuts'
   - 'delete own files'
+  - 'edit own criterion_response_ent entities'
   - 'post comments'
   - 'search content'
   - 'skip comment approval'
   - 'use text format basic_html'
   - 'use text format notes_format'
+  - 'view any criterion_response_ent entities'
+  - 'view field_app_auditor_user'
+  - 'view field_res_compliance_status'
+  - 'view field_res_criterion_appl'
+  - 'view field_res_note_auditor'
+  - 'view field_res_note_jury'
+  - 'view field_res_note_natop'
+  - 'view own criterion_response_ent entities'
+  - 'view own field_app_auditor_user'
+  - 'view own field_res_compliance_status'
+  - 'view own field_res_criterion_appl'
+  - 'view own field_res_note_auditor'
+  - 'view own field_res_note_jury'
+  - 'view own field_res_note_natop'

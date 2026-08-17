@@ -1,9 +1,0 @@
-uuid: 991e36aa-12f4-4033-acba-40ac65770945
-langcode: en
-status: true
-dependencies: {  }
-id: programme_operator
-label: 'Programme operator'
-weight: 5
-is_admin: false
-permissions: {  }

@@ -11,7 +11,6 @@ dependencies:
     - field.field.criterion_response_ent.criterion_response.field_res_criterion_active
     - field.field.criterion_response_ent.criterion_response.field_res_criterion_appl
     - field.field.criterion_response_ent.criterion_response.field_res_criterion_type
-    - field.field.criterion_response_ent.criterion_response.field_res_metrics
     - field.field.criterion_response_ent.criterion_response.field_res_note_auditor
     - field.field.criterion_response_ent.criterion_response.field_res_note_establishment
     - field.field.criterion_response_ent.criterion_response.field_res_note_jury
@@ -19,7 +18,6 @@ dependencies:
     - field.field.criterion_response_ent.criterion_response.field_res_uploads_files
     - field.field.criterion_response_ent.criterion_response.field_res_uploads_photos
   module:
-    - custom_field
     - file
     - image
     - options
@@ -69,7 +67,7 @@ content:
     label: above
     settings: {  }
     third_party_settings: {  }
-    weight: 6
+    weight: 15
     region: content
   field_res_criterion:
     type: entity_reference_label
@@ -102,14 +100,6 @@ content:
     settings: {  }
     third_party_settings: {  }
     weight: 12
-    region: content
-  field_res_metrics:
-    type: custom_formatter
-    label: above
-    settings:
-      fields: {  }
-    third_party_settings: {  }
-    weight: 11
     region: content
   field_res_note_auditor:
     type: text_default

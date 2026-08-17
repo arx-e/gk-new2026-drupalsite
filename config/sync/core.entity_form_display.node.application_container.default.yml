@@ -3,9 +3,11 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.node.application_container.field_app_auditor_user
     - field.field.node.application_container.field_app_cycle
     - field.field.node.application_container.field_app_establishment
     - node.type.application_container
+    - workflows.workflow.application_review
   module:
     - content_moderation
     - path
@@ -19,6 +21,16 @@ content:
     weight: 3
     region: content
     settings: {  }
+    third_party_settings: {  }
+  field_app_auditor_user:
+    type: entity_reference_autocomplete
+    weight: 27
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
     third_party_settings: {  }
   field_app_cycle:
     type: entity_reference_autocomplete

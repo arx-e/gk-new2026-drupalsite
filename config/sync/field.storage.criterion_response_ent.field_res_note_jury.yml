@@ -4,7 +4,11 @@ status: true
 dependencies:
   module:
     - eck
+    - field_permissions
     - text
+third_party_settings:
+  field_permissions:
+    permission_type: custom
 id: criterion_response_ent.field_res_note_jury
 field_name: field_res_note_jury
 entity_type: criterion_response_ent

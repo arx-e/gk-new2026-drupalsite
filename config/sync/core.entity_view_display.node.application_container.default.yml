@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.node.application_container.field_app_auditor_user
     - field.field.node.application_container.field_app_cycle
     - field.field.node.application_container.field_app_establishment
     - node.type.application_container
@@ -17,6 +18,14 @@ content:
     settings: {  }
     third_party_settings: {  }
     weight: 2
+    region: content
+  field_app_auditor_user:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 4
     region: content
   field_app_cycle:
     type: entity_reference_label

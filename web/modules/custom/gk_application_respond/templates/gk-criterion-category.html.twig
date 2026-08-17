@@ -1,23 +1,32 @@
 {#
   @file gk-criterion-category.html.twig
   One top-level category section. Uses a <details> element for native
-  accessible open/close. The progress bar is driven by CSS custom properties
-  updated live by gk-application-respond.js.
+  accessible open/close. The two progress bars (Imperative / Guideline) are
+  driven by CSS custom properties updated live by gk-application-respond.js.
+
+  Not Applicable (inactive) responses are excluded from both bars/counts.
 
   Variables:
     category_id    — taxonomy term ID
     category_label — term name
     category_code  — e.g. "1", "2"
     subcategories  — render array of gk_criterion_subcategory items
-    progress       — {answered: int, total: int}
+    progress       — {imperative_total, imperative_yes, guideline_total, guideline_yes}
 #}
-{% set pct = (progress.total > 0) ? ((progress.answered / progress.total * 100)|round) : 0 %}
+{% set imp_total  = progress.imperative_total ?? 0 %}
+{% set imp_yes    = progress.imperative_yes   ?? 0 %}
+{% set guide_total= progress.guideline_total  ?? 0 %}
+{% set guide_yes  = progress.guideline_yes    ?? 0 %}
+{% set imp_pct   = (imp_total   > 0) ? ((imp_yes   / imp_total   * 100)|round) : 0 %}
+{% set guide_pct = (guide_total > 0) ? ((guide_yes / guide_total * 100)|round) : 0 %}
 
 <section class="gk-category"
          id="gk-category-{{ category_id }}"
          data-cat-id="{{ category_id }}"
-         data-yes="{{ progress.answered }}"
-         data-total="{{ progress.total }}">
+         data-imp-yes="{{ imp_yes }}"
+         data-imp-total="{{ imp_total }}"
+         data-guide-yes="{{ guide_yes }}"
+         data-guide-total="{{ guide_total }}">
 
   <details class="gk-category__details" {% if loop.first %}open{% endif %}>
     <summary class="gk-category__summary">
@@ -25,20 +34,39 @@
       <span class="gk-category__code">{{ category_code }}</span>
       <span class="gk-category__label">{{ category_label }}</span>
 
-      {# Progress bar #}
-      <span class="gk-category__progress" aria-label="{{ progress.answered }} {{ 'of'|t }} {{ progress.total }} {{ 'answered'|t }}">
-        <span class="gk-progress-bar gk-progress-bar--category"
-              role="progressbar"
-              aria-valuenow="{{ pct }}"
-              aria-valuemin="0"
-              aria-valuemax="100"
-              style="--pct: {{ pct }}%">
-          <span class="gk-progress-bar__fill"></span>
+      {# Progress bars: Imperative and Guideline, each showing YES/total #}
+      <span class="gk-category__progress">
+
+        <span class="gk-category__progress-group gk-category__progress-group--imperative">
+          <span class="gk-progress-bar gk-progress-bar--category gk-progress-bar--imperative"
+                role="progressbar"
+                aria-valuenow="{{ imp_pct }}"
+                aria-valuemin="0"
+                aria-valuemax="100"
+                aria-label="{{ 'Imperative'|t }}: {{ imp_yes }} {{ 'of'|t }} {{ imp_total }} {{ 'answered Yes'|t }}"
+                style="--pct: {{ imp_pct }}%">
+            <span class="gk-progress-bar__fill"></span>
+          </span>
+          <span class="gk-category__fraction" data-fraction-imperative="{{ category_id }}">
+            {{ 'Imperative'|t }}: {{ imp_yes }}/{{ imp_total }}
+          </span>
         </span>
-        <span class="gk-category__fraction"
-              data-fraction="{{ category_id }}">
-          {{ progress.answered }}/{{ progress.total }}
+
+        <span class="gk-category__progress-group gk-category__progress-group--guideline">
+          <span class="gk-progress-bar gk-progress-bar--category gk-progress-bar--guideline"
+                role="progressbar"
+                aria-valuenow="{{ guide_pct }}"
+                aria-valuemin="0"
+                aria-valuemax="100"
+                aria-label="{{ 'Guideline'|t }}: {{ guide_yes }} {{ 'of'|t }} {{ guide_total }} {{ 'answered Yes'|t }}"
+                style="--pct: {{ guide_pct }}%">
+            <span class="gk-progress-bar__fill"></span>
+          </span>
+          <span class="gk-category__fraction" data-fraction-guideline="{{ category_id }}">
+            {{ 'Guideline'|t }}: {{ guide_yes }}/{{ guide_total }}
+          </span>
         </span>
+
       </span>
 
     </summary>

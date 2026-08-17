@@ -7,9 +7,14 @@
     application — application node entity
     stats       — keyed [cat_tid => {total, answered, yes, partial, no,
                   compliant, partly_compliant, non_compliant, not_assessed,
-                  imperative_total, imperative_answered,
-                  guideline_total,  guideline_answered, pct_answered}]
+                  not_applicable, imperative_total, imperative_yes,
+                  guideline_total,  guideline_yes, pct_answered}]
     categories  — [{id, label, code, answered, total}, …]
+
+    Note: 'total'/'answered' here already exclude inactive (Not applicable)
+    responses — see ApplicationStatsService.
+    This template is currently not included from gk-application-respond.html.twig
+    (sidebar work is planned for later); kept here for that future pass.
 #}
 
 {# ---- Overall totals ---- #}

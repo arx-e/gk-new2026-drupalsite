@@ -1,25 +1,29 @@
-uuid: 29426c92-0870-4463-a9d6-84c8e39af89e
+uuid: e8df4d0f-04d0-401d-8f34-8971f6034a64
 langcode: en
 status: true
 dependencies:
   module:
     - eck
+    - field_permissions
     - options
+third_party_settings:
+  field_permissions:
+    permission_type: custom
 id: criterion_response_ent.field_res_compliance_status
 field_name: field_res_compliance_status
 entity_type: criterion_response_ent
-type: list_integer
+type: list_string
 settings:
   allowed_values:
     -
-      value: 0
-      label: Non-compliant
-    -
-      value: 1
+      value: compliant
       label: Compliant
     -
-      value: 2
+      value: partial
       label: Partial
+    -
+      value: non_compliant
+      label: Non-compliant
   allowed_values_function: ''
 module: options
 locked: false

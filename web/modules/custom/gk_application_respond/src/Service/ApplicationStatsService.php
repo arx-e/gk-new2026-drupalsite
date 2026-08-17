@@ -7,14 +7,18 @@ use Drupal\Core\Entity\EntityTypeManagerInterface;
 /**
  * Computes per-category statistics for an application's criterion responses.
  *
- * Statistics computed per top-level category:
- *   - total:        number of criterion responses.
- *   - answered:     responses where field_res_answer is not empty.
- *   - yes / partial / no: breakdown of field_res_answer values.
+ * Statistics computed per top-level category. Responses whose
+ * field_res_criterion_appl is 'x' (Not applicable) are inactive: they are
+ * excluded from all totals/answer/compliance breakdowns and only counted in
+ * 'not_applicable'.
+ *   - total:        number of ACTIVE criterion responses (appl i or g).
+ *   - answered:     active responses where field_res_answer is not empty.
+ *   - yes / partial / no: breakdown of field_res_answer values (active only).
  *   - compliant / partly_compliant / non_compliant / not_assessed:
- *       breakdown of field_res_compliance_status (auditor-only field).
- *   - imperative_total / imperative_answered: filtered to Imperative criteria.
- *   - guideline_total / guideline_answered: filtered to Guideline criteria.
+ *       breakdown of field_res_compliance_status (auditor-only field, active only).
+ *   - not_applicable: count of responses with appl = 'x'.
+ *   - imperative_total / imperative_yes: filtered to Imperative criteria.
+ *   - guideline_total / guideline_yes: filtered to Guideline criteria.
  *
  * Two entry points are provided:
  *   - computeFromGrouped(): accepts the already-loaded $grouped array from the
@@ -35,11 +39,12 @@ class ApplicationStatsService {
    *   Keyed by category TID. Each entry has 'subcategories' → 'criteria'
    *   where each criterion item is:
    *   [
-   *     'response'       => ContentEntityInterface,
-   *     'criterion'      => NodeInterface,
-   *     'answer'         => string,
-   *     'compliance'     => string,
-   *     'criterion_type' => string,
+   *     'response'      => ContentEntityInterface,
+   *     'criterion'     => NodeInterface,
+   *     'answer'        => string,
+   *     'compliance'    => string,
+   *     'applicability' => string, // 'i' | 'g' | 'x'
+   *     'active'        => bool,
    *   ]
    *
    * @return array
@@ -53,9 +58,17 @@ class ApplicationStatsService {
 
       foreach ($cat_data['subcategories'] as $sub_data) {
         foreach ($sub_data['criteria'] as $row) {
-          $answer     = $row['answer']         ?? '';
-          $compliance = $row['compliance']     ?? '';
-          $type       = $row['criterion_type'] ?? '';
+          $answer = $row['answer']     ?? '';
+          $compliance = $row['compliance'] ?? '';
+          $appl   = $row['applicability'] ?? 'x';
+          $active = $row['active'] ?? ($appl !== 'x');
+
+          // Inactive (Not applicable) responses are excluded from every
+          // total/breakdown — they are not counted as answers at all.
+          if (!$active) {
+            $s['not_applicable']++;
+            continue;
+          }
 
           $s['total']++;
 
@@ -79,25 +92,25 @@ class ApplicationStatsService {
           };
 
           // Imperative vs Guideline split.
-          if (strtolower($type) === 'imperative') {
+          if ($appl === 'i') {
             $s['imperative_total']++;
-            if ($answer !== '') {
-              $s['imperative_answered']++;
+            if ($answer === 'yes') {
+              $s['imperative_yes']++;
             }
           }
-          elseif (strtolower($type) === 'guideline') {
+          elseif ($appl === 'g') {
             $s['guideline_total']++;
-            if ($answer !== '') {
-              $s['guideline_answered']++;
+            if ($answer === 'yes') {
+              $s['guideline_yes']++;
             }
           }
         }
       }
 
       // Computed percentages (0-100, integer).
-      $s['pct_answered']            = $s['total']             > 0 ? (int) round($s['answered']            / $s['total']             * 100) : 0;
-      $s['pct_imperative_answered'] = $s['imperative_total']  > 0 ? (int) round($s['imperative_answered'] / $s['imperative_total']  * 100) : 0;
-      $s['pct_guideline_answered']  = $s['guideline_total']   > 0 ? (int) round($s['guideline_answered']  / $s['guideline_total']   * 100) : 0;
+      $s['pct_answered']           = $s['total']            > 0 ? (int) round($s['answered']       / $s['total']            * 100) : 0;
+      $s['pct_imperative_yes']     = $s['imperative_total'] > 0 ? (int) round($s['imperative_yes']  / $s['imperative_total'] * 100) : 0;
+      $s['pct_guideline_yes']      = $s['guideline_total']  > 0 ? (int) round($s['guideline_yes']   / $s['guideline_total']  * 100) : 0;
 
       $stats[$cat_id] = $s;
     }
@@ -137,12 +150,18 @@ class ApplicationStatsService {
       if (!isset($grouped[$cat_id])) {
         $grouped[$cat_id] = ['subcategories' => [['criteria' => []]]];
       }
+      $appl = $response->get('field_res_criterion_appl')->value ?? 'x';
+      if (!in_array($appl, ['i', 'g', 'x'], TRUE)) {
+        $appl = 'x';
+      }
+
       $grouped[$cat_id]['subcategories'][0]['criteria'][] = [
-        'response'       => $response,
-        'criterion'      => $criterion,
-        'answer'         => $response->get('field_res_answer')->value ?? '',
-        'compliance'     => $response->get('field_res_compliance_status')->value ?? '',
-        'criterion_type' => $response->get('field_res_criterion_type')->value ?? '',
+        'response'      => $response,
+        'criterion'     => $criterion,
+        'answer'        => ((int) ($response->get('field_res_answer')->value ?? 0)) === 1 ? 'yes' : 'no',
+        'compliance'    => $response->get('field_res_compliance_status')->value ?? '',
+        'applicability' => $appl,
+        'active'        => $appl !== 'x',
       ];
     }
 
@@ -154,22 +173,23 @@ class ApplicationStatsService {
    */
   protected function emptyStats(): array {
     return [
-      'total'                  => 0,
-      'answered'               => 0,
-      'yes'                    => 0,
-      'partial'                => 0,
-      'no'                     => 0,
-      'compliant'              => 0,
-      'partly_compliant'       => 0,
-      'non_compliant'          => 0,
-      'not_assessed'           => 0,
-      'imperative_total'       => 0,
-      'imperative_answered'    => 0,
-      'guideline_total'        => 0,
-      'guideline_answered'     => 0,
-      'pct_answered'           => 0,
-      'pct_imperative_answered'=> 0,
-      'pct_guideline_answered' => 0,
+      'total'              => 0,
+      'answered'           => 0,
+      'yes'                => 0,
+      'partial'            => 0,
+      'no'                 => 0,
+      'compliant'          => 0,
+      'partly_compliant'   => 0,
+      'non_compliant'      => 0,
+      'not_assessed'       => 0,
+      'not_applicable'     => 0,
+      'imperative_total'   => 0,
+      'imperative_yes'     => 0,
+      'guideline_total'    => 0,
+      'guideline_yes'      => 0,
+      'pct_answered'       => 0,
+      'pct_imperative_yes' => 0,
+      'pct_guideline_yes'  => 0,
     ];
   }
 

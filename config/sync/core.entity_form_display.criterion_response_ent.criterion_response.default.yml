@@ -11,7 +11,6 @@ dependencies:
     - field.field.criterion_response_ent.criterion_response.field_res_criterion_active
     - field.field.criterion_response_ent.criterion_response.field_res_criterion_appl
     - field.field.criterion_response_ent.criterion_response.field_res_criterion_type
-    - field.field.criterion_response_ent.criterion_response.field_res_metrics
     - field.field.criterion_response_ent.criterion_response.field_res_note_auditor
     - field.field.criterion_response_ent.criterion_response.field_res_note_establishment
     - field.field.criterion_response_ent.criterion_response.field_res_note_jury
@@ -20,7 +19,6 @@ dependencies:
     - field.field.criterion_response_ent.criterion_response.field_res_uploads_photos
     - image.style.thumbnail
   module:
-    - custom_field
     - file
     - image
     - text
@@ -53,7 +51,7 @@ content:
     third_party_settings: {  }
   field_res_compliance_status:
     type: options_select
-    weight: 8
+    weight: 28
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -85,52 +83,6 @@ content:
     weight: 13
     region: content
     settings: {  }
-    third_party_settings: {  }
-  field_res_metrics:
-    type: custom_flex
-    weight: 7
-    region: content
-    settings:
-      wrapper: details
-      label_value: ''
-      label_limit: 60
-      label_prefix: Item
-      auto_collapse: false
-      open: true
-      fields:
-        metrics_type:
-          weight: 0
-          type: entity_reference_autocomplete
-          label: ''
-          size: 60
-          placeholder: ''
-          match_operator: CONTAINS
-          match_limit: 10
-        metrics_value:
-          weight: 0
-          type: decimal
-          label: ''
-          placeholder: ''
-        metrics_unit:
-          weight: 0
-          type: text
-          label: ''
-          size: 60
-          placeholder: ''
-          maxlength: 8
-        metrics_time_int:
-          weight: 0
-          type: text
-          label: ''
-          size: 60
-          placeholder: ''
-          maxlength: 64
-      columns:
-        metrics_type: '3'
-        metrics_value: '3'
-        metrics_unit: '2'
-        metrics_time_int: '2'
-      breakpoint: ''
     third_party_settings: {  }
   field_res_note_auditor:
     type: text_textarea

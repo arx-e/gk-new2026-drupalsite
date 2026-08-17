@@ -5,6 +5,7 @@
  * GK Application Respond module hooks.
  */
 
+use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityTypeInterface;
 
 /**
@@ -32,7 +33,8 @@ function gk_application_respond_theme(array $existing, string $type, string $the
         'category_label' => '',
         'category_code'  => '',
         'subcategories'  => [],  // Array of subcategory render arrays.
-        'progress'       => [],  // ['answered' => int, 'total' => int]
+        // ['imperative_total' => int, 'imperative_yes' => int, 'guideline_total' => int, 'guideline_yes' => int]
+        'progress'       => [],
       ],
       'template' => 'gk-criterion-category',
     ],
@@ -44,7 +46,7 @@ function gk_application_respond_theme(array $existing, string $type, string $the
         'subcategory_label' => '',
         'subcategory_code'  => '',
         'criteria'          => [],  // Array of criterion row render arrays.
-        'progress'          => [],
+        'progress'          => [],  // ['imperative' => int, 'guideline' => int]
       ],
       'template' => 'gk-criterion-subcategory',
     ],
@@ -52,13 +54,15 @@ function gk_application_respond_theme(array $existing, string $type, string $the
     // One criterion row (collapsed header + expandable form container).
     'gk_criterion_row' => [
       'variables' => [
-        'response_id'    => NULL,
-        'criterion_code' => '',
-        'criterion_title'=> '',
-        'criterion_type' => '',   // 'Imperative' or 'Guideline'
-        'answer'         => '',   // Current answer value (or empty)
-        'compliance'     => '',   // Auditor compliance status (or empty)
-        'application_id' => NULL,
+        'response_id'         => NULL,
+        'criterion_code'      => '',
+        'criterion_title'     => '',
+        'applicability'       => '',   // 'i' | 'g' | 'x'
+        'applicability_label' => '',   // 'Imperative' | 'Guideline' | 'Not Applicable'
+        'active'              => TRUE, // FALSE when applicability == 'x'
+        'answer'              => '',   // Current answer value (or empty)
+        'compliance'          => '',   // Auditor compliance status (or empty)
+        'application_id'      => NULL,
       ],
       'template' => 'gk-criterion-row',
     ],
@@ -91,5 +95,34 @@ function gk_application_respond_entity_type_alter(array &$entity_types): void {
       'gk_respond',
       '\Drupal\gk_application_respond\Form\CriterionResponseAjaxForm'
     );
+  }
+}
+
+/**
+ * Implements hook_entity_presave().
+ *
+ * Enforces data consistency between field_res_criterion_appl and
+ * field_res_criterion_active on criterion_response entities: whenever a
+ * response's applicability is set to "Not applicable" (x), it is forced
+ * inactive (field_res_criterion_active = 0), regardless of where the save
+ * originates (the gk_respond accordion form, ECK admin UI, migrations, etc.).
+ *
+ * field_res_criterion_appl is the sole source of truth for "is this
+ * criterion applicable to this establishment"; field_res_criterion_active
+ * always follows it for 'x'. For 'i'/'g' values, field_res_criterion_active
+ * is left untouched (not forced back on) so it can still be used
+ * independently if ever needed.
+ */
+function gk_application_respond_entity_presave(EntityInterface $entity): void {
+  if ($entity->getEntityTypeId() !== 'criterion_response_ent') {
+    return;
+  }
+  if (!$entity->hasField('field_res_criterion_appl') || !$entity->hasField('field_res_criterion_active')) {
+    return;
+  }
+
+  $appl = $entity->get('field_res_criterion_appl')->value;
+  if ($appl === 'x' && (int) $entity->get('field_res_criterion_active')->value !== 0) {
+    $entity->set('field_res_criterion_active', 0);
   }
 }

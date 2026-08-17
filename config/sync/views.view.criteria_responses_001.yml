@@ -6,9 +6,7 @@ dependencies:
     - eck.eck_type.criterion_response_ent.criterion_response
     - field.storage.criterion_response_ent.field_res_answer
     - field.storage.criterion_response_ent.field_res_application
-    - field.storage.criterion_response_ent.field_res_compliance_status
     - field.storage.criterion_response_ent.field_res_criterion
-    - field.storage.criterion_response_ent.field_res_criterion_type
     - field.storage.criterion_response_ent.field_res_note_auditor
     - field.storage.criterion_response_ent.field_res_note_establishment
     - field.storage.criterion_response_ent.field_res_note_jury
@@ -232,68 +230,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-        field_res_criterion_type:
-          id: field_res_criterion_type
-          table: criterion_response_ent__field_res_criterion_type
-          field: field_res_criterion_type
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: field
-          label: 'Criterion Type'
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: false
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: value
-          type: list_default
-          settings: {  }
-          group_column: value
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
         field_res_answer:
           id: field_res_answer
           table: criterion_response_ent__field_res_answer
@@ -303,68 +239,6 @@ display:
           admin_label: ''
           plugin_id: field
           label: Answer
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: false
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: value
-          type: list_default
-          settings: {  }
-          group_column: value
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-        field_res_compliance_status:
-          id: field_res_compliance_status
-          table: criterion_response_ent__field_res_compliance_status
-          field: field_res_compliance_status
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: field
-          label: 'Compliance Status'
           exclude: false
           alter:
             alter_text: false
@@ -1030,9 +904,7 @@ display:
       tags:
         - 'config:field.storage.criterion_response_ent.field_res_answer'
         - 'config:field.storage.criterion_response_ent.field_res_application'
-        - 'config:field.storage.criterion_response_ent.field_res_compliance_status'
         - 'config:field.storage.criterion_response_ent.field_res_criterion'
-        - 'config:field.storage.criterion_response_ent.field_res_criterion_type'
         - 'config:field.storage.criterion_response_ent.field_res_note_auditor'
         - 'config:field.storage.criterion_response_ent.field_res_note_establishment'
         - 'config:field.storage.criterion_response_ent.field_res_note_jury'
@@ -1057,9 +929,7 @@ display:
       tags:
         - 'config:field.storage.criterion_response_ent.field_res_answer'
         - 'config:field.storage.criterion_response_ent.field_res_application'
-        - 'config:field.storage.criterion_response_ent.field_res_compliance_status'
         - 'config:field.storage.criterion_response_ent.field_res_criterion'
-        - 'config:field.storage.criterion_response_ent.field_res_criterion_type'
         - 'config:field.storage.criterion_response_ent.field_res_note_auditor'
         - 'config:field.storage.criterion_response_ent.field_res_note_establishment'
         - 'config:field.storage.criterion_response_ent.field_res_note_jury'

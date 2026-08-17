@@ -1148,10 +1148,10 @@ display:
         type: normal
         title: 'Criteria list 002'
         description: ''
-        weight: -46
+        weight: -49
         expanded: false
         menu_name: main
-        parent: ''
+        parent: 'menu_link_content:7a913bc9-0c57-47d0-9d5f-4ccdb1cad1ca'
         context: '0'
     cache_metadata:
       max-age: -1

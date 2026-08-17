@@ -2,15 +2,16 @@
   @file gk-criterion-subcategory.html.twig
   One sub-category inside a category. Uses a nested <details> element.
 
+  No progress bar here — just the plain totals of active (applicable)
+  criteria by type. Not Applicable criteria are excluded from the counts.
+
   Variables:
     subcategory_id    — taxonomy term ID
     subcategory_label — term name
     subcategory_code  — e.g. "1.2"
     criteria          — render array of gk_criterion_row items
-    progress          — {answered: int, total: int}
+    progress          — {imperative: int, guideline: int}
 #}
-{% set pct = (progress.total > 0) ? ((progress.answered / progress.total * 100)|round) : 0 %}
-
 <div class="gk-subcategory"
      data-subcat-id="{{ subcategory_id }}">
 
@@ -18,9 +19,8 @@
     <summary class="gk-subcategory__summary">
       <span class="gk-subcategory__code">{{ subcategory_code }}</span>
       <span class="gk-subcategory__label">{{ subcategory_label }}</span>
-      <span class="gk-subcategory__fraction"
-            aria-label="{{ progress.answered }}/{{ progress.total }} {{ 'answered'|t }}">
-        {{ progress.answered }}/{{ progress.total }}
+      <span class="gk-subcategory__counts">
+        {{ 'Imperative'|t }}: {{ progress.imperative ?? 0 }} · {{ 'Guideline'|t }}: {{ progress.guideline ?? 0 }}
       </span>
     </summary>
 

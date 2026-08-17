@@ -7,13 +7,29 @@ dependencies:
 id: gkradix_css
 label: 'gkradix css'
 code: |-
-
-
   .views-exposed-form {
     display: flex;
     margin-bottom: 2rem;
     align-items: flex-end;
     gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .views-exposed-form > fieldset {
+  	margin-bottom: 0 !important;
+  	max-width: 10rem;
+  }
+  .views-exposed-form > fieldset > div {
+  	margin-bottom: 0 !important;	
+  }
+  .views-exposed-form label {
+  	font-size: 1rem;
+  }
+  .views-exposed-form .form-type-select,
+  .views-exposed-form .form-type-cshs {
+  	max-width: 16rem;	
+  }
+  .js-form-item + .js-form-item {
+  	margin-top: .5rem !important;
   }
 media: all
 preprocess: true

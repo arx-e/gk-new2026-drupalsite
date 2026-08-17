@@ -1,9 +1,15 @@
 uuid: 7f22ffd8-b50c-4280-835b-5555ddf56938
 langcode: en
 status: true
-dependencies: {  }
+dependencies:
+  module:
+    - field_permissions
 id: auditor
 label: Auditor
 weight: 6
 is_admin: false
-permissions: {  }
+permissions:
+  - 'create field_res_compliance_status'
+  - 'create field_res_note_auditor'
+  - 'edit own field_res_compliance_status'
+  - 'edit own field_res_note_auditor'

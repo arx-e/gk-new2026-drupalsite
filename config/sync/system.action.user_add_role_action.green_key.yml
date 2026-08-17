@@ -1,0 +1,14 @@
+uuid: a86c370f-512a-4f2c-bcd9-d46a60129e39
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.green_key
+  module:
+    - user
+id: user_add_role_action.green_key
+label: 'Add the Green Key role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: green_key

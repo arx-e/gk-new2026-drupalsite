@@ -1,0 +1,14 @@
+uuid: 1d695aa5-02fd-4e8c-bbf3-b7cfc9fa184e
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.certification_body
+  module:
+    - user
+id: user_remove_role_action.certification_body
+label: 'Remove the Certification Body role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: certification_body

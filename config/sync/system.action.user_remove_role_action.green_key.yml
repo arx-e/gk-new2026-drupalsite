@@ -1,0 +1,14 @@
+uuid: 711f30c6-3345-4b4d-9389-9aa439e58b0e
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.green_key
+  module:
+    - user
+id: user_remove_role_action.green_key
+label: 'Remove the Green Key role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: green_key

@@ -80,6 +80,23 @@ class CriterionResponseFormController extends ControllerBase {
       throw new AccessDeniedHttpException('Criterion response does not belong to this application.');
     }
 
+    // Inactive (Not applicable) responses are never editable — the row has
+    // no Expand button, but guard here too in case of a stale/forged request.
+    $appl = $entity->get('field_res_criterion_appl')->value ?? 'x';
+    if ($appl === 'x') {
+      $response = new AjaxResponse();
+      $response->addCommand(new HtmlCommand(
+        '[data-response-id="' . (int) $criterion_response . '"] .gk-criterion-form-container',
+        '<p class="gk-criterion-row__na-notice">' . $this->t('This criterion is not applicable and cannot be edited.') . '</p>'
+      ));
+      $response->addCommand(new InvokeCommand(
+        '[data-response-id="' . (int) $criterion_response . '"]',
+        'addClass',
+        ['gk-criterion-row--loaded gk-criterion-row--readonly']
+      ));
+      return $response;
+    }
+
     // Check entity-level access.
     if (!$entity->access('update')) {
       // Build a read-only view instead of throwing 403, because some roles

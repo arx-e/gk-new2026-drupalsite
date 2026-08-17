@@ -54,6 +54,10 @@ class ApplicationRespondController extends ControllerBase {
    *     field_app_establishment → field_est_admin_user.
    *   - Auditor: only if they are listed on field_app_auditor_user.
    *   - Jury: read-only view; handled by field_permissions on individual fields.
+   *
+   * All field access is guarded with hasField(): some of these fields are
+   * planned/optional and may be absent in a given environment — a missing
+   * field must never turn the access check into a fatal error.
    */
   protected function checkAccess(NodeInterface $application): bool {
     $account = $this->currentUser;
@@ -69,12 +73,14 @@ class ApplicationRespondController extends ControllerBase {
     }
 
     // Auditors listed on the application.
-    $auditor_ids = array_column(
-      $application->get('field_app_auditor_user')->getValue(),
-      'target_id'
-    );
-    if (in_array($account->id(), $auditor_ids, TRUE)) {
-      return TRUE;
+    if ($application->hasField('field_app_auditor_user')) {
+      $auditor_ids = array_column(
+        $application->get('field_app_auditor_user')->getValue(),
+        'target_id'
+      );
+      if (in_array($account->id(), $auditor_ids, TRUE)) {
+        return TRUE;
+      }
     }
 
     // Jury members.
@@ -83,14 +89,16 @@ class ApplicationRespondController extends ControllerBase {
     }
 
     // Establishment admins: must be listed on the linked establishment.
-    $establishment = $application->get('field_app_establishment')->entity;
-    if ($establishment) {
-      $admin_ids = array_column(
-        $establishment->get('field_est_admin_user')->getValue(),
-        'target_id'
-      );
-      if (in_array($account->id(), $admin_ids, TRUE)) {
-        return TRUE;
+    if ($application->hasField('field_app_establishment')) {
+      $establishment = $application->get('field_app_establishment')->entity;
+      if ($establishment && $establishment->hasField('field_est_admin_user')) {
+        $admin_ids = array_column(
+          $establishment->get('field_est_admin_user')->getValue(),
+          'target_id'
+        );
+        if (in_array($account->id(), $admin_ids, TRUE)) {
+          return TRUE;
+        }
       }
     }
 
@@ -210,12 +218,18 @@ class ApplicationRespondController extends ControllerBase {
         ];
       }
 
+      $appl = $response->get('field_res_criterion_appl')->value ?? 'x';
+      if (!in_array($appl, ['i', 'g', 'x'], TRUE)) {
+        $appl = 'x';
+      }
+
       $grouped[$cat_id]['subcategories'][$sub_id]['criteria'][] = [
-        'response'       => $response,
-        'criterion'      => $criterion,
-        'answer'         => ((int) ($response->get('field_res_answer')->value ?? 0)) === 1 ? 'yes' : 'no',
-        'compliance'     => $response->get('field_res_compliance_status')->value ?? '',
-        'criterion_type' => $response->get('field_res_criterion_type')->value ?? '',
+        'response'      => $response,
+        'criterion'     => $criterion,
+        'answer'        => ((int) ($response->get('field_res_answer')->value ?? 0)) === 1 ? 'yes' : 'no',
+        'compliance'    => $response->get('field_res_compliance_status')->value ?? '',
+        'applicability' => $appl,
+        'active'        => $appl !== 'x',
       ];
     }
 
@@ -245,7 +259,8 @@ class ApplicationRespondController extends ControllerBase {
 
       foreach ($cat_data['subcategories'] as $sub_id => $sub_data) {
         $rows_render = [];
-        $sub_answered = 0;
+        $sub_imperative_total = 0;
+        $sub_guideline_total  = 0;
 
         foreach ($sub_data['criteria'] as $row) {
           /** @var \Drupal\Core\Entity\ContentEntityInterface $response */
@@ -254,19 +269,26 @@ class ApplicationRespondController extends ControllerBase {
           $criterion = $row['criterion'];
 
           $rows_render[] = [
-            '#theme'          => 'gk_criterion_row',
-            '#response_id'    => $response->id(),
-            '#criterion_code' => $criterion->get('field_criterion_code_alt')->value
+            '#theme'               => 'gk_criterion_row',
+            '#response_id'         => $response->id(),
+            '#criterion_code'      => $criterion->get('field_criterion_code_alt')->value
               ?? $criterion->get('field_criterion_code')->value,
-            '#criterion_title'=> $criterion->label(),
-            '#criterion_type' => $row['criterion_type'],
-            '#answer'         => $row['answer'],
-            '#compliance'     => $row['compliance'],
-            '#application_id' => $application->id(),
+            '#criterion_title'     => $criterion->label(),
+            '#applicability'       => $row['applicability'],
+            '#applicability_label' => $this->applicabilityLabel($row['applicability']),
+            '#active'              => $row['active'],
+            '#answer'              => $row['answer'],
+            '#compliance'          => $row['compliance'],
+            '#application_id'      => $application->id(),
           ];
 
-          if (!empty($row['answer'])) {
-            $sub_answered++;
+          if ($row['active']) {
+            if ($row['applicability'] === 'i') {
+              $sub_imperative_total++;
+            }
+            elseif ($row['applicability'] === 'g') {
+              $sub_guideline_total++;
+            }
           }
         }
 
@@ -277,13 +299,18 @@ class ApplicationRespondController extends ControllerBase {
           '#subcategory_code'   => $sub_data['code'],
           '#criteria'           => $rows_render,
           '#progress'           => [
-            'answered' => $sub_answered,
-            'total'    => count($sub_data['criteria']),
+            'imperative' => $sub_imperative_total,
+            'guideline'  => $sub_guideline_total,
           ],
         ];
       }
 
-      $cat_stats = $stats[$cat_id] ?? ['answered' => 0, 'total' => 0];
+      $cat_stats = $stats[$cat_id] ?? [
+        'imperative_total' => 0,
+        'imperative_yes'   => 0,
+        'guideline_total'  => 0,
+        'guideline_yes'    => 0,
+      ];
 
       $categories_render[$cat_id] = [
         '#theme'          => 'gk_criterion_category',
@@ -292,17 +319,21 @@ class ApplicationRespondController extends ControllerBase {
         '#category_code'  => $cat_data['code'],
         '#subcategories'  => $sub_render,
         '#progress'       => [
-          'answered' => $cat_stats['answered'],
-          'total'    => $cat_stats['total'],
+          'imperative_total' => $cat_stats['imperative_total'],
+          'imperative_yes'   => $cat_stats['imperative_yes'],
+          'guideline_total'  => $cat_stats['guideline_total'],
+          'guideline_yes'    => $cat_stats['guideline_yes'],
         ],
       ];
 
       $category_nav[] = [
-        'id'       => 'gk-category-' . $cat_id,
-        'label'    => $cat_data['label'],
-        'code'     => $cat_data['code'],
-        'answered' => $cat_stats['answered'],
-        'total'    => $cat_stats['total'],
+        'id'                => 'gk-category-' . $cat_id,
+        'label'             => $cat_data['label'],
+        'code'              => $cat_data['code'],
+        'imperative_total'  => $cat_stats['imperative_total'],
+        'imperative_yes'    => $cat_stats['imperative_yes'],
+        'guideline_total'   => $cat_stats['guideline_total'],
+        'guideline_yes'     => $cat_stats['guideline_yes'],
       ];
     }
 
@@ -311,24 +342,6 @@ class ApplicationRespondController extends ControllerBase {
       ['application' => $application->id(), 'criterion_response' => 0]
     )->toString();
     $form_url_template = preg_replace('#/0/form$#', '/__CRID__/form', $template_url);
-
-    $scan = function ($array, $path = '') use (&$scan) {
-      if (!is_array($array)) {
-        return;
-      }
-      foreach ($array as $key => $value) {
-        $current_path = $path . '/' . $key;
-        if ($key === 'target_id') {
-          \Drupal::logger('gk_debug')->debug('FOUND target_id at: ' . $current_path . ' = ' . print_r($value, TRUE));
-        }
-        if (is_array($value)) {
-          $scan($value, $current_path);
-        }
-      }
-    };
-    $scan($categories_render, 'categories_render');
-    $scan($stats, 'stats');
-    $scan($category_nav, 'category_nav');
 
     // ------------------------------------------------------------------
     // Return main render array.
@@ -364,6 +377,23 @@ class ApplicationRespondController extends ControllerBase {
    */
   public function title(NodeInterface $application): string {
     return (string) $this->t('Respond — @title', ['@title' => $application->label()]);
+  }
+
+  /**
+   * Maps a field_res_criterion_appl machine value to a human label.
+   *
+   * @param string $appl
+   *   One of 'i', 'g', 'x'.
+   *
+   * @return string
+   *   Translated label: Imperative / Guideline / Not Applicable.
+   */
+  public static function applicabilityLabel(string $appl): string {
+    return match ($appl) {
+      'i' => (string) t('Imperative'),
+      'g' => (string) t('Guideline'),
+      default => (string) t('Not Applicable'),
+    };
   }
 
 }

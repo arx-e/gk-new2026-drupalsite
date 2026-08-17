@@ -50,7 +50,12 @@ class CriterionResponseAjaxForm extends ContentEntityForm {
     // Rendered above the fields for orientation.
     // ------------------------------------------------------------------
     $criterion    = $entity->get('field_res_criterion')->entity;
-    $crit_type    = $entity->get('field_res_criterion_type')->value ?? '';
+    $crit_appl    = $entity->get('field_res_criterion_appl')->value ?? 'x';
+    $crit_appl_label = match ($crit_appl) {
+      'i' => (string) $this->t('Imperative'),
+      'g' => (string) $this->t('Guideline'),
+      default => (string) $this->t('Not Applicable'),
+    };
     $crit_code    = '';
     $crit_title   = '';
     $crit_relevance   = [];
@@ -83,8 +88,8 @@ class CriterionResponseAjaxForm extends ContentEntityForm {
         '#markup' => '<span class="gk-cr-context__title">' . htmlspecialchars($crit_title) . '</span>',
       ],
       'type'  => [
-        '#markup' => '<span class="gk-badge gk-badge--' . strtolower($crit_type) . '">'
-          . htmlspecialchars($crit_type) . '</span>',
+        '#markup' => '<span class="gk-badge gk-badge--' . htmlspecialchars($crit_appl) . '">'
+          . htmlspecialchars($crit_appl_label) . '</span>',
       ],
     ];
 
@@ -127,7 +132,11 @@ class CriterionResponseAjaxForm extends ContentEntityForm {
       }
     }
 
-    // Hide system fields from the inline form.
+    // Hide system fields from the inline form. field_res_criterion_appl and
+    // field_res_criterion_active are intentionally left visible/editable —
+    // field_permissions controls which roles may actually change them.
+    // field_res_criterion_type is deprecated (replaced by field_res_criterion_appl)
+    // and stays hidden.
     foreach (['field_res_application', 'field_res_criterion', 'field_res_criterion_type', 'langcode', 'uid', 'status', 'created', 'changed'] as $hidden) {
       if (isset($form[$hidden])) {
         $form[$hidden]['#access'] = FALSE;
@@ -235,6 +244,10 @@ class CriterionResponseAjaxForm extends ContentEntityForm {
     $answer_raw = $saved?->get('field_res_answer')->value;
     $answer     = ((int) ($answer_raw ?? 0)) === 1 ? 'yes' : 'no';
     $compliance = $saved?->get('field_res_compliance_status')->value ?? '';
+    $applicability = $saved?->get('field_res_criterion_appl')->value ?? 'x';
+    if (!in_array($applicability, ['i', 'g', 'x'], TRUE)) {
+      $applicability = 'x';
+    }
 
     // Show a transient status message inside the form wrapper.
     $this->messenger()->addStatus($this->t('Response saved.'));
@@ -252,13 +265,15 @@ class CriterionResponseAjaxForm extends ContentEntityForm {
     // Broadcast a custom event that JS uses to:
     //   1. Update the row header status badge.
     //   2. Update the per-category progress counters in the sidebar.
+    //   3. Handle the row transitioning to/from "Not applicable" (applicability).
     $response->addCommand(new InvokeCommand(
       '[data-response-id="' . $entity_id . '"]',
       'trigger',
       ['gk:responseSaved', [
-        'responseId' => $entity_id,
-        'answer'     => $answer,
-        'compliance' => $compliance,
+        'responseId'    => $entity_id,
+        'answer'        => $answer,
+        'compliance'    => $compliance,
+        'applicability' => $applicability,
       ]]
     ));
 

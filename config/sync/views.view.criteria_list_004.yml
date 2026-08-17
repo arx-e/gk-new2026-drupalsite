@@ -18,6 +18,7 @@ dependencies:
     - field.storage.node.field_guideline_for
     - field.storage.node.field_imperative_for
     - node.type.criterion
+    - system.menu.main
     - taxonomy.vocabulary.criteria_categories
     - taxonomy.vocabulary.establishment_types
     - user.role.administrator
@@ -1768,13 +1769,13 @@ display:
       display_extenders: {  }
       path: criteria-list-004
       menu:
-        type: none
-        title: 'Criteria list 002'
+        type: normal
+        title: 'Criteria Applicability'
         description: ''
         weight: -46
         expanded: false
         menu_name: main
-        parent: ''
+        parent: 'menu_link_content:7a913bc9-0c57-47d0-9d5f-4ccdb1cad1ca'
         context: '0'
     cache_metadata:
       max-age: -1

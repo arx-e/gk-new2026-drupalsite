@@ -266,6 +266,25 @@
     const responseId = data.responseId;
     const answer     = data.answer || '';
     const compliance = data.compliance || '';
+    const applicability = data.applicability || 'x';
+
+    // ---- 0) Handle a transition to "Not applicable" (inactive) ----
+    // Since the row has no Expand button while inactive, applicability can
+    // only be changed to 'x' from an already-open (active) form. Once saved
+    // as 'x', strip the row down to the read-only inactive presentation.
+    if (applicability === 'x' && !$row.hasClass('criterion-inactive')) {
+      $row.addClass('criterion-inactive').removeClass('gk-criterion-row--open gk-criterion-row--dirty');
+      $row.attr('data-appl', applicability);
+      $row.removeAttr('data-answer data-compliance');
+      $row.find('.gk-criterion-row__answer').remove();
+      $row.find('.gk-criterion-row__compliance').remove();
+      $row.find('.gk-criterion-row__toggle').remove();
+      $row.find('.gk-criterion-row__body').remove();
+      recomputeCategoryStats($row.closest('.gk-category'));
+      return;
+    }
+
+    $row.attr('data-appl', applicability);
 
     // ---- a) Update row header answer badge ----
     const answerLabels = {
@@ -301,75 +320,73 @@
   });
 
   /**
-   * Re-scans all .gk-criterion-row elements inside a .gk-category to
-   * recompute and redraw the sidebar stats for that category.
+   * Re-scans all ACTIVE .gk-criterion-row elements inside a .gk-category to
+   * recompute and redraw the Imperative/Guideline progress bars for that
+   * category. Inactive (.criterion-inactive, applicability 'x') rows are
+   * excluded entirely — they never count towards totals or answers.
    *
-   * Uses DOM data-* attributes (data-answer, data-compliance) as the source
-   * of truth, which are updated on each gk:responseSaved event.
+   * Uses DOM data-* attributes (data-appl, data-answer) as the source of
+   * truth, which are updated on each gk:responseSaved event.
    */
   function recomputeCategoryStats($categoryEl) {
-    const catId   = $categoryEl.data('cat-id');
-    const $rows   = $categoryEl.find('.gk-criterion-row');
+    const catId = $categoryEl.data('cat-id');
+    const $rows = $categoryEl.find('.gk-criterion-row').not('.criterion-inactive');
 
-    let total = 0, answered = 0;
-    let yes = 0, partial = 0, no = 0;
-    let compliant = 0, partlyCompliant = 0, nonCompliant = 0;
+    let impTotal = 0, impYes = 0;
+    let guideTotal = 0, guideYes = 0;
 
     $rows.each(function () {
+      const appl   = $(this).attr('data-appl');
       const answer = $(this).attr('data-answer') || 'no';
-      const compliance = $(this).attr('data-compliance') || '';
-      total++;
-      if (answer === 'yes') yes++;
-      if (answer === 'no')  no++;
-      if (compliance === 'compliant')     compliant++;
-      if (compliance === 'partial')       partlyCompliant++;
-      if (compliance === 'non_compliant') nonCompliant++;
+
+      if (appl === 'i') {
+        impTotal++;
+        if (answer === 'yes') impYes++;
+      }
+      else if (appl === 'g') {
+        guideTotal++;
+        if (answer === 'yes') guideYes++;
+      }
     });
 
-    const pct = total > 0 ? Math.round(yes / total * 100) : 0;
+    const impPct   = impTotal   > 0 ? Math.round(impYes   / impTotal   * 100) : 0;
+    const guidePct = guideTotal > 0 ? Math.round(guideYes / guideTotal * 100) : 0;
 
     // ---- Update accordion category progress ----
     $categoryEl
-      .attr('data-yes', yes)
-      .attr('data-total', total);
-    $categoryEl.find('[data-fraction="' + catId + '"]')
-      .text(yes + '/' + total);
-    $categoryEl.find('.gk-progress-bar--category')
-      .attr('aria-valuenow', pct)
-      .css('--pct', pct + '%');
+      .attr('data-imp-yes', impYes)
+      .attr('data-imp-total', impTotal)
+      .attr('data-guide-yes', guideYes)
+      .attr('data-guide-total', guideTotal);
 
-    // ---- Update sidebar category bar ----
-    $('[data-cat-answered="' + catId + '"]').text(answered);
-    $('[data-cat-total="'    + catId + '"]').text(total);
-    $('[data-cat-bar="'      + catId + '"]')
-      .attr('aria-valuenow', pct)
-      .css('--pct', pct + '%');
+    $categoryEl.find('[data-fraction-imperative="' + catId + '"]')
+      .text(Drupal.t('Imperative') + ': ' + impYes + '/' + impTotal);
+    $categoryEl.find('.gk-progress-bar--imperative')
+      .attr('aria-valuenow', impPct)
+      .css('--pct', impPct + '%');
 
-    // Answer chips.
-    $('[data-chip-yes="'    + catId + '"]').closest('.gk-chip').toggle(yes > 0).find('').end()
-      .text(Drupal.t('Yes') + ': ' + yes);
-    $('[data-chip-partial="' + catId + '"]').closest('.gk-chip').toggle(partial > 0)
-      .text(Drupal.t('Partial') + ': ' + partial);
-    $('[data-chip-no="'     + catId + '"]').closest('.gk-chip').toggle(no > 0)
-      .text(Drupal.t('No') + ': ' + no);
-
-    // Left nav fraction.
-    $('[data-nav-cat="' + catId + '"] .gk-respond-nav__fraction')
-      .text(answered + '/' + total);
-    $('[data-nav-cat="' + catId + '"] .gk-mini-bar__fill')
-      .css('width', pct + '%');
+    $categoryEl.find('[data-fraction-guideline="' + catId + '"]')
+      .text(Drupal.t('Guideline') + ': ' + guideYes + '/' + guideTotal);
+    $categoryEl.find('.gk-progress-bar--guideline')
+      .attr('aria-valuenow', guidePct)
+      .css('--pct', guidePct + '%');
 
     // ---- Recompute overall totals ----
     recomputeOverallStats();
   }
 
   function recomputeOverallStats() {
-    let total = 0, yes = 0;
+    let impTotal = 0, impYes = 0, guideTotal = 0, guideYes = 0;
     $('.gk-category').each(function () {
-      total += parseInt($(this).attr('data-total'), 10) || 0;
-      yes   += parseInt($(this).attr('data-yes'),   10) || 0;
+      impTotal   += parseInt($(this).attr('data-imp-total'), 10)   || 0;
+      impYes     += parseInt($(this).attr('data-imp-yes'), 10)     || 0;
+      guideTotal += parseInt($(this).attr('data-guide-total'), 10) || 0;
+      guideYes   += parseInt($(this).attr('data-guide-yes'), 10)   || 0;
     });
-    const pct = total > 0 ? Math.round(yes / total * 100) : 0;
+
+    const total = impTotal + guideTotal;
+    const yes   = impYes + guideYes;
+    const pct   = total > 0 ? Math.round(yes / total * 100) : 0;
 
     $('[data-overall-yes]').text(yes);
     $('[data-overall-total]').text(total);

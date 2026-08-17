@@ -1,18 +1,20 @@
-uuid: d6c59e3e-9159-4822-aaa1-727f6a53db9e
+uuid: 0ca0c8bd-ba4b-41f4-abde-0c97b86de7af
 langcode: en
 status: true
 dependencies:
   module:
-    - eck
     - field_permissions
+    - node
+    - user
 third_party_settings:
   field_permissions:
     permission_type: custom
-id: criterion_response_ent.field_res_criterion_active
-field_name: field_res_criterion_active
-entity_type: criterion_response_ent
-type: boolean
-settings: {  }
+id: node.field_app_auditor_user
+field_name: field_app_auditor_user
+entity_type: node
+type: entity_reference
+settings:
+  target_type: user
 module: core
 locked: false
 cardinality: 1

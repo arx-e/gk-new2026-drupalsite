@@ -1,0 +1,14 @@
+uuid: 6579202d-de8c-402c-85f1-6614ececadfe
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.certification_body
+  module:
+    - user
+id: user_add_role_action.certification_body
+label: 'Add the Certification Body role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: certification_body

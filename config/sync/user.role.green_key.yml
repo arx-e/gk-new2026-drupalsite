@@ -1,0 +1,16 @@
+uuid: cb687334-e8d9-4b87-9239-cf6a39a38b9f
+langcode: en
+status: true
+dependencies:
+  module:
+    - field_permissions
+id: green_key
+label: 'Green Key'
+weight: 7
+is_admin: false
+permissions:
+  - 'create field_app_auditor_user'
+  - 'create field_res_note_natop'
+  - 'edit field_app_auditor_user'
+  - 'edit own field_app_auditor_user'
+  - 'edit own field_res_note_natop'

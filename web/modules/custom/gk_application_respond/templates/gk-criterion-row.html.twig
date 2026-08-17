@@ -1,18 +1,24 @@
 {#
   @file gk-criterion-row.html.twig
   One criterion row in the accordion.
-  The row header shows code, title, type badge, and current answer status.
-  Clicking "Expand" triggers the AJAX form load (JS handles this).
+  The row header shows code, title, applicability badge, and current answer
+  status. Clicking "Expand" triggers the AJAX form load (JS handles this).
   The .gk-criterion-form-container is the injection point for the entity form.
 
+  Inactive rows (applicability == 'x' / active == false) are read-only:
+  no answer/compliance badge, no Expand button, no form body — they just
+  display the code, title, and the "Not Applicable" badge.
+
   Variables:
-    response_id     — criterion_response entity ID
-    criterion_code  — e.g. "1.01"
-    criterion_title — criterion node title
-    criterion_type  — "Imperative" | "Guideline"
-    answer          — current field_res_answer value (or empty)
-    compliance      — current field_res_compliance_status value (or empty)
-    application_id  — application node NID (for AJAX URL)
+    response_id         — criterion_response entity ID
+    criterion_code       — e.g. "1.01"
+    criterion_title       — criterion node title
+    applicability         — 'i' | 'g' | 'x'
+    applicability_label   — "Imperative" | "Guideline" | "Not Applicable"
+    active                — bool, false when applicability == 'x'
+    answer                — current field_res_answer value (or empty)
+    compliance            — current field_res_compliance_status value (or empty)
+    application_id        — application node NID (for AJAX URL)
 #}
 {% set answer_label = {
   'yes': 'Ναι'|t,
@@ -29,11 +35,14 @@
 
 {% set compliance_class = compliance ? ('gk-compliance--' ~ compliance|replace({'_': '-'})) : '' %}
 
-<article class="gk-criterion-row"
+<article class="gk-criterion-row{{ active ? '' : ' criterion-inactive' }}"
          data-response-id="{{ response_id }}"
          data-application-id="{{ application_id }}"
+         data-appl="{{ applicability }}"
+         {% if active %}
          data-answer="{{ answer }}"
-         data-compliance="{{ compliance }}">
+         data-compliance="{{ compliance }}"
+         {% endif %}>
 
   {# ---- Row header (always visible) ---- #}
   <header class="gk-criterion-row__header">
@@ -46,58 +55,62 @@
       {{ criterion_title }}
     </span>
 
-    <span class="gk-badge gk-badge--{{ criterion_type|lower }}"
-          title="{{ 'Criterion type for this establishment'|t }}">
-      {{ criterion_type }}
+    <span class="gk-badge gk-badge--{{ applicability }}"
+          title="{{ 'Criterion applicability'|t }}">
+      {{ applicability_label }}
     </span>
 
-    {# Answer status badge — updated live by JS on save #}
-    <span class="gk-criterion-row__answer {{ answer_class }}"
-          data-answer-badge="{{ response_id }}">
-      {{ answer_label }}
-    </span>
+    {% if active %}
+      {# Answer status badge — updated live by JS on save #}
+      <span class="gk-criterion-row__answer {{ answer_class }}"
+            data-answer-badge="{{ response_id }}">
+        {{ answer_label }}
+      </span>
 
-    {# Compliance badge — only visible when compliance is set (auditor role) #}
-    {% if compliance %}
-      <span class="gk-criterion-row__compliance {{ compliance_class }}"
-            data-compliance-badge="{{ response_id }}">
-        {{ compliance_label }}
-      </span>
-    {% else %}
-      <span class="gk-criterion-row__compliance gk-compliance--empty"
-            data-compliance-badge="{{ response_id }}"
-            style="display:none">
-      </span>
+      {# Compliance badge — only visible when compliance is set (auditor role) #}
+      {% if compliance %}
+        <span class="gk-criterion-row__compliance {{ compliance_class }}"
+              data-compliance-badge="{{ response_id }}">
+          {{ compliance_label }}
+        </span>
+      {% else %}
+        <span class="gk-criterion-row__compliance gk-compliance--empty"
+              data-compliance-badge="{{ response_id }}"
+              style="display:none">
+        </span>
+      {% endif %}
+
+      {# Expand/collapse toggle button. JS watches for click on this. #}
+      <button class="gk-criterion-row__toggle"
+              aria-expanded="false"
+              aria-controls="gk-cr-form-area-{{ response_id }}"
+              data-toggle-response="{{ response_id }}"
+              type="button">
+        <span class="gk-criterion-row__toggle-label">{{ 'Expand'|t }}</span>
+        <span class="gk-criterion-row__toggle-icon" aria-hidden="true"></span>
+      </button>
     {% endif %}
-
-    {# Expand/collapse toggle button. JS watches for click on this. #}
-    <button class="gk-criterion-row__toggle"
-            aria-expanded="false"
-            aria-controls="gk-cr-form-area-{{ response_id }}"
-            data-toggle-response="{{ response_id }}"
-            type="button">
-      <span class="gk-criterion-row__toggle-label">{{ 'Expand'|t }}</span>
-      <span class="gk-criterion-row__toggle-icon" aria-hidden="true"></span>
-    </button>
 
   </header>
 
-  {# ---- Expandable form area ---- #}
-  <div class="gk-criterion-row__body"
-       id="gk-cr-form-area-{{ response_id }}"
-       hidden>
+  {% if active %}
+    {# ---- Expandable form area ---- #}
+    <div class="gk-criterion-row__body"
+         id="gk-cr-form-area-{{ response_id }}"
+         hidden>
 
-    {# Spinner shown while the AJAX form is loading #}
-    <div class="gk-criterion-row__loading" aria-live="polite">
-      <span class="gk-spinner" aria-hidden="true"></span>
-      <span class="visually-hidden">{{ 'Loading form…'|t }}</span>
+      {# Spinner shown while the AJAX form is loading #}
+      <div class="gk-criterion-row__loading" aria-live="polite">
+        <span class="gk-spinner" aria-hidden="true"></span>
+        <span class="visually-hidden">{{ 'Loading form…'|t }}</span>
+      </div>
+
+      {# Injection point for the entity form (filled by CriterionResponseFormController) #}
+      <div class="gk-criterion-form-container"
+           data-form-container="{{ response_id }}">
+      </div>
+
     </div>
-
-    {# Injection point for the entity form (filled by CriterionResponseFormController) #}
-    <div class="gk-criterion-form-container"
-         data-form-container="{{ response_id }}">
-    </div>
-
-  </div>
+  {% endif %}
 
 </article>

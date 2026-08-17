@@ -1,0 +1,9 @@
+uuid: 952e1676-e53c-4ba2-ba35-33c554f2740f
+langcode: en
+status: true
+dependencies: {  }
+id: certification_body
+label: 'Certification Body'
+weight: 8
+is_admin: false
+permissions: {  }

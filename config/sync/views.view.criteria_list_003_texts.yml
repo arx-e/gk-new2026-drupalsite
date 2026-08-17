@@ -1038,7 +1038,7 @@ display:
         type: normal
         title: 'Edit Τίτλος Συνάφεια'
         description: ''
-        weight: -48
+        weight: -47
         expanded: false
         menu_name: main
         parent: ''
@@ -1846,7 +1846,7 @@ display:
         type: normal
         title: 'Edit Προσδοκίες'
         description: ''
-        weight: -47
+        weight: -46
         expanded: false
         menu_name: main
         parent: ''
@@ -2651,6 +2651,15 @@ display:
       display_description: ''
       display_extenders: {  }
       path: admin/criteria-list-003-edit-3
+      menu:
+        type: normal
+        title: 'Edit texts Τεκμηρίωση Ελ.'
+        description: ''
+        weight: -48
+        expanded: false
+        menu_name: main
+        parent: ''
+        context: '0'
     cache_metadata:
       max-age: -1
       contexts:
