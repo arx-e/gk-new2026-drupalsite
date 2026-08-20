@@ -52,11 +52,11 @@ General-purpose tags vocabulary.
 
 | Role | Permissions Summary |
 |---|---|
-| **Establishment Admin** | Fills in criterion responses, uploads files/photos, adds own notes |
-| **Programme Operator/Admin** | Manages applications, assigns auditors, adds programme notes |
+| **Establishment Admin** | est_admin | Fills in criterion responses, uploads files/photos, adds own notes |
+| **Programme Operator Green Key** | green_key | Manages applications, assigns auditors, adds programme notes |
 | **Auditor** | Sets compliance status per criterion, adds auditor notes |
-| **International Jury** | Adds jury notes, view access |
-| **Site Admin** | Full access, runs setup batch process |
+| **Certification Body** | certification_body | Adds jury notes, view access |
+| **Site Admin** | administrator |  Full access, runs setup batch process |
 
 ---
 
@@ -128,7 +128,7 @@ One per establishment per cycle. Acts as the folder holding all criterion respon
 | Title | `title` | Node title | Auto-generated e.g. "Establishment X — 2025" |
 | Establishment | `field_app_establishment` | Entity ref → Establishment node | |
 | Application Cycle | `field_app_cycle` | Entity ref → `application_cycles` taxonomy | Present in configuration |
-| Application State | `field_app_state` | Content Moderation | Planned — not yet in configuration |
+| Application State | (none — `moderation_state`) | Content Moderation | Provided automatically by the `application_review` workflow — do NOT add a custom field |
 | Submitted Date | `field_app_date_submitted` | Date | Planned — not yet in configuration; set on submission |
 | Audited Date | `field_app_date_audited` | Date | Planned — not yet in configuration |
 | Certification Date | `field_app_date_certified` | Date | Planned — not yet in configuration |
@@ -167,18 +167,28 @@ One per criterion per application. Created in bulk at setup time.
 
 ### Application Workflow (Content Moderation)
 
+Handled by the `application_review` workflow (`content_moderation`). The state is stored in the built-in `moderation_state` base field on the application node — no custom `field_app_state` field is required (see the note in the `application_container` table above).
+
 ```
-draft → submitted → under_review → finalized
+draft → submitted → under_review → under_audit → finalized
 ```
 
-| Transition | Triggered by |
-|---|---|
-| draft → submitted | Establishment admin |
-| submitted → under_review | Programme admin / Auditor |
-| under_review → finalized | Programme admin / Certifying body |
-| Any → draft | Programme admin (to return for corrections) |
+Plus an optional `published` state for publishing finalized results.
+
+| Transition | From → To | Triggered by |
+|---|---|---|
+| `submit_application` | draft → submitted | Establishment admin |
+| `put_under_review` | submitted / under_review → under_review | Programme admin / Auditor |
+| `put_under_audit` | submitted / under_review → under_audit | Programme admin / Certifying body |
+| `finalize` | finalized / under_audit → finalized | Programme admin / Certifying body |
+| `create_new_draft` | draft / published → draft | Programme admin (to return for corrections) |
+| `publish` | draft / published → published | Programme admin / Site admin |
 
 Each transition creates a revision with a log message. Use **Content Moderation Notifications** contrib module for email alerts on transitions.
+
+**Access split:**
+- Who may move states → content moderation transition permissions (`use application_review transition <name>`) per role.
+- Who may edit fields per state → custom entity access handler + field_permissions (e.g. establishment admins edit only while in `draft`).
 
 ---
 
