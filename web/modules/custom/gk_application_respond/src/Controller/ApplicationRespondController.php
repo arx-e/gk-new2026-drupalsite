@@ -226,7 +226,7 @@ class ApplicationRespondController extends ControllerBase {
       $grouped[$cat_id]['subcategories'][$sub_id]['criteria'][] = [
         'response'      => $response,
         'criterion'     => $criterion,
-        'answer'        => ((int) ($response->get('field_res_answer')->value ?? 0)) === 1 ? 'yes' : 'no',
+        'answer'        => ApplicationStatsService::normalizeAnswer($response->get('field_res_answer')->value ?? ''),
         'compliance'    => $response->get('field_res_compliance_status')->value ?? '',
         'applicability' => $appl,
         'active'        => $appl !== 'x',

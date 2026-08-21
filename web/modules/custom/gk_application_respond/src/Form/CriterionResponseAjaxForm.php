@@ -9,6 +9,7 @@ use Drupal\Core\Ajax\PrependCommand;
 use Drupal\Core\Ajax\ReplaceCommand;
 use Drupal\Core\Entity\ContentEntityForm;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\gk_application_respond\Service\ApplicationStatsService;
 
 /**
  * Custom form operation 'gk_respond' for criterion_response entities.
@@ -242,7 +243,7 @@ class CriterionResponseAjaxForm extends ContentEntityForm {
       ->load($entity_id);
 
     $answer_raw = $saved?->get('field_res_answer')->value;
-    $answer     = ((int) ($answer_raw ?? 0)) === 1 ? 'yes' : 'no';
+    $answer     = ApplicationStatsService::normalizeAnswer($answer_raw ?? '');
     $compliance = $saved?->get('field_res_compliance_status')->value ?? '';
     $applicability = $saved?->get('field_res_criterion_appl')->value ?? 'x';
     if (!in_array($applicability, ['i', 'g', 'x'], TRUE)) {

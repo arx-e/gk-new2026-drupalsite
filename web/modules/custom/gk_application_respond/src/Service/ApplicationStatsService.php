@@ -12,8 +12,8 @@ use Drupal\Core\Entity\EntityTypeManagerInterface;
  * excluded from all totals/answer/compliance breakdowns and only counted in
  * 'not_applicable'.
  *   - total:        number of ACTIVE criterion responses (appl i or g).
- *   - answered:     active responses where field_res_answer is not empty.
- *   - yes / partial / no: breakdown of field_res_answer values (active only).
+ *   - answered:     active responses where field_res_answer is set (yes or no).
+ *   - yes / no: breakdown of field_res_answer values (active only).
  *   - compliant / partly_compliant / non_compliant / not_assessed:
  *       breakdown of field_res_compliance_status (auditor-only field, active only).
  *   - not_applicable: count of responses with appl = 'x'.
@@ -158,7 +158,7 @@ class ApplicationStatsService {
       $grouped[$cat_id]['subcategories'][0]['criteria'][] = [
         'response'      => $response,
         'criterion'     => $criterion,
-        'answer'        => ((int) ($response->get('field_res_answer')->value ?? 0)) === 1 ? 'yes' : 'no',
+        'answer'        => self::normalizeAnswer($response->get('field_res_answer')->value ?? ''),
         'compliance'    => $response->get('field_res_compliance_status')->value ?? '',
         'applicability' => $appl,
         'active'        => $appl !== 'x',
@@ -166,6 +166,22 @@ class ApplicationStatsService {
     }
 
     return $this->computeFromGrouped($grouped);
+  }
+
+  /**
+   * Normalizes a raw field_res_answer value to a canonical 'yes'/'no' string.
+   *
+   * The field is a list_string holding exactly 'yes' or 'no'; anything else
+   * (empty, legacy integer values, NULL) falls back to 'no'.
+   *
+   * @param mixed $raw
+   *   Raw field value.
+   *
+   * @return string
+   *   'yes' or 'no'.
+   */
+  public static function normalizeAnswer(mixed $raw): string {
+    return $raw === 'yes' ? 'yes' : 'no';
   }
 
   /**

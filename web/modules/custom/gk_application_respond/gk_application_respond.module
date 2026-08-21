@@ -7,6 +7,7 @@
 
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityTypeInterface;
+use Drupal\node\NodeInterface;
 
 /**
  * Implements hook_theme().
@@ -124,5 +125,26 @@ function gk_application_respond_entity_presave(EntityInterface $entity): void {
   $appl = $entity->get('field_res_criterion_appl')->value;
   if ($appl === 'x' && (int) $entity->get('field_res_criterion_active')->value !== 0) {
     $entity->set('field_res_criterion_active', 0);
+  }
+}
+
+/**
+ * Implements hook_entity_predelete().
+ *
+ * Cascade-deletes all criterion_response entities that reference an
+ * application_container node being deleted (field_res_application). This keeps
+ * the linked ECK entities from being orphaned whenever an application is
+ * removed through the admin UI, Drush, or code.
+ */
+function gk_application_respond_entity_predelete(EntityInterface $entity): void {
+  if ($entity->getEntityTypeId() !== 'node' || $entity->bundle() !== 'application_container') {
+    return;
+  }
+
+  $storage = \Drupal::entityTypeManager()->getStorage('criterion_response_ent');
+  $responses = $storage->loadByProperties(['field_res_application' => $entity->id()]);
+  if (!empty($responses)) {
+    $storage->delete($responses);
+    \Drupal::service('cache_tags.invalidator')->invalidateTags(['criterion_response_list']);
   }
 }
