@@ -1,0 +1,21 @@
+uuid: 2b38de7f-ee5a-4822-bc3f-cdb84cc80e4a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_app_date_audited
+    - node.type.application_container
+  module:
+    - datetime
+id: node.application_container.field_app_date_audited
+field_name: field_app_date_audited
+entity_type: node
+bundle: application_container
+label: 'Audit Date'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

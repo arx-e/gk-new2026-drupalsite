@@ -1,0 +1,21 @@
+uuid: 371f5f80-ed20-4e83-9d10-dee286697b3e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_app_cert_verdict
+    - node.type.application_container
+  module:
+    - options
+id: node.application_container.field_app_cert_verdict
+field_name: field_app_cert_verdict
+entity_type: node
+bundle: application_container
+label: 'Certification Status'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

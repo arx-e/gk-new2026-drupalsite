@@ -1,0 +1,50 @@
+uuid: 183578fb-9e25-4e2a-9631-d6d31ee53f9d
+langcode: en
+status: true
+dependencies:
+  config:
+    - comment.type.application_container_comments
+    - field.field.comment.application_container_comments.comment_body
+    - field.field.comment.application_container_comments.field_application_comment_files
+    - field.field.comment.application_container_comments.field_application_comment_photos
+  module:
+    - file
+    - image
+    - text
+id: comment.application_container_comments.default
+targetEntityType: comment
+bundle: application_container_comments
+mode: default
+content:
+  comment_body:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_application_comment_files:
+    type: file_default
+    label: above
+    settings:
+      use_description_as_link_text: true
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  field_application_comment_photos:
+    type: image
+    label: above
+    settings:
+      image_link: ''
+      image_style: ''
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 102
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden: {  }

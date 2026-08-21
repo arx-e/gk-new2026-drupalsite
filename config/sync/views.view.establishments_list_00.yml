@@ -592,7 +592,7 @@ display:
         type: normal
         title: Establishments
         description: ''
-        weight: -43
+        weight: -46
         expanded: false
         menu_name: main
         parent: ''

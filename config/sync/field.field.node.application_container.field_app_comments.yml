@@ -1,0 +1,33 @@
+uuid: c3e94622-f8da-41ff-ba86-1f7cf6aa6565
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_app_comments
+    - node.type.application_container
+  module:
+    - comment
+id: node.application_container.field_app_comments
+field_name: field_app_comments
+entity_type: node
+bundle: application_container
+label: 'Application Container Comments'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    status: 2
+    cid: 0
+    last_comment_timestamp: 0
+    last_comment_name: null
+    last_comment_uid: 0
+    comment_count: 0
+default_value_callback: ''
+settings:
+  default_mode: 1
+  per_page: 50
+  anonymous: 0
+  form_location: true
+  preview: 1
+field_type: comment

@@ -32,7 +32,6 @@ dependencies:
     - field.field.node.establishment.field_est_website
     - node.type.establishment
   module:
-    - datetime_range
     - field_group
     - geofield
     - link
@@ -220,15 +219,13 @@ content:
     weight: 21
     region: content
   field_est_periodos_leitoyrgias:
-    type: daterange_default
+    type: string
     label: above
     settings:
-      timezone_override: ''
-      format_type: medium
-      from_to: both
-      separator: '-'
+      link_to_entity: false
+      link_rel: canonical
     third_party_settings: {  }
-    weight: 8
+    weight: 29
     region: content
   field_est_phones_manager_owner:
     type: string

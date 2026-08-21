@@ -428,7 +428,7 @@ display:
         type: normal
         title: 'App containers list'
         description: ''
-        weight: -42
+        weight: -45
         expanded: false
         menu_name: main
         parent: ''

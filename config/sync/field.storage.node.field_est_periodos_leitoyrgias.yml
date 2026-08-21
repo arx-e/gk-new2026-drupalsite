@@ -1,17 +1,18 @@
-uuid: 851da4c2-6836-4da8-b9d5-6061be35afe2
+uuid: 36a05011-d12b-41d3-b6cc-e43665a9edc9
 langcode: en
 status: true
 dependencies:
   module:
-    - datetime_range
     - node
 id: node.field_est_periodos_leitoyrgias
 field_name: field_est_periodos_leitoyrgias
 entity_type: node
-type: daterange
+type: string
 settings:
-  datetime_type: date
-module: datetime_range
+  max_length: 512
+  case_sensitive: false
+  is_ascii: false
+module: core
 locked: false
 cardinality: 1
 translatable: true

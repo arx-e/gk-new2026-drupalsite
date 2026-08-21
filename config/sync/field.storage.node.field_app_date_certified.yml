@@ -1,0 +1,20 @@
+uuid: 0e7fdffe-c221-4b66-9e01-fc8e0a1e25e3
+langcode: en
+status: true
+dependencies:
+  module:
+    - datetime
+    - node
+id: node.field_app_date_certified
+field_name: field_app_date_certified
+entity_type: node
+type: datetime
+settings:
+  datetime_type: date
+module: datetime
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

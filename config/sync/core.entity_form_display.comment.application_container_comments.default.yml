@@ -1,0 +1,56 @@
+uuid: 6f602788-9d00-4f7e-94d0-154213563ba4
+langcode: en
+status: true
+dependencies:
+  config:
+    - comment.type.application_container_comments
+    - field.field.comment.application_container_comments.comment_body
+    - field.field.comment.application_container_comments.field_application_comment_files
+    - field.field.comment.application_container_comments.field_application_comment_photos
+    - image.style.thumbnail
+  module:
+    - file
+    - image
+    - text
+id: comment.application_container_comments.default
+targetEntityType: comment
+bundle: application_container_comments
+mode: default
+content:
+  author:
+    weight: -2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  comment_body:
+    type: text_textarea
+    weight: 11
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_application_comment_files:
+    type: file_generic
+    weight: 12
+    region: content
+    settings:
+      progress_indicator: throbber
+    third_party_settings: {  }
+  field_application_comment_photos:
+    type: image_image
+    weight: 13
+    region: content
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+  subject:
+    type: string_textfield
+    weight: 10
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden: {  }

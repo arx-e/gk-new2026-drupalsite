@@ -52,9 +52,9 @@ General-purpose tags vocabulary.
 
 | Role | Permissions Summary |
 |---|---|
-| **Establishment Admin** | est_admin | Fills in criterion responses, uploads files/photos, adds own notes |
-| **Programme Operator Green Key** | green_key | Manages applications, assigns auditors, adds programme notes |
-| **Auditor** | Sets compliance status per criterion, adds auditor notes |
+| **Establishment Admin** | est_admin | Fills in criterion responses (answer), uploads files/photos, adds own notes |
+| **Green Key** | green_key | runs setup batch process, Manages applications, assigns auditors, assigns certificatiuon body user, adds green key programme notes |
+| **Auditor** | auditor | Sets compliance status per criterion, adds auditor notes |
 | **Certification Body** | certification_body | Adds jury notes, view access |
 | **Site Admin** | administrator |  Full access, runs setup batch process |
 
@@ -100,23 +100,39 @@ General-purpose tags vocabulary.
 #### 2. `criterion` — Node Type
 139 criteria imported via CSV migration.
 
-| Field Title | Field Name | Type |
-|---|---|---|
-| Title | `title` | Node title |
-| Criterion Category | `field_criterion_category` | Entity ref → `criteria_categories` (top level) |
-| Criterion Subcategory | `field_criterion_subcategory` | Entity ref → `criteria_categories` (child) |
-| Criterion Code | `field_criterion_code` | Plain text (e.g. 101) |
-| Criterion Code Alt | `field_criterion_code_alt` | Plain text (e.g. 1.01) |
-| Relevance | `field_expl_relevance` | Formatted long text |
-| Expectations | `field_expl_expectations` | Formatted long text |
-| Audit Evidence | `field_expl_audit_evidence` | Formatted long text |
-| Imperative For | `field_imperative_for` | Entity ref → `establishment_types` (multi) |
-| Guideline For | `field_guideline_for` | Entity ref → `establishment_types` (multi) |
-| Files Required | `field_cr_upload_files` | Boolean |
-| Photos Required | `field_cr_upload_photos` | Boolean |
-| Performance Data Required | `field_cr_performance_data` | Boolean |
+| Field Title | Field Name | Type | Values |
+|---|---|---|---|
+| Title | `title` | Node title | |
+| Criterion Category | `field_criterion_category` | Entity ref → `criteria_categories` (top level) ||
+| Criterion Subcategory | `field_criterion_subcategory` | Entity ref → `criteria_categories` (child) ||
+| Criterion Code | `field_criterion_code` | Plain text (e.g. 101) ||
+| Criterion Code Alt | `field_criterion_code_alt` | Plain text (e.g. 1.01) ||
+| Relevance | `field_expl_relevance` | Formatted long text ||
+| Expectations | `field_expl_expectations` | Formatted long text ||
+| Audit Evidence | `field_expl_audit_evidence` | Formatted long text ||
+| Imperative For | `field_imperative_for` | Entity ref → `establishment_types` (multi) ||
+| Guideline For | `field_guideline_for` | Entity ref → `establishment_types` (multi) ||
+| Files Required | `field_cr_upload_files` | Boolean ||
+| Photos Required | `field_cr_upload_photos` | Boolean ||
+| Performance Data Required | `field_cr_performance_data` | Boolean | **has been removed** |
+| Applicable HH | field_cr_appl_hh | List (plain text) | Imperative (i), Guideline (g), Not Applicable(x) |
+| Applicable CHP | field_cr_appl_chp | List (plain text) | Imperative (i), Guideline (g), Not Applicable(x) |
+| Applicable SA | field_cr_appl_sa | List (plain text) | Imperative (i), Guideline (g), Not Applicable(x) |
+| Applicable CC | field_cr_appl_cc | List (plain text) | Imperative (i), Guideline (g), Not Applicable(x) |
+| Applicable R | field_cr_appl_r | List (plain text) | Imperative (i), Guideline (g), Not Applicable(x) |
+| Applicable A | field_cr_appl_a | List (plain text) | Imperative (i), Guideline (g), Not Applicable(x) |
 
-> **Note:** `field_imperative_for` ∪ `field_guideline_for` defines which establishment types the criterion applies to. Each criterion can be Imperative for some types and Guideline for others.
+> **Note:** `field_imperative_for` ∪ `field_guideline_for` **are to be retired**
+Now fields named "Applicable X" `field_cr_appl_X` define how each criterion applies or not to each establishment type. Each criterion can be Imperative for some types and Guideline for others or Not Applicable for others in which case the criterion response is lso set as inactive in `field_res_criterion_active` (Boolean, 1=active, 0=inactive).
+Criterion fields that indicate applicability for each establishment type:
+| Applies to | Field machine name | Field type | Values |
+| Hotels and Hostels (HH) | `field_cr_appl_hh` | List (plain text) | Imperative (i), Guideline (g), Not Applicable(x) |
+| Campsites and Holiday Parks (CHP) | `field_cr_appl_chp` | List (plain text) | Imperative (i), Guideline (g), Not Applicable(x) |
+| Small Accommodations (SA) | `field_cr_appl_sa` | List (plain text) | Imperative (i), Guideline (g), Not Applicable(x) |
+| Conference Centres (CC) | `field_cr_appl_cc` | List (plain text) | Imperative (i), Guideline (g), Not Applicable(x) |
+| Restaurants/Cafés (R) | `field_cr_appl_r` | List (plain text) | Imperative (i), Guideline (g), Not Applicable(x) |
+| Attractions (A) | `field_cr_appl_a` | List (plain text) | Imperative (i), Guideline (g), Not Applicable(x) |
+
 
 ---
 
@@ -128,16 +144,14 @@ One per establishment per cycle. Acts as the folder holding all criterion respon
 | Title | `title` | Node title | Auto-generated e.g. "Establishment X — 2025" |
 | Establishment | `field_app_establishment` | Entity ref → Establishment node | |
 | Application Cycle | `field_app_cycle` | Entity ref → `application_cycles` taxonomy | Present in configuration |
-| Application State | (none — `moderation_state`) | Content Moderation | Provided automatically by the `application_review` workflow — do NOT add a custom field |
-| Submitted Date | `field_app_date_submitted` | Date | Planned — not yet in configuration; set on submission |
-| Audited Date | `field_app_date_audited` | Date | Planned — not yet in configuration |
-| Certification Date | `field_app_date_certified` | Date | Planned — not yet in configuration |
-| Certification Valid For | `field_app_cert_range` | Date range | Planned — not yet in configuration |
-| Score | `field_app_score` | Decimal | Planned — not yet in configuration; calculated — TBD |
-| Programme Operator | `field_app_operator_user` | Entity ref → User | Planned — not yet in configuration |
-| Auditor | `field_app_auditor_user` | Entity ref → User (multi) | Planned — not yet in configuration |
-| Certifying Body User | `field_app_certif_user` | Entity ref → User (multi) | Planned — not yet in configuration |
-| Comments | `field_app_comments` | Core Comments | Planned — not yet in configuration; all roles |
+| Auditor | `field_app_auditor_user` | Entity ref → User (multi) | Present in configuration |
+| Audit Date | `field_app_date_audited` | Date | Set by auditor user |
+| Certifying Body User | `field_app_cb_user` | Entity ref → User (multi) | Present in configuration |
+| Certification Date | `field_app_date_certified` | Date | Set by the certification body user |
+| Certification End | `field_app_date_cert_end` | Date | Set by the certification body user |
+| Certification Status | `field_app_cert_verdict` |List plain text (awarded, rejected) | Set by the certification body user |
+| Comments | `field_app_comments` | Core Application Container Comments | all users connected to the application |
+| Application State | (none — `moderation_state`) | Content Moderation | Provided automatically by the `application_review` workflow — do NOT add a custom field | 
 
 ---
 
@@ -147,19 +161,22 @@ One per criterion per application. Created in bulk at setup time.
 | Field Name | Type | Role Access | Notes |
 |---|---|---|---|
 | `field_res_application` | Entity ref → Application node | System | |
-| `field_res_criterion` | Entity ref → Criterion node | System | |
-| `field_res_criterion_type` | List (Imperative / Guideline) | System | **Snapshotted at setup** |
-| `field_res_answer` | List (Yes / No / Partial) | Establishment admin | |
+| `field_res_criterion` | Entity ref → Criterion node | System ||
+| `field_res_criterion_active` |  Boolean | System | redundant but might be used. It is automatically set to OFF when `field_res_criterion_appl` is set to Not Applicable | 
+| `field_res_criterion_appl` | List plain text (Imperative (i), Guideline (g), Not Applicable(x)) | System and administrator | replaces and extends `field_res_criterion_type` |
+| `field_res_criterion_type` | List (Imperative / Guideline) | System | **deleted** |
+| `field_res_answer` | List plain text (Yes/Ναι (yes) / No/Όχι (no) ) | Establishment admin | |
 | `field_res_uploads_files` | File multi (pdf, doc, docx) | Establishment admin | Only shown if `field_cr_upload_files = TRUE` |
 | `field_res_uploads_photos` | Image multi | Establishment admin | Only shown if `field_cr_upload_photos = TRUE` |
-| `field_res_performance_data` | Custom Field module (tabular) | Establishment admin | Only shown if `field_cr_performance_data = TRUE` |
-| `field_res_compliance_status` | List (Compliant / Partial / Non-compliant / None) | Auditor only | |
-| `field_res_note_establishment` | Long text | Establishment admin | |
-| `field_res_note_programme_op` | Long text | Programme admin | |
-| `field_res_note_auditor` | Long text | Auditor | |
-| `field_res_note_jury` | Long text | Jury | |
+| `field_res_performance_data` | Custom Field module (tabular) | Establishment admin | **removed** |
+| `field_res_compliance_status` | List (Compliant / Partial / Non-compliant / None) | only assigned Auditor  `auditor`  specific user | |
+| `field_res_note_establishment` | Long text | Establishment admin `est_admin` specific user | |
+| `field_res_note_natop` | Long text | any user with role Green Key Programme Operator (`green_key`) | |
+| `field_res_note_auditor` | Long text | only assigned Auditor  `auditor`  specific user | |
+| `field_res_note_jury` | Long text | only assigned `certification_body` (Jury) specific user | |
 
-> **Key design decision:** `field_res_criterion_type` is resolved and stored at setup time from the criterion's `field_imperative_for` / `field_guideline_for` fields against the establishment's type. This ensures historical accuracy — if a criterion's classification changes in a future cycle, past responses retain their original classification.
+> **Key design decision:** `field_res_criterion_type` has been replaced by `field_res_criterion_appl`. 
+`field_res_criterion_appl` is resolved and stored at setup time from the criterion's fields named fields named "Applicable X" `field_cr_appl_X` against the establishment's type. This ensures historical accuracy — if a criterion's classification changes in a future cycle, past responses retain their original classification.
 
 > **ECK revision note:** ECK revisions are functional but the browsing UI is still in development ([issue #3376678](https://www.drupal.org/project/eck/issues/3376678)). Mitigate with `changed` timestamp + `uid` fields for basic traceability.
 
@@ -171,6 +188,15 @@ Handled by the `application_review` workflow (`content_moderation`). The state i
 
 ```
 draft → submitted → under_review → under_audit → finalized
+
+draft -> `est_admin` can edit answer, upload files or photos and write notes to `field_res_note_establishment
+submitted -> no one can edit all can view - Green Key** | green_key
+under_review -> est_admin can edit 
+under_audit -> only auditor edits his fields (compliance - note) 
+audit_report_finalized -> κανένας edit 
+under_cb_review -> κανένας edit 
+publishe -> Award Status Issued 
+
 ```
 
 Plus an optional `published` state for publishing finalized results.

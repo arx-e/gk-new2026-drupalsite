@@ -1,0 +1,36 @@
+uuid: a44b4c8d-8cc3-48d7-a005-33d201931189
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_app_cb_user
+    - node.type.application_container
+id: node.application_container.field_app_cb_user
+field_name: field_app_cb_user
+entity_type: node
+bundle: application_container
+label: 'Certifying Body User'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:user'
+  handler_settings:
+    target_bundles: null
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    filter:
+      type: role
+      role:
+        certification_body: certification_body
+        content_editor: '0'
+        administrator: '0'
+        est_admin: '0'
+        auditor: '0'
+        green_key: '0'
+    include_anonymous: true
+field_type: entity_reference

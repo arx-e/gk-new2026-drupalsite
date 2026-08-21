@@ -1,0 +1,8 @@
+uuid: d54a4321-ca70-47df-a2a7-bfd1cf027491
+langcode: en
+status: true
+dependencies: {  }
+id: application_container_comments
+label: 'Application Container Comments'
+target_entity_type_id: node
+description: ''

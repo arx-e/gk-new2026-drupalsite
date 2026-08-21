@@ -1,0 +1,47 @@
+uuid: 1817aea0-a698-44d5-87d7-f11ec5b2ed88
+langcode: en
+status: true
+dependencies:
+  config:
+    - comment.type.application_container_comments
+    - field.storage.comment.field_application_comment_files
+  module:
+    - file
+    - filefield_paths
+third_party_settings:
+  filefield_paths:
+    enabled: true
+    file_path:
+      value: 'app-comments/[comment:parent:id]'
+      options:
+        slashes: true
+        pathauto: true
+        transliterate: true
+    file_name:
+      value: '[comment:parent:id]-[comment:created:custom:Y-m-d]-[file:ffp-name-only-original].[file:ffp-extension-original]'
+      options:
+        slashes: true
+        pathauto: true
+        transliterate: true
+    temp_location: ''
+    redirect: false
+    retroactive_update: false
+    active_updating: false
+id: comment.application_container_comments.field_application_comment_files
+field_name: field_application_comment_files
+entity_type: comment
+bundle: application_container_comments
+label: 'Application Comment Files'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:file'
+  handler_settings: {  }
+  file_directory: '[date:custom:Y]-[date:custom:m]'
+  file_extensions: 'doc docx xls xlsx ppt pptx ods odt pdf zip rar rtf txt csv jpg jpeg png webp'
+  max_filesize: 15MB
+  description_field: false
+field_type: file

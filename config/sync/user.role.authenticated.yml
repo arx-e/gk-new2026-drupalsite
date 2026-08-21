@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - filter.format.application_container_comments
     - filter.format.basic_html
     - filter.format.notes_format
   module:
@@ -30,10 +31,12 @@ permissions:
   - 'post comments'
   - 'search content'
   - 'skip comment approval'
+  - 'use text format application_container_comments'
   - 'use text format basic_html'
   - 'use text format notes_format'
   - 'view any criterion_response_ent entities'
   - 'view field_app_auditor_user'
+  - 'view field_app_cb_user'
   - 'view field_res_compliance_status'
   - 'view field_res_criterion_appl'
   - 'view field_res_note_auditor'
@@ -41,6 +44,7 @@ permissions:
   - 'view field_res_note_natop'
   - 'view own criterion_response_ent entities'
   - 'view own field_app_auditor_user'
+  - 'view own field_app_cb_user'
   - 'view own field_res_compliance_status'
   - 'view own field_res_criterion_appl'
   - 'view own field_res_note_auditor'

@@ -10,7 +10,10 @@ weight: 7
 is_admin: false
 permissions:
   - 'create field_app_auditor_user'
+  - 'create field_app_cb_user'
   - 'create field_res_note_natop'
   - 'edit field_app_auditor_user'
+  - 'edit field_app_cb_user'
   - 'edit own field_app_auditor_user'
+  - 'edit own field_app_cb_user'
   - 'edit own field_res_note_natop'

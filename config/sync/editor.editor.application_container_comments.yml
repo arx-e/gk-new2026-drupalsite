@@ -1,0 +1,31 @@
+uuid: 0e72bea3-06e5-4cf4-8dee-4da8b8da0f5a
+langcode: en
+status: true
+dependencies:
+  config:
+    - filter.format.application_container_comments
+  module:
+    - ckeditor5
+format: application_container_comments
+editor: ckeditor5
+settings:
+  toolbar:
+    items:
+      - bold
+      - italic
+      - underline
+      - strikethrough
+      - subscript
+      - superscript
+      - bulletedList
+      - numberedList
+      - link
+  plugins:
+    ckeditor5_list:
+      properties:
+        reversed: true
+        startIndex: true
+        styles: true
+      multiBlock: true
+image_upload:
+  status: false

@@ -641,7 +641,7 @@ display:
         type: normal
         title: 'My Establishments'
         description: ''
-        weight: -43
+        weight: -44
         expanded: false
         menu_name: main
         parent: ''

@@ -11,34 +11,39 @@ label: 'Application Review'
 type: content_moderation
 type_settings:
   states:
-    draft:
-      label: Draft
-      weight: -3
-      published: false
-      default_revision: false
-    finalized:
-      label: Finalized
-      weight: 1
+    audit_report_finalized:
+      label: 'Audit Report Finalized'
+      weight: 0
       published: true
       default_revision: false
+    draft:
+      label: Draft
+      weight: -4
+      published: false
+      default_revision: false
     published:
-      label: Published
+      label: 'Award Status Issued'
       weight: 2
       published: true
       default_revision: true
     submitted:
       label: Submitted
-      weight: -2
+      weight: -3
       published: true
       default_revision: false
     under_audit:
       label: 'Under Audit'
-      weight: 0
+      weight: -1
+      published: true
+      default_revision: false
+    under_cb_review:
+      label: 'Under CB Review'
+      weight: 1
       published: true
       default_revision: false
     under_review:
       label: 'Under Review'
-      weight: -1
+      weight: -2
       published: true
       default_revision: false
   transitions:
@@ -49,13 +54,6 @@ type_settings:
         - published
       to: draft
       weight: -3
-    finalize:
-      label: Finalize
-      from:
-        - finalized
-        - under_audit
-      to: finalized
-      weight: 2
     publish:
       label: Publish
       from:

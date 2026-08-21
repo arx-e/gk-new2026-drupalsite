@@ -1,0 +1,23 @@
+uuid: 7f7db901-34e2-4b18-a63c-85a74aef9fba
+langcode: en
+status: true
+dependencies:
+  module:
+    - comment
+    - file
+id: comment.field_application_comment_files
+field_name: field_application_comment_files
+entity_type: comment
+type: file
+settings:
+  target_type: file
+  display_field: false
+  display_default: false
+  uri_scheme: public
+module: file
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

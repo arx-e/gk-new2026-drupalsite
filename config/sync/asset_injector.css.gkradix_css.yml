@@ -31,6 +31,9 @@ code: |-
   .js-form-item + .js-form-item {
   	margin-top: .5rem !important;
   }
+  .block-system-menu-blockaccount h2.block__title {
+  	font-size: 1.2rem;
+  }
 media: all
 preprocess: true
 conditions:
